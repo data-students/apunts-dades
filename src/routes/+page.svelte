@@ -25,25 +25,29 @@
   import * as Tooltip from "$lib/components/ui/tooltip/index.js";
 </script>
 
-<div class="bg-muted/40 flex min-h-screen w-full flex-col">
-  <aside class="bg-background fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r sm:flex">
+<svelte:head>
+  <title>Apunts Dades</title>
+</svelte:head>
+
+<div class="flex flex-col w-full min-h-screen bg-muted/40">
+  <aside class="fixed inset-y-0 left-0 z-10 flex-col hidden border-r bg-background w-14 sm:flex">
     <nav class="flex flex-col items-center gap-4 px-2 sm:py-5">
       <a
         href="##"
-        class="bg-primary text-primary-foreground group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full text-lg font-semibold md:h-8 md:w-8 md:text-base"
+        class="flex items-center justify-center gap-2 text-lg font-semibold rounded-full bg-primary text-primary-foreground group h-9 w-9 shrink-0 md:h-8 md:w-8 md:text-base"
       >
-        <Package2 class="h-4 w-4 transition-all group-hover:scale-110" />
+        <Package2 class="w-4 h-4 transition-all group-hover:scale-110" />
         <span class="sr-only">Acme Inc</span>
       </a>
       <Tooltip.Root>
         <Tooltip.Trigger asChild let:builder>
           <a
             href="##"
-            class="text-muted-foreground hover:text-foreground flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
+            class="flex items-center justify-center transition-colors rounded-lg text-muted-foreground hover:text-foreground h-9 w-9 md:h-8 md:w-8"
             use:builder.action
             {...builder}
           >
-            <House class="h-5 w-5" />
+            <House class="w-5 h-5" />
             <span class="sr-only">Dashboard</span>
           </a>
         </Tooltip.Trigger>
@@ -53,11 +57,11 @@
         <Tooltip.Trigger asChild let:builder>
           <a
             href="##"
-            class="bg-accent text-accent-foreground hover:text-foreground flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
+            class="flex items-center justify-center transition-colors rounded-lg bg-accent text-accent-foreground hover:text-foreground h-9 w-9 md:h-8 md:w-8"
             use:builder.action
             {...builder}
           >
-            <ShoppingCart class="h-5 w-5" />
+            <ShoppingCart class="w-5 h-5" />
             <span class="sr-only">Orders</span>
           </a>
         </Tooltip.Trigger>
@@ -67,11 +71,11 @@
         <Tooltip.Trigger asChild let:builder>
           <a
             href="##"
-            class="text-muted-foreground hover:text-foreground flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
+            class="flex items-center justify-center transition-colors rounded-lg text-muted-foreground hover:text-foreground h-9 w-9 md:h-8 md:w-8"
             use:builder.action
             {...builder}
           >
-            <Package class="h-5 w-5" />
+            <Package class="w-5 h-5" />
             <span class="sr-only">Products</span>
           </a>
         </Tooltip.Trigger>
@@ -81,11 +85,11 @@
         <Tooltip.Trigger asChild let:builder>
           <a
             href="##"
-            class="text-muted-foreground hover:text-foreground flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
+            class="flex items-center justify-center transition-colors rounded-lg text-muted-foreground hover:text-foreground h-9 w-9 md:h-8 md:w-8"
             use:builder.action
             {...builder}
           >
-            <UsersRound class="h-5 w-5" />
+            <UsersRound class="w-5 h-5" />
             <span class="sr-only">Customers</span>
           </a>
         </Tooltip.Trigger>
@@ -95,27 +99,27 @@
         <Tooltip.Trigger asChild let:builder>
           <a
             href="##"
-            class="text-muted-foreground hover:text-foreground flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
+            class="flex items-center justify-center transition-colors rounded-lg text-muted-foreground hover:text-foreground h-9 w-9 md:h-8 md:w-8"
             use:builder.action
             {...builder}
           >
-            <ChartLine class="h-5 w-5" />
+            <ChartLine class="w-5 h-5" />
             <span class="sr-only">Analytics</span>
           </a>
         </Tooltip.Trigger>
         <Tooltip.Content side="right">Analytics</Tooltip.Content>
       </Tooltip.Root>
     </nav>
-    <nav class="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">
+    <nav class="flex flex-col items-center gap-4 px-2 mt-auto sm:py-5">
       <Tooltip.Root>
         <Tooltip.Trigger asChild let:builder>
           <a
             href="##"
-            class="text-muted-foreground hover:text-foreground flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:h-8 md:w-8"
+            class="flex items-center justify-center transition-colors rounded-lg text-muted-foreground hover:text-foreground h-9 w-9 md:h-8 md:w-8"
             use:builder.action
             {...builder}
           >
-            <Settings class="h-5 w-5" />
+            <Settings class="w-5 h-5" />
             <span class="sr-only">Settings</span>
           </a>
         </Tooltip.Trigger>
@@ -125,12 +129,12 @@
   </aside>
   <div class="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
     <header
-      class="bg-background sticky top-0 z-30 flex h-14 items-center gap-4 border-b px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6"
+      class="sticky top-0 z-30 flex items-center gap-4 px-4 border-b bg-background h-14 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6"
     >
       <Sheet.Root>
         <Sheet.Trigger asChild let:builder>
           <Button builders={[builder]} size="icon" variant="outline" class="sm:hidden">
-            <PanelLeft class="h-5 w-5" />
+            <PanelLeft class="w-5 h-5" />
             <span class="sr-only">Toggle Menu</span>
           </Button>
         </Sheet.Trigger>
@@ -138,41 +142,41 @@
           <nav class="grid gap-6 text-lg font-medium">
             <a
               href="##"
-              class="bg-primary text-primary-foreground group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full text-lg font-semibold md:text-base"
+              class="flex items-center justify-center w-10 h-10 gap-2 text-lg font-semibold rounded-full bg-primary text-primary-foreground group shrink-0 md:text-base"
             >
-              <Package2 class="h-5 w-5 transition-all group-hover:scale-110" />
+              <Package2 class="w-5 h-5 transition-all group-hover:scale-110" />
               <span class="sr-only">Acme Inc</span>
             </a>
             <a
               href="##"
               class="text-muted-foreground hover:text-foreground flex items-center gap-4 px-2.5"
             >
-              <House class="h-5 w-5" />
+              <House class="w-5 h-5" />
               Dashboard
             </a>
             <a
               href="##"
               class="text-muted-foreground hover:text-foreground flex items-center gap-4 px-2.5"
             >
-              <ShoppingCart class="h-5 w-5" />
+              <ShoppingCart class="w-5 h-5" />
               Orders
             </a>
             <a href="##" class="text-foreground flex items-center gap-4 px-2.5">
-              <Package class="h-5 w-5" />
+              <Package class="w-5 h-5" />
               Products
             </a>
             <a
               href="##"
               class="text-muted-foreground hover:text-foreground flex items-center gap-4 px-2.5"
             >
-              <UsersRound class="h-5 w-5" />
+              <UsersRound class="w-5 h-5" />
               Customers
             </a>
             <a
               href="##"
               class="text-muted-foreground hover:text-foreground flex items-center gap-4 px-2.5"
             >
-              <ChartLine class="h-5 w-5" />
+              <ChartLine class="w-5 h-5" />
               Settings
             </a>
           </nav>
@@ -193,7 +197,7 @@
           </Breadcrumb.Item>
         </Breadcrumb.List>
       </Breadcrumb.Root>
-      <div class="relative ml-auto flex-1 md:grow-0">
+      <div class="relative flex-1 ml-auto md:grow-0">
         <Search class="text-muted-foreground absolute left-2.5 top-2.5 h-4 w-4" />
         <Input
           type="search"
@@ -228,7 +232,7 @@
         </DropdownMenu.Content>
       </DropdownMenu.Root>
     </header>
-    <main class="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
+    <main class="grid items-start flex-1 gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
       <Tabs.Root value="all">
         <div class="flex items-center">
           <Tabs.List>
@@ -239,7 +243,7 @@
               Archived
             </Tabs.Trigger>
           </Tabs.List>
-          <div class="ml-auto flex items-center gap-2">
+          <div class="flex items-center gap-2 ml-auto">
             <DropdownMenu.Root>
               <DropdownMenu.Trigger asChild let:builder>
                 <Button
@@ -312,7 +316,7 @@
                     <Table.Cell class="hidden sm:table-cell">
                       <img
                         alt="Product example"
-                        class="aspect-square rounded-md object-cover"
+                        class="object-cover rounded-md aspect-square"
                         height="64"
                         src="/images/placeholder.svg"
                         width="64"
@@ -340,7 +344,7 @@
                             variant="ghost"
                             builders={[builder]}
                           >
-                            <Ellipsis class="h-4 w-4" />
+                            <Ellipsis class="w-4 h-4" />
                             <span class="sr-only">Toggle menu</span>
                           </Button>
                         </DropdownMenu.Trigger>
@@ -356,7 +360,7 @@
                     <Table.Cell class="hidden sm:table-cell">
                       <img
                         alt="Product"
-                        class="aspect-square rounded-md object-cover"
+                        class="object-cover rounded-md aspect-square"
                         height="64"
                         src="/images/placeholder.svg"
                         width="64"
@@ -384,7 +388,7 @@
                             size="icon"
                             variant="ghost"
                           >
-                            <Ellipsis class="h-4 w-4" />
+                            <Ellipsis class="w-4 h-4" />
                             <span class="sr-only">Toggle menu</span>
                           </Button>
                         </DropdownMenu.Trigger>
@@ -400,7 +404,7 @@
                     <Table.Cell class="hidden sm:table-cell">
                       <img
                         alt="Product"
-                        class="aspect-square rounded-md object-cover"
+                        class="object-cover rounded-md aspect-square"
                         height="64"
                         src="/images/placeholder.svg"
                         width="64"
@@ -426,7 +430,7 @@
                             size="icon"
                             variant="ghost"
                           >
-                            <Ellipsis class="h-4 w-4" />
+                            <Ellipsis class="w-4 h-4" />
                             <span class="sr-only">Toggle menu</span>
                           </Button>
                         </DropdownMenu.Trigger>
@@ -442,7 +446,7 @@
                     <Table.Cell class="hidden sm:table-cell">
                       <img
                         alt="Product"
-                        class="aspect-square rounded-md object-cover"
+                        class="object-cover rounded-md aspect-square"
                         height="64"
                         src="/images/placeholder.svg"
                         width="64"
@@ -468,7 +472,7 @@
                             size="icon"
                             variant="ghost"
                           >
-                            <Ellipsis class="h-4 w-4" />
+                            <Ellipsis class="w-4 h-4" />
                             <span class="sr-only">Toggle menu</span>
                           </Button>
                         </DropdownMenu.Trigger>
@@ -484,7 +488,7 @@
                     <Table.Cell class="hidden sm:table-cell">
                       <img
                         alt="Product"
-                        class="aspect-square rounded-md object-cover"
+                        class="object-cover rounded-md aspect-square"
                         height="64"
                         src="/images/placeholder.svg"
                         width="64"
@@ -510,7 +514,7 @@
                             size="icon"
                             variant="ghost"
                           >
-                            <Ellipsis class="h-4 w-4" />
+                            <Ellipsis class="w-4 h-4" />
                             <span class="sr-only">Toggle menu</span>
                           </Button>
                         </DropdownMenu.Trigger>
@@ -526,7 +530,7 @@
                     <Table.Cell class="hidden sm:table-cell">
                       <img
                         alt="Product"
-                        class="aspect-square rounded-md object-cover"
+                        class="object-cover rounded-md aspect-square"
                         height="64"
                         src="/images/placeholder.svg"
                         width="64"
@@ -554,7 +558,7 @@
                             size="icon"
                             variant="ghost"
                           >
-                            <Ellipsis class="h-4 w-4" />
+                            <Ellipsis class="w-4 h-4" />
                             <span class="sr-only">Toggle menu</span>
                           </Button>
                         </DropdownMenu.Trigger>
@@ -570,7 +574,7 @@
               </Table.Root>
             </Card.Content>
             <Card.Footer>
-              <div class="text-muted-foreground text-xs">
+              <div class="text-xs text-muted-foreground">
                 Showing <strong>1-10</strong> of <strong>32</strong> products
               </div>
             </Card.Footer>
