@@ -1,0 +1,15 @@
+.git
+.gitignore
+.npmrc
+.svelte-kit/
+output/
+build/
+components.json
+Dockerfile
+postcss.config.js
+README.md
+tailwind.config.js
+vite.config.js
+tsconfig.json
+svelte.config.js
+static/
