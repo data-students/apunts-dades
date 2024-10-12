@@ -26,7 +26,7 @@
 </script>
 
 <svelte:head>
-  <title>Apunts Dades</title>
+  <title>Apunts - Apunts Dades</title>
 </svelte:head>
 
 <div class="flex flex-col w-full min-h-screen bg-muted/40">

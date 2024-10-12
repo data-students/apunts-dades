@@ -6,6 +6,10 @@
   import { Separator } from "$lib/components/ui/separator";
 </script>
 
+<svelte:head>
+  <title>Inicia sessió - Apunts Dades</title>
+</svelte:head>
+
 <div class="flex items-center justify-center h-screen">
     <Card.Root class="max-w-sm mx-auto">
     <Card.Header>

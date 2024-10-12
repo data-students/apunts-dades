@@ -5,10 +5,14 @@
   import { Label } from "$lib/components/ui/label/index.js";
 </script>
 
+<svelte:head>
+  <title>Recupera la contrasenya - Apunts Dades</title>
+</svelte:head>
+
 <div class="flex items-center justify-center h-screen">
     <Card.Root class="max-w-sm mx-auto">
     <Card.Header>
-        <Card.Title class="text-2xl">Recupera la Contrasenya</Card.Title>
+        <Card.Title class="text-2xl">Recupera la contrasenya</Card.Title>
         <Card.Description>Introdueix el teu correu electrònic per rebre un correu de recuperació de contrasenya.</Card.Description>
     </Card.Header>
     <Card.Content>
