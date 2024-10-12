@@ -11,13 +11,16 @@
   
   let email;
   let password;
+  let formError = false;
 
   async function login() {
-    const user = await pb.collection("users").authWithPassword(email, password);
-    if (user) {
-      goto("/");
-    } else {
-      alert("Error al iniciar sessió");
+    try {
+      const response = await pb.collection("users").authWithPassword(email, password);
+      if (pb.authStore.isValid) {
+        goto("/");
+      }
+    } catch (error) {
+      formError = true;
     }
   }
 </script>
@@ -47,6 +50,9 @@
             </div>
             <Input id="password" type="password" required bind:value={password} />
         </div>
+        {#if formError}
+          <span class="text-sm text-red-500">Error al iniciar sessió. Verifica les teves credencials.</span>
+        {/if}
         <Button type="submit" class="w-full">Inicia sessió</Button>
       </form>
       <Separator class="my-5" />
