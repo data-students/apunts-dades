@@ -4,6 +4,7 @@
   import { Input } from "$lib/components/ui/input/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
   import { Separator } from "$lib/components/ui/separator";
+  import Google from "$lib/components/icons/Google.svelte";
 </script>
 
 <svelte:head>
@@ -33,7 +34,10 @@
         </div>
         <Button type="submit" class="w-full">Inicia sessió</Button>
         <Separator class="my-1" />
-        <Button variant="outline" class="w-full">Inicia sessió amb Google</Button>
+        <Button variant="outline" class="w-full space-x-1.5">
+            <Google />
+            <span>Inicia sessió amb Google</span>
+        </Button>
         </div>
         <div class="mt-4 text-sm text-center">
           No tens compte?
