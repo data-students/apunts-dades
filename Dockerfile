@@ -10,10 +10,12 @@ COPY . .
 
 RUN npm run build
 
-FROM nginx:alpine
+FROM node:alpine
 
-COPY --from=build /app/build /usr/share/nginx/html
+COPY --from=build /app/build ./
 
-EXPOSE 80
+ENV NODE_ENV=production PORT=3000
 
-CMD ["nginx", "-g", "daemon off;"]
+EXPOSE 3000
+
+CMD ["node", "index.js"]
