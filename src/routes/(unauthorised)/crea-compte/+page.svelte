@@ -5,6 +5,20 @@
   import { Label } from "$lib/components/ui/label/index.js";
   import { Separator } from "$lib/components/ui/separator";
   import Google from "$lib/components/icons/Google.svelte";
+
+  let name;
+  let surname;
+  let email;
+  let password;
+
+  async function register() {
+    const user = await pb.collection('users').authWithPassword(email, password);
+    if (user) {
+      goto('/');
+    } else {
+      alert('Error al iniciar sessió');
+    }
+  }
 </script>
 
 <svelte:head>

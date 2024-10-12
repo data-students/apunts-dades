@@ -5,6 +5,21 @@
   import { Label } from "$lib/components/ui/label/index.js";
   import { Separator } from "$lib/components/ui/separator";
   import Google from "$lib/components/icons/Google.svelte";
+
+  import { pb } from '$lib/pocketbase.js';
+  import { goto } from '$app/navigation.js';
+  
+  let email;
+  let password;
+
+  async function login() {
+    const user = await pb.collection('users').authWithPassword(email, password);
+    if (user) {
+      goto('/');
+    } else {
+      alert('Error al iniciar sessió');
+    }
+  }
 </script>
 
 <svelte:head>
@@ -21,7 +36,7 @@
         <div class="grid gap-4">
         <div class="grid gap-2">
             <Label for="email">Correu electrònic</Label>
-            <Input id="email" type="email" placeholder="alumne@estudiantat.upc.edu" required />
+            <Input id="email" type="email" placeholder="alumne@estudiantat.upc.edu" bind:value={email} required />
         </div>
         <div class="grid gap-2">
             <div class="flex items-center">
@@ -30,9 +45,9 @@
                 Has oblidat la contrasenya?
             </a>
             </div>
-            <Input id="password" type="password" required />
+            <Input id="password" type="password" required bind:value={password} />
         </div>
-        <Button type="submit" class="w-full">Inicia sessió</Button>
+        <Button type="submit" class="w-full" on:click={login}>Inicia sessió</Button>
         <Separator class="my-1" />
         <Button variant="outline" class="w-full space-x-1.5">
             <Google />
