@@ -8,6 +8,8 @@ RUN npm ci
 
 COPY . .
 
+ARG VITE_POCKETBASE_ENDPOINT=${VITE_POCKETBASE_ENDPOINT}
+
 RUN npm run build
 
 FROM node:alpine
