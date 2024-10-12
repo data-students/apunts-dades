@@ -60,7 +60,7 @@
         {/if}
         <Button type="submit" class="w-full" disabled={formLoading}>
           {#if formLoading}
-            <LoaderCircle class="h-6 animate-spin" />
+            <LoaderCircle class="h-5 animate-spin" />
           {:else}
             Inicia sessió
           {/if}
