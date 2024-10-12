@@ -6,18 +6,18 @@
   import { Separator } from "$lib/components/ui/separator";
   import Google from "$lib/components/icons/Google.svelte";
 
-  import { pb } from '$lib/pocketbase.js';
-  import { goto } from '$app/navigation.js';
+  import { pb } from "$lib/pocketbase.js";
+  import { goto } from "$app/navigation.js";
   
   let email;
   let password;
 
   async function login() {
-    const user = await pb.collection('users').authWithPassword(email, password);
+    const user = await pb.collection("users").authWithPassword(email, password);
     if (user) {
-      goto('/');
+      goto("/");
     } else {
-      alert('Error al iniciar sessió');
+      alert("Error al iniciar sessió");
     }
   }
 </script>
