@@ -5,18 +5,40 @@
   import { Label } from "$lib/components/ui/label/index.js";
   import { Separator } from "$lib/components/ui/separator";
   import Google from "$lib/components/icons/Google.svelte";
+  import { pb } from "$lib/pocketbase.js";
+  import { goto } from "$app/navigation.js";
+  import { LoaderCircle } from "lucide-svelte";
 
-  let name;
-  let surname;
+  let firstName;
+  let lastName;
   let email;
   let password;
-
+  let confirmPassword;
+  let formError = false;
+  let formLoading = false;
+  $: passwordMatch = !password || !confirmPassword || password === confirmPassword;
+  
   async function register() {
-    const user = await pb.collection('users').authWithPassword(email, password);
-    if (user) {
-      goto('/');
-    } else {
-      alert('Error al iniciar sessió');
+    formError = false;
+    formLoading = true;
+    try {
+      const data = {
+        email: email,
+        emailVisibility: true,
+        password: password,
+        passwordConfirm: confirmPassword,
+        firstName: firstName,
+        lastName: lastName
+      };
+      const record = await pb.collection('users').create(data);
+      const response = await pb.collection("users").authWithPassword(email, password);
+      if (pb.authStore.isValid) {
+        goto("/");
+      }
+    } catch (error) {
+      formError = true;
+    } finally {
+      formLoading = false;
     }
   }
 </script>
@@ -26,36 +48,58 @@
 </svelte:head>
 
 <div class="flex items-center justify-center h-screen">
-    <Card.Root class="max-w-sm mx-auto">
+  <Card.Root class="max-w-sm mx-auto">
     <Card.Header>
-        <Card.Title class="text-2xl">Crea un Compte</Card.Title>
-        <Card.Description>Registra't a Apunts Dades per poder accedir i contribuir al repositori d'apunts del Grau en Ciència i Enginyeria de Dades de la UPC.</Card.Description>
+      <Card.Title class="text-2xl">Crea un Compte</Card.Title>
+      <Card.Description>Registra't a Apunts Dades per poder accedir i contribuir al repositori d'apunts del Grau en Ciència i Enginyeria de Dades de la UPC.</Card.Description>
     </Card.Header>
     <Card.Content>
-        <div class="grid gap-4">
-        <div class="grid gap-2">
-            <Label for="email">Correu electrònic</Label>
-            <Input id="email" type="email" placeholder="alumne@estudiantat.upc.edu" required />
+      <form class="grid gap-4" on:submit={register}>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="grid gap-2">
+            <Label for="first-name">Nom</Label>
+            <Input id="first-name" placeholder="Rosa" bind:value={firstName} required />
+          </div>
+          <div class="grid gap-2">
+            <Label for="last-name">Cognom</Label>
+            <Input id="last-name" placeholder="Melano" bind:value={lastName} required />
+          </div>
         </div>
         <div class="grid gap-2">
-            <Label for="password">Contrasenya</Label>
-            <Input id="password" type="password" required />
+          <Label for="email">Correu electrònic</Label>
+          <Input id="email" type="email" placeholder="alumne@estudiantat.upc.edu" bind:value={email} required />
         </div>
         <div class="grid gap-2">
-            <Label for="password">Repeteix Contrasenya</Label>
-            <Input id="password" type="password" required />
+          <Label for="password">Contrasenya</Label>
+          <Input id="password" type="password" required bind:value={password} />
         </div>
-        <Button type="submit" class="w-full">Registra't</Button>
-        <Separator class="my-1" />
-        <Button variant="outline" class="w-full space-x-1.5">
-            <Google />
-            <span>Registra't amb Google</span>
+        <div class="grid gap-2">
+          <Label for="confirm-password">Confirma la Contrasenya</Label>
+          <Input id="confirm-password" type="password" required bind:value={confirmPassword} />
+          {#if !passwordMatch}
+            <span class="text-sm text-red-500">Les contrasenyes han de coincidir.</span>
+          {/if}
+        </div>
+        {#if formError}
+          <span class="text-sm text-red-500">Error al crear el compte. Credencials invàlides.</span>
+        {/if}
+        <Button type="submit" class="w-full" disabled={!passwordMatch || formLoading}>
+          {#if formLoading}
+            <LoaderCircle class="h-5 animate-spin" />
+          {:else}
+            Registra't
+          {/if}
         </Button>
-        </div>
-        <div class="mt-4 text-sm text-center">
-          Ja tens compte?
-          <a href="/inicia-sessio" class="underline">Inicia sessió</a>
-        </div>
+      </form>
+      <Separator class="my-5" />
+      <Button variant="outline" class="w-full space-x-1.5">
+        <Google />
+        <span>Registra't amb Google</span>
+      </Button>
+      <div class="mt-4 text-sm text-center">
+        No tens compte?
+        <a href="/inicia-sessio" class="underline">Inicia sessió</a>
+      </div>
     </Card.Content>
-    </Card.Root>
+  </Card.Root>
 </div>
