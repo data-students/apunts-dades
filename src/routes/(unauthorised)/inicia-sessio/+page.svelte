@@ -27,13 +27,13 @@
 </svelte:head>
 
 <div class="flex items-center justify-center h-screen">
-    <Card.Root class="max-w-sm mx-auto">
+  <Card.Root class="max-w-sm mx-auto">
     <Card.Header>
-        <Card.Title class="text-2xl">Inicia Sessió</Card.Title>
-        <Card.Description>Introdueix el teu correu electrònic i contrasenya per iniciar sessió al teu compte.</Card.Description>
+      <Card.Title class="text-2xl">Inicia Sessió</Card.Title>
+      <Card.Description>Introdueix el teu correu electrònic i contrasenya per iniciar sessió al teu compte.</Card.Description>
     </Card.Header>
     <Card.Content>
-        <div class="grid gap-4">
+      <form class="grid gap-4" on:submit={login}>
         <div class="grid gap-2">
             <Label for="email">Correu electrònic</Label>
             <Input id="email" type="email" placeholder="alumne@estudiantat.upc.edu" bind:value={email} required />
@@ -47,17 +47,17 @@
             </div>
             <Input id="password" type="password" required bind:value={password} />
         </div>
-        <Button type="submit" class="w-full" on:click={login}>Inicia sessió</Button>
-        <Separator class="my-1" />
-        <Button variant="outline" class="w-full space-x-1.5">
-            <Google />
-            <span>Inicia sessió amb Google</span>
-        </Button>
-        </div>
-        <div class="mt-4 text-sm text-center">
-          No tens compte?
-          <a href="/crea-compte" class="underline">Registra't</a>
-        </div>
+        <Button type="submit" class="w-full">Inicia sessió</Button>
+      </form>
+      <Separator class="my-5" />
+      <Button variant="outline" class="w-full space-x-1.5">
+        <Google />
+        <span>Inicia sessió amb Google</span>
+      </Button>
+      <div class="mt-4 text-sm text-center">
+        No tens compte?
+        <a href="/crea-compte" class="underline">Registra't</a>
+      </div>
     </Card.Content>
-    </Card.Root>
+  </Card.Root>
 </div>
