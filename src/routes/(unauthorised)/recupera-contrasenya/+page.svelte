@@ -3,6 +3,24 @@
   import * as Card from "$lib/components/ui/card/index.js";
   import { Input } from "$lib/components/ui/input/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
+  import { pb } from "$lib/pocketbase.js";
+  import { LoaderCircle } from "lucide-svelte";
+
+  let email;
+  let formError = false;
+  let formLoading = false;
+
+  async function recover() {
+    formError = false;
+    formLoading = true;
+    try {
+      const response = await pb.collection('users').requestVerification(email);
+    } catch (error) {
+      formError = true;
+    } finally {
+      formLoading = false;
+    }
+  }
 </script>
 
 <svelte:head>
@@ -10,23 +28,32 @@
 </svelte:head>
 
 <div class="flex items-center justify-center h-screen">
-    <Card.Root class="max-w-sm mx-auto">
+  <Card.Root class="max-w-sm mx-auto">
     <Card.Header>
-        <Card.Title class="text-2xl">Recupera la Contrasenya</Card.Title>
-        <Card.Description>Introdueix el teu correu electrònic per rebre un correu de recuperació de contrasenya.</Card.Description>
+      <Card.Title class="text-2xl">Recupera la Contrasenya</Card.Title>
+      <Card.Description>Introdueix el teu correu electrònic per rebre un correu de recuperació de contrasenya.</Card.Description>
     </Card.Header>
     <Card.Content>
-        <div class="grid gap-4">
+      <form class="grid gap-4" on:submit={recover}>
         <div class="grid gap-2">
-            <Label for="email">Correu electrònic</Label>
-            <Input id="email" type="email" placeholder="alumne@estudiantat.upc.edu" required />
+          <Label for="email">Correu electrònic</Label>
+          <Input id="email" type="email" placeholder="alumne@estudiantat.upc.edu" bind:value={email} required />
         </div>
-        <Button type="submit" class="w-full">Envia correu de recuperació</Button>
-        </div>
-        <div class="mt-4 text-sm text-center">
-          Ja la recordes?
-          <a href="/inicia-sessio" class="underline">Inicia sessió</a>
-        </div>
+        {#if formError}
+          <span class="text-sm text-red-500">Aquest email no està associat a cap compte.</span>
+        {/if}
+        <Button type="submit" class="w-full" disabled={formLoading}>
+          {#if formLoading}
+            <LoaderCircle class="h-5 animate-spin" />
+          {:else}
+            Envia correu de recuperació
+          {/if}
+        </Button>
+      </form>
+      <div class="mt-4 text-sm text-center">
+        Ja la recordes?
+        <a href="/inicia-sessio" class="underline">Inicia sessió</a>
+      </div>
     </Card.Content>
-    </Card.Root>
+  </Card.Root>
 </div>
