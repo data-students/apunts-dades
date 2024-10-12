@@ -23,6 +23,14 @@
   import * as Table from "$lib/components/ui/table/index.js";
   import * as Tabs from "$lib/components/ui/tabs/index.js";
   import * as Tooltip from "$lib/components/ui/tooltip/index.js";
+
+  import { pb } from "$lib/pocketbase.js";
+  import { goto } from "$app/navigation.js";
+
+  async function logout() {
+    pb.authStore.clear();
+    goto("/inicia-sessio");
+  }
 </script>
 
 <svelte:head>
@@ -228,7 +236,7 @@
           <DropdownMenu.Item>Settings</DropdownMenu.Item>
           <DropdownMenu.Item>Support</DropdownMenu.Item>
           <DropdownMenu.Separator />
-          <DropdownMenu.Item>Logout</DropdownMenu.Item>
+          <DropdownMenu.Item on:click={logout}>Logout</DropdownMenu.Item>
         </DropdownMenu.Content>
       </DropdownMenu.Root>
     </header>
