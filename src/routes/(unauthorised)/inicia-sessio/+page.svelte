@@ -5,15 +5,18 @@
   import { Label } from "$lib/components/ui/label/index.js";
   import { Separator } from "$lib/components/ui/separator";
   import Google from "$lib/components/icons/Google.svelte";
-
   import { pb } from "$lib/pocketbase.js";
   import { goto } from "$app/navigation.js";
+  import { LoaderCircle } from "lucide-svelte";
   
   let email;
   let password;
   let formError = false;
+  let formLoading = false;
 
   async function login() {
+    formError = false;
+    formLoading = true;
     try {
       const response = await pb.collection("users").authWithPassword(email, password);
       if (pb.authStore.isValid) {
@@ -21,6 +24,8 @@
       }
     } catch (error) {
       formError = true;
+    } finally {
+      formLoading = false;
     }
   }
 </script>
@@ -38,22 +43,28 @@
     <Card.Content>
       <form class="grid gap-4" on:submit={login}>
         <div class="grid gap-2">
-            <Label for="email">Correu electrònic</Label>
-            <Input id="email" type="email" placeholder="alumne@estudiantat.upc.edu" bind:value={email} required />
+          <Label for="email">Correu electrònic</Label>
+          <Input id="email" type="email" placeholder="alumne@estudiantat.upc.edu" bind:value={email} required />
         </div>
         <div class="grid gap-2">
-            <div class="flex items-center">
+          <div class="flex items-center">
             <Label for="password">Contrasenya</Label>
             <a href="/recupera-contrasenya" class="inline-block ml-auto text-sm underline">
-                Has oblidat la contrasenya?
+              Has oblidat la contrasenya?
             </a>
-            </div>
-            <Input id="password" type="password" required bind:value={password} />
+          </div>
+          <Input id="password" type="password" required bind:value={password} />
         </div>
         {#if formError}
           <span class="text-sm text-red-500">Error al iniciar sessió. Verifica les teves credencials.</span>
         {/if}
-        <Button type="submit" class="w-full">Inicia sessió</Button>
+        <Button type="submit" class="w-full" disabled={formLoading}>
+          {#if formLoading}
+            <LoaderCircle class="h-6 animate-spin" />
+          {:else}
+            Inicia sessió
+          {/if}
+        </Button>
       </form>
       <Separator class="my-5" />
       <Button variant="outline" class="w-full space-x-1.5">
