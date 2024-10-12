@@ -7,13 +7,13 @@
 </script>
 
 <svelte:head>
-  <title>Inicia sessió - Apunts Dades</title>
+  <title>Inicia Sessió - Apunts Dades</title>
 </svelte:head>
 
 <div class="flex items-center justify-center h-screen">
     <Card.Root class="max-w-sm mx-auto">
     <Card.Header>
-        <Card.Title class="text-2xl">Inicia sessió</Card.Title>
+        <Card.Title class="text-2xl">Inicia Sessió</Card.Title>
         <Card.Description>Introdueix el teu correu electrònic i contrasenya per iniciar sessió al teu compte.</Card.Description>
     </Card.Header>
     <Card.Content>

@@ -7,13 +7,13 @@
 </script>
 
 <svelte:head>
-  <title>Crea un compte - Apunts Dades</title>
+  <title>Crea un Compte - Apunts Dades</title>
 </svelte:head>
 
 <div class="flex items-center justify-center h-screen">
     <Card.Root class="max-w-sm mx-auto">
     <Card.Header>
-        <Card.Title class="text-2xl">Crea un compte</Card.Title>
+        <Card.Title class="text-2xl">Crea un Compte</Card.Title>
         <Card.Description>Registra't a Apunts Dades per poder accedir i contribuir al repositori d'apunts del Grau en Ciència i Enginyeria de Dades de la UPC.</Card.Description>
     </Card.Header>
     <Card.Content>
