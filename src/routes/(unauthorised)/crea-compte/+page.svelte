@@ -16,7 +16,8 @@
   let confirmPassword;
   let formError = false;
   let formLoading = false;
-  $: passwordMatch = !password || !confirmPassword || password === confirmPassword;
+  $: passwordMatch = !(password && confirmPassword) || password === confirmPassword;
+  $: emailUPC = !(email && email.includes("@")) || email.endsWith("upc.edu");
   
   async function register() {
     formError = false;
@@ -79,6 +80,9 @@
         <div class="grid gap-2">
           <Label for="email">Correu electrònic</Label>
           <Input id="email" type="email" placeholder="alumne@estudiantat.upc.edu" bind:value={email} required />
+          {#if !emailUPC}
+            <span class="text-sm text-red-500">Només s'accepten adreçes pertanyents a la UPC.</span>
+          {/if}
         </div>
         <div class="grid gap-2">
           <Label for="password">Contrasenya</Label>
@@ -94,7 +98,7 @@
         {#if formError}
           <span class="text-sm text-red-500">Error al crear el compte. Credencials invàlides.</span>
         {/if}
-        <Button type="submit" class="w-full" disabled={!passwordMatch || formLoading}>
+        <Button type="submit" class="w-full" disabled={!passwordMatch || !emailUPC || formLoading}>
           {#if formLoading}
             <LoaderCircle class="h-5 animate-spin" />
           {:else}
