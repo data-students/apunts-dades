@@ -4,7 +4,6 @@
   import CircleUser from "lucide-svelte/icons/circle-user";
   import CreditCard from "lucide-svelte/icons/credit-card";
   import DollarSign from "lucide-svelte/icons/dollar-sign";
-  import Menu from "lucide-svelte/icons/menu";
   import Package2 from "lucide-svelte/icons/package-2";
   import Search from "lucide-svelte/icons/search";
   import Users from "lucide-svelte/icons/users";
