@@ -37,7 +37,7 @@
       <form class="grid gap-4" onsubmit={recover}>
         <div class="grid gap-2">
           <Label for="email">Correu electrònic</Label>
-          <Input id="email" type="email" placeholder="alumne@estudiantat.upc.edu" bind:value={email} required />
+          <Input id="email" type="email" autocomplete="email" placeholder="alumne@estudiantat.upc.edu" bind:value={email} required />
         </div>
         {#if formError}
           <span class="text-sm text-red-500">Aquest email no està associat a cap compte.</span>

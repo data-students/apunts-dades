@@ -53,7 +53,7 @@
       <form class="grid gap-4" onsubmit={login}>
         <div class="grid gap-2">
           <Label for="email">Correu electrònic</Label>
-          <Input id="email" type="email" placeholder="alumne@estudiantat.upc.edu" bind:value={email} required />
+          <Input id="email" type="email" autocomplete="email" placeholder="alumne@estudiantat.upc.edu" bind:value={email} required />
         </div>
         <div class="grid gap-2">
           <div class="flex items-center">
@@ -62,7 +62,7 @@
               Has oblidat la contrasenya?
             </a>
           </div>
-          <Input id="password" type="password" required bind:value={password} />
+          <Input id="password" type="password" autocomplete="password" required bind:value={password} />
         </div>
         {#if formError}
           <span class="text-sm text-red-500">Error al iniciar sessió. Verifica les teves credencials.</span>

@@ -67,27 +67,27 @@
         <div class="grid grid-cols-2 gap-4">
           <div class="grid gap-2">
             <Label for="first-name">Nom</Label>
-            <Input id="first-name" placeholder="Rosa" bind:value={firstName} required />
+            <Input id="first-name" autocomplete="first-name" placeholder="Rosa" bind:value={firstName} required />
           </div>
           <div class="grid gap-2">
             <Label for="last-name">Cognom</Label>
-            <Input id="last-name" placeholder="Melano" bind:value={lastName} required />
+            <Input id="last-name" autocomplete="last-name" placeholder="Melano" bind:value={lastName} required />
           </div>
         </div>
         <div class="grid gap-2">
           <Label for="email">Correu electrònic</Label>
-          <Input id="email" type="email" placeholder="alumne@estudiantat.upc.edu" bind:value={email} required />
+          <Input id="email" type="email" autocomplete="email" placeholder="alumne@estudiantat.upc.edu" bind:value={email} required />
           {#if !emailUPC}
             <span class="text-sm text-red-500">Només s'accepten adreçes pertanyents a la UPC.</span>
           {/if}
         </div>
         <div class="grid gap-2">
           <Label for="password">Contrasenya</Label>
-          <Input id="password" type="password" required bind:value={password} />
+          <Input id="password" type="password" autocomplete="password" required bind:value={password} />
         </div>
         <div class="grid gap-2">
           <Label for="confirm-password">Confirma la Contrasenya</Label>
-          <Input id="confirm-password" type="password" required bind:value={confirmPassword} />
+          <Input id="confirm-password" type="password" autocomplete="password" required bind:value={confirmPassword} />
           {#if !passwordMatch}
             <span class="text-sm text-red-500">Les contrasenyes han de coincidir.</span>
           {/if}
