@@ -31,7 +31,7 @@
 </svelte:head>
 
 <div class="flex items-center justify-center h-screen">
-  <Card.Root class="max-w-sm mx-auto">
+  <Card.Root class="max-w-sm mx-auto border-0 shadow-none sm:border sm:shadow-sm">
     <Card.Header>
       <Card.Title class="text-2xl">Penja Apunts</Card.Title>
       <Card.Description>Penja apunts a Apunts Dades.</Card.Description>

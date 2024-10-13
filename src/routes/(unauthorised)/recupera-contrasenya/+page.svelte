@@ -28,7 +28,7 @@
 </svelte:head>
 
 <div class="flex items-center justify-center h-screen">
-  <Card.Root class="max-w-sm mx-auto">
+  <Card.Root class="max-w-sm mx-auto border-0 shadow-none sm:border sm:shadow-sm">
     <Card.Header>
       <Card.Title class="text-2xl">Recupera la Contrasenya</Card.Title>
       <Card.Description>Introdueix el teu correu electrònic per rebre un correu de recuperació de contrasenya.</Card.Description>

@@ -46,7 +46,7 @@
 </svelte:head>
 
 <div class="flex items-center justify-center h-screen">
-  <Card.Root class="max-w-sm mx-auto">
+  <Card.Root class="max-w-sm mx-auto border-0 shadow-none sm:border sm:shadow-sm">
     <Card.Header>
       <Card.Title class="text-2xl">Inicia Sessió</Card.Title>
       <Card.Description>Introdueix el teu correu electrònic i contrasenya per iniciar sessió al teu compte.</Card.Description>
