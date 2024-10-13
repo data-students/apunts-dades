@@ -1,23 +1,23 @@
 <script>
-  import { Button } from "$lib/components/ui/button/index.js";
   import * as Card from "$lib/components/ui/card/index.js";
-  import { Input } from "$lib/components/ui/input/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
+  import { Input } from "$lib/components/ui/input/index.js";
+  import { Button } from "$lib/components/ui/button/index.js";
   import { Separator } from "$lib/components/ui/separator";
-  import Google from "$lib/components/icons/Google.svelte";
-  import { pb } from "$lib/pocketbase.js";
-  import { goto } from "$app/navigation.js";
   import { LoaderCircle } from "lucide-svelte";
+  import { goto } from "$app/navigation.js";
+  import { pb } from "$lib/pocketbase.js";
   
-  let email;
-  let password;
-  let formError = false;
-  let formLoading = false;
+  let email = $state("");
+  let password = $state("");
+  let formError = $state(false);
+  let formLoading = $state(false);
 
   async function login() {
     formError = false;
     formLoading = true;
     try {
+      console.log(email, password);
       const response = await pb.collection("users").authWithPassword(email, password);
       if (pb.authStore.isValid) {
         goto("/");
@@ -31,13 +31,11 @@
 
   async function loginWithGoogle() {
     try {
-      const authData = await pb.collection('users').authWithOAuth2({ provider: 'google' });
+      const response = await pb.collection('users').authWithOAuth2({ provider: 'google' });
       if (pb.authStore.isValid) {
         goto("/");
       }
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   }
 </script>
 
@@ -52,7 +50,7 @@
       <Card.Description>Introdueix el teu correu electrònic i contrasenya per iniciar sessió al teu compte.</Card.Description>
     </Card.Header>
     <Card.Content>
-      <form class="grid gap-4" on:submit={login}>
+      <form class="grid gap-4" onsubmit={login}>
         <div class="grid gap-2">
           <Label for="email">Correu electrònic</Label>
           <Input id="email" type="email" placeholder="alumne@estudiantat.upc.edu" bind:value={email} required />
@@ -78,8 +76,8 @@
         </Button>
       </form>
       <Separator class="my-5" />
-      <Button variant="outline" class="w-full space-x-1.5" on:click={loginWithGoogle}>
-        <Google />
+      <Button variant="outline" class="w-full space-x-1.5" onclick={loginWithGoogle}>
+        <img src="/icons/google.svg" alt="Google Logo">
         <span>Inicia sessió amb Google</span>
       </Button>
       <div class="mt-4 text-sm text-center">

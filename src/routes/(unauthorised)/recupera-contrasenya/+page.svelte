@@ -1,14 +1,14 @@
 <script>
-  import { Button } from "$lib/components/ui/button/index.js";
   import * as Card from "$lib/components/ui/card/index.js";
-  import { Input } from "$lib/components/ui/input/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
-  import { pb } from "$lib/pocketbase.js";
+  import { Input } from "$lib/components/ui/input/index.js";
+  import { Button } from "$lib/components/ui/button/index.js";
   import { LoaderCircle } from "lucide-svelte";
+  import { pb } from "$lib/pocketbase.js";
 
-  let email;
-  let formError = false;
-  let formLoading = false;
+  let email = $state("");
+  let formError = $state(false);
+  let formLoading = $state(false);
 
   async function recover() {
     formError = false;
@@ -34,7 +34,7 @@
       <Card.Description>Introdueix el teu correu electrònic per rebre un correu de recuperació de contrasenya.</Card.Description>
     </Card.Header>
     <Card.Content>
-      <form class="grid gap-4" on:submit={recover}>
+      <form class="grid gap-4" onsubmit={recover}>
         <div class="grid gap-2">
           <Label for="email">Correu electrònic</Label>
           <Input id="email" type="email" placeholder="alumne@estudiantat.upc.edu" bind:value={email} required />

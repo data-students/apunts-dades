@@ -1,17 +1,16 @@
 <script>
-  export let data;
-  $: apunts = data.apunts;
+  let { data } = $props();
+  let apunts = $derived(data.apunts);
 </script>
 
 <svelte:head>
-  <title>Apunts</title>
+  <title>Apunts - Apunts Dades</title>
 </svelte:head>
 
 <div>
   {#each apunts as apunt}
     <div>
       <h2>{apunt.title}</h2>
-      <p>{apunt.assignatura}</p>
     </div>
   {/each}
 </div>

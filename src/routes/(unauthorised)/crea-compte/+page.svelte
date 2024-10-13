@@ -1,23 +1,22 @@
 <script>
-  import { Button } from "$lib/components/ui/button/index.js";
   import * as Card from "$lib/components/ui/card/index.js";
-  import { Input } from "$lib/components/ui/input/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
+  import { Input } from "$lib/components/ui/input/index.js";
+  import { Button } from "$lib/components/ui/button/index.js";
   import { Separator } from "$lib/components/ui/separator";
-  import Google from "$lib/components/icons/Google.svelte";
-  import { pb } from "$lib/pocketbase.js";
-  import { goto } from "$app/navigation.js";
   import { LoaderCircle } from "lucide-svelte";
+  import { goto } from "$app/navigation.js";
+  import { pb } from "$lib/pocketbase.js";
 
-  let firstName;
-  let lastName;
-  let email;
-  let password;
-  let confirmPassword;
-  let formError = false;
-  let formLoading = false;
-  $: passwordMatch = !(password && confirmPassword) || password === confirmPassword;
-  $: emailUPC = !(email && email.includes("@")) || email.endsWith("upc.edu");
+  let firstName = $state("");
+  let lastName = $state("");
+  let email = $state("");
+  let password = $state("");
+  let confirmPassword = $state("");
+  let formError = $state(false);
+  let formLoading = $state(false);
+  let passwordMatch = $derived(!(password && confirmPassword) || password === confirmPassword);
+  let emailUPC = $derived(!(email && email.includes("@")) || email.endsWith("upc.edu"));
   
   async function register() {
     formError = false;
@@ -45,13 +44,11 @@
 
   async function registerWithGoogle() {
     try {
-      const authData = await pb.collection('users').authWithOAuth2({ provider: 'google' });
+      const response = await pb.collection('users').authWithOAuth2({ provider: 'google' });
       if (pb.authStore.isValid) {
         goto("/");
       }
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   }
 </script>
 
@@ -66,7 +63,7 @@
       <Card.Description>Registra't a Apunts Dades per poder accedir i contribuir al repositori d'apunts del Grau en Ciència i Enginyeria de Dades de la UPC.</Card.Description>
     </Card.Header>
     <Card.Content>
-      <form class="grid gap-4" on:submit={register}>
+      <form class="grid gap-4" onsubmit={register}>
         <div class="grid grid-cols-2 gap-4">
           <div class="grid gap-2">
             <Label for="first-name">Nom</Label>
@@ -107,8 +104,8 @@
         </Button>
       </form>
       <Separator class="my-5" />
-      <Button variant="outline" class="w-full space-x-1.5" on:click={registerWithGoogle}>
-        <Google />
+      <Button variant="outline" class="w-full space-x-1.5" onclick={registerWithGoogle}>
+        <img src="/icons/google.svg" alt="Google Logo">
         <span>Registra't amb Google</span>
       </Button>
       <div class="mt-4 text-sm text-center">
