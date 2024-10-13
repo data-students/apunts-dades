@@ -41,6 +41,17 @@
       formLoading = false;
     }
   }
+
+  async function registerWithGoogle() {
+    try {
+      const authData = await pb.collection('users').authWithOAuth2({ provider: 'google' });
+      if (pb.authStore.isValid) {
+        goto("/");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 </script>
 
 <svelte:head>
@@ -92,7 +103,7 @@
         </Button>
       </form>
       <Separator class="my-5" />
-      <Button variant="outline" class="w-full space-x-1.5">
+      <Button variant="outline" class="w-full space-x-1.5" on:click={registerWithGoogle}>
         <Google />
         <span>Registra't amb Google</span>
       </Button>
