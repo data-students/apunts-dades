@@ -4,8 +4,8 @@
     "description": "El Repositori d'apunts del Grau en Ciència i Enginyeria de Dades de la UPC.",
     "start_url": "/",
     "display": "standalone",
-    "background_color": "#000000",
-    "theme_color": "#000000",
+    "background_color": "#FFFFFF",
+    "theme_color": "#FFFFFF",
     "icons": [
         {
             "src": "/icons/icon-192x192.png",
