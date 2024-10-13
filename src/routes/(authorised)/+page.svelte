@@ -282,12 +282,14 @@
                 Export
               </span>
             </Button>
-            <Button size="sm" class="h-8 gap-1">
-              <CirclePlus class="h-3.5 w-3.5" />
-              <span class="sr-only sm:not-sr-only sm:whitespace-nowrap">
-                Add Product
-              </span>
-            </Button>
+            <a href="/penja-apunts">
+              <Button size="sm" class="h-8 gap-1">
+                <CirclePlus class="h-3.5 w-3.5" />
+                <span class="sr-only sm:not-sr-only sm:whitespace-nowrap">
+                  Penja Apunts
+                </span>
+              </Button>
+            </a>
           </div>
         </div>
         <Tabs.Content value="all">
