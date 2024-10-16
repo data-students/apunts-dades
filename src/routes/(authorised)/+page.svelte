@@ -12,6 +12,7 @@
   import { Badge } from "$lib/components/ui/badge/index.js";
   import { Button } from "$lib/components/ui/button/index.js";
   import * as Card from "$lib/components/ui/card/index.js";
+  import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
   import { Input } from "$lib/components/ui/input/index.js";
   import * as Table from "$lib/components/ui/table/index.js";
 
@@ -60,14 +61,32 @@
           />
         </div>
       </form>
-      <Button
-        variant="secondary"
-        size="icon"
-        class="rounded-full"
-      >
-        <CircleUser class="w-5 h-5" />
-        <span class="sr-only">Toggle user menu</span>
-      </Button>
+      <DropdownMenu.Root>
+        <DropdownMenu.Trigger asChild let:builder>
+          <Button
+            builders={[builder]}
+            variant="outline"
+            size="icon"
+            class="overflow-hidden rounded-full"
+          >
+            <img
+              src="/images/placeholder-user.jpg"
+              width={36}
+              height={36}
+              alt="Avatar"
+              class="overflow-hidden rounded-full"
+            />
+          </Button>
+        </DropdownMenu.Trigger>
+        <DropdownMenu.Content align="end">
+          <DropdownMenu.Label>My Account</DropdownMenu.Label>
+          <DropdownMenu.Separator />
+          <DropdownMenu.Item>Settings</DropdownMenu.Item>
+          <DropdownMenu.Item>Support</DropdownMenu.Item>
+          <DropdownMenu.Separator />
+          <DropdownMenu.Item>Logout</DropdownMenu.Item>
+        </DropdownMenu.Content>
+      </DropdownMenu.Root>
     </div>
   </header>
   <main class="flex flex-col flex-1 gap-4 p-4 md:gap-8 md:p-8">
