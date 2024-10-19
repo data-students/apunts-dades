@@ -17,7 +17,6 @@
     formError = false;
     formLoading = true;
     try {
-      console.log(email, password);
       const response = await pb.collection("users").authWithPassword(email, password);
       if (pb.authStore.isValid) {
         goto("/");
