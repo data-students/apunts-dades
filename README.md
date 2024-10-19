@@ -9,7 +9,7 @@ Les suggerències i contribucions són benvingudes.
 ## Instal·lació i Execució en Local
 
 1. **Instal·la Node.js i npm**
-   - Assegureu-vos de tenir instal·lat [Node.js](https://nodejs.org/) i [npm](https://www.npmjs.com/).
+   - Assegura't de tenir instal·lat [Node.js](https://nodejs.org/) i [npm](https://www.npmjs.com/).
 
 2. **Clona el repositori**
    ```sh
