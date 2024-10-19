@@ -1,14 +1,14 @@
 <script>
-  import { Button } from "$lib/components/ui/button/index.js";
   import * as Card from "$lib/components/ui/card/index.js";
-  import { Input } from "$lib/components/ui/input/index.js";
   import { Label } from "$lib/components/ui/label/index.js";
-  import { pb } from "$lib/pocketbase.js";
+  import { Input } from "$lib/components/ui/input/index.js";
+  import { Button } from "$lib/components/ui/button/index.js";
   import { LoaderCircle } from "lucide-svelte";
-  
-  let title;
-  let files;
-  let formLoading = false;
+  import { pb } from "$lib/pocketbase.js";
+
+  let title = $state("");
+  let files = $state(null);
+  let formLoading = $state(false);
 
   async function upload() {
     formLoading = true;
@@ -37,7 +37,7 @@
       <Card.Description>Penja apunts a Apunts Dades.</Card.Description>
     </Card.Header>
     <Card.Content>
-      <form class="grid gap-4" on:submit={upload}>
+      <form class="grid gap-4" onsubmit={upload}>
         <div class="grid gap-2">
           <Label for="title">Títol</Label>
           <Input id="title" type="text" bind:value={title} required />
