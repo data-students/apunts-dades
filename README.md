@@ -9,6 +9,7 @@ Les suggerències i contribucions són benvingudes.
 ## Instal·lació i Execució en Local
 
 1. **Instal·la Node.js i npm**
+
    Assegura't de tenir instal·lat [Node.js](https://nodejs.org/) i [npm](https://www.npmjs.com/).
 
 2. **Clona el repositori**
@@ -24,7 +25,7 @@ Les suggerències i contribucions són benvingudes.
 
 4. **Crea un arxiu ```.env```:**
    ```sh
-   VITE_POCKETBASE_ENDPOINT = https://pocketbase.aed.cat
+   VITE_POCKETBASE_ENDPOINT=https://pocketbase.aed.cat
     ```
 
 5. **Executa l'aplicació**
