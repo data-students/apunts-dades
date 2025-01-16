@@ -12,12 +12,10 @@ ARG VITE_POCKETBASE_ENDPOINT=${VITE_POCKETBASE_ENDPOINT}
 
 RUN npm run build
 
-FROM node:alpine
+FROM nginx:alpine
 
-COPY --from=build /app/build ./
+COPY --from=build /app/build /usr/share/nginx/html
 
-ENV NODE_ENV=production PORT=3000
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-EXPOSE 3000
-
-CMD ["node", "index.js"]
+CMD ["nginx", "-g", "daemon off;"]
