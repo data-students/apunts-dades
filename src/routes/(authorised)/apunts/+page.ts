@@ -1,4 +1,4 @@
-import { pb } from "$lib/pocketbase.js";
+import { pb } from "$lib/pocketbase.ts";
 
 export async function load({ parent }) {
   await parent();

@@ -1,12 +1,12 @@
-<script>
-  import * as Card from "$lib/components/ui/card/index.js";
-  import { Label } from "$lib/components/ui/label/index.js";
-  import { Input } from "$lib/components/ui/input/index.js";
-  import { Button } from "$lib/components/ui/button/index.js";
+<script lang="ts">
+  import * as Card from "$lib/components/ui/card/index.ts";
+  import { Label } from "$lib/components/ui/label/index.ts";
+  import { Input } from "$lib/components/ui/input/index.ts";
+  import { Button } from "$lib/components/ui/button/index.ts";
   import { Separator } from "$lib/components/ui/separator";
   import { LoaderCircle } from "lucide-svelte";
-  import { goto } from "$app/navigation.js";
-  import { pb } from "$lib/pocketbase.js";
+  import { goto } from "$app/navigation";
+  import { pb } from "$lib/pocketbase.ts";
   
   let email = $state("");
   let password = $state("");

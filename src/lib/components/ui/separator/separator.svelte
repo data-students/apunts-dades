@@ -7,7 +7,7 @@
 		class: className,
 		orientation = "horizontal",
 		...restProps
-	} = $props();
+	}: SeparatorPrimitive.RootProps = $props();
 </script>
 
 <SeparatorPrimitive.Root

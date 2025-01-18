@@ -1,8 +1,8 @@
-<script>
-  import { Button } from "$lib/components/ui/button/index.js";
+<script lang="ts">
+  import { Button } from "$lib/components/ui/button/index.ts";
 
-  import { goto } from "$app/navigation.js";
-  import { pb } from "$lib/pocketbase.js";
+  import { goto } from "$app/navigation";
+  import { pb } from "$lib/pocketbase.ts";
 
   async function logout() {
     pb.authStore.clear();
