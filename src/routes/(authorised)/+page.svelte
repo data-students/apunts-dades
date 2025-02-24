@@ -1,15 +1,52 @@
 <script lang="ts">
-  import { Button } from "$lib/components/ui/button/index.ts";
+	import * as Breadcrumb from "$lib/components/ui/breadcrumb/index.js";
+	import { Separator } from "$lib/components/ui/separator/index.js";
+	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
 
-  import { goto } from "$app/navigation";
-  import { pb } from "$lib/pocketbase.ts";
-
-  async function logout() {
-    pb.authStore.clear();
-    goto("/inicia-sessio");
-  }
+	let { data } = $props();
 </script>
 
-<div>
-    <Button onclick={logout}>Logout</Button>
+<svelte:head>
+  <title>Assignatures - Apunts Dades</title>
+</svelte:head>
+
+<header class="flex h-16 shrink-0 items-center gap-2">
+	<div class="flex items-center gap-2 px-4">
+		<Sidebar.Trigger class="-ml-1" />
+		<Separator orientation="vertical" class="mr-2 h-4" />
+		<Breadcrumb.Root>
+			<Breadcrumb.List>
+				<Breadcrumb.Item class="hidden md:block">
+					<Breadcrumb.Link href="#">Primer</Breadcrumb.Link>
+				</Breadcrumb.Item>
+				<Breadcrumb.Separator class="hidden md:block" />
+				<Breadcrumb.Item>
+					<Breadcrumb.Page>AP1</Breadcrumb.Page>
+				</Breadcrumb.Item>
+			</Breadcrumb.List>
+		</Breadcrumb.Root>
+	</div>
+</header>
+<div class="flex flex-1 flex-col gap-4 p-4 pt-0">
+	{#await data.assignatures}
+		Loading assignatures...
+	{:then assignatures}
+		{#each data.assignatures as assignatura}
+			<a href={`/assignatura/${assignatura.id}`} class="block">
+				<div class="space-y-2 hover:opacity-80 transition-opacity">
+					<h2>{assignatura.titol}</h2>
+				</div>
+			</a>
+		{/each}
+	{:catch error}
+		<p>Error loading assignatures: {error.message}</p>
+	{/await}
+
+	<div class="grid auto-rows-min gap-4 md:grid-cols-3">
+		<div class="bg-muted/50 aspect-video rounded-xl"></div>
+		<div class="bg-muted/50 aspect-video rounded-xl"></div>
+		<div class="bg-muted/50 aspect-video rounded-xl"></div>
+	</div>
+
+	<div class="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min"></div>
 </div>
