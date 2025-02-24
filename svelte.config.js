@@ -7,7 +7,7 @@ const config = {
       fallback: "index.html",
     }),
     output: {
-      bundleStrategy: "single",
+      bundleStrategy: "split",
     },
     appDir: "app",
   },
