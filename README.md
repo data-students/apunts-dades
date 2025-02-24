@@ -25,7 +25,7 @@ Les suggerències i contribucions són benvingudes.
 
 4. **Crea un arxiu ```.env```:**
    ```sh
-   VITE_POCKETBASE_ENDPOINT=https://pocketbase.aed.cat
+   VITE_POCKETBASE_ENDPOINT=https://api.aed.cat
     ```
 
 5. **Executa l'aplicació**
