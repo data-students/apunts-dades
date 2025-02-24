@@ -8,6 +8,6 @@ export async function load({ params, parent }) {
 
   return { 
     assignatura,
-    title: "Assignatura"
+    title: assignatura.titol
   };
 }
