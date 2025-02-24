@@ -1,7 +1,4 @@
 <script lang="ts">
-  import * as Breadcrumb from "$lib/components/ui/breadcrumb/index.js";
-	import { Separator } from "$lib/components/ui/separator/index.js";
-	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
   import { Label } from "$lib/components/ui/label/index.ts";
   import { Input } from "$lib/components/ui/input/index.ts";
   import { Button } from "$lib/components/ui/button/index.ts";
@@ -28,27 +25,6 @@
   }
 </script>
 
-<svelte:head>
-  <title>Penja Apunts - Apunts Dades</title>
-</svelte:head>
-
-<header class="flex h-16 shrink-0 items-center gap-2">
-	<div class="flex items-center gap-2 px-4">
-		<Sidebar.Trigger class="-ml-1" />
-		<Separator orientation="vertical" class="mr-2 h-4" />
-		<Breadcrumb.Root>
-			<Breadcrumb.List>
-				<Breadcrumb.Item class="hidden md:block">
-					<Breadcrumb.Link href="#">Primer</Breadcrumb.Link>
-				</Breadcrumb.Item>
-				<Breadcrumb.Separator class="hidden md:block" />
-				<Breadcrumb.Item>
-					<Breadcrumb.Page>AP1</Breadcrumb.Page>
-				</Breadcrumb.Item>
-			</Breadcrumb.List>
-		</Breadcrumb.Root>
-	</div>
-</header>
 <div class="flex flex-1 flex-col gap-4 p-4 pt-0">
   <h2 class="text-3xl font-semibold">Penja Apunts</h2>
   <p>Penja apunts a Apunts Dades.</p>

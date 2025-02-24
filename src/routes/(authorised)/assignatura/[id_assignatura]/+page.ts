@@ -4,7 +4,10 @@ export async function load({ params, parent }) {
   const { id_assignatura } = params;
 
   await parent();
-  const assignatura = pb.collection("assignatures").getOne(id_assignatura)
+  const assignatura = await pb.collection("assignatures").getOne(id_assignatura)
 
-  return { assignatura };
+  return { 
+    assignatura,
+    title: "Assignatura"
+  };
 }
