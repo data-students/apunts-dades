@@ -6,6 +6,7 @@
 	import Folder from "lucide-svelte/icons/folder";
 	import Share from "lucide-svelte/icons/share";
 	import Trash2 from "lucide-svelte/icons/trash-2";
+	import Upload from "lucide-svelte/icons/upload";
 
 	let {
 		projects,
@@ -68,8 +69,8 @@
 		{/each}
 		<Sidebar.MenuItem>
 			<Sidebar.MenuButton>
-				<Ellipsis />
-				<span>More</span>
+				<Upload />
+				<a href="/penja-apunts">Penja Apunts</a>
 			</Sidebar.MenuButton>
 		</Sidebar.MenuItem>
 	</Sidebar.Menu>

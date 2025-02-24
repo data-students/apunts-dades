@@ -155,7 +155,7 @@
 			<Sidebar.MenuItem>
 				<Sidebar.MenuButton size="lg">
 					{#snippet child({ props })}
-						<a href="##" {...props}>
+						<a href="/" {...props}>
 							<div class="size-9 border rounded overflow-hidden">
 								<img src="https://avatars.githubusercontent.com/u/91702672" alt="Apunts Dades" />
 							</div>
