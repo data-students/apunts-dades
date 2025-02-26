@@ -16,7 +16,7 @@
   let formError = $state(false);
   let formLoading = $state(false);
   let passwordMatch = $derived(!(password && confirmPassword) || password === confirmPassword);
-  let emailUPC = $derived(!(email && email.includes("@")) || email.endsWith("upc.edu"));
+  let emailUPC = $derived(!(email && email.includes("@")) || email.endsWith("estudiantat.upc.edu"));
   
   async function register() {
     formError = false;
