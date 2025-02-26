@@ -5,7 +5,8 @@
 	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
 	import { page } from '$app/state';
 
-	let { children } = $props();
+	let { children, data } = $props();
+	console.log(data.user);
 </script>
 
 <svelte:head>
@@ -34,6 +35,8 @@
 			</Breadcrumb.Root>
 		</div>
 	</header>
-    {@render children()}
+	<div class="flex flex-1 flex-col gap-4 p-4 pt-0">
+		{@render children()}
+	</div>
 	</Sidebar.Inset>
 </Sidebar.Provider>
