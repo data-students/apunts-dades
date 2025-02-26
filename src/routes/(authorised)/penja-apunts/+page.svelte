@@ -41,73 +41,78 @@
   }
 </script>
 
-<div class="space-y-2">
-  <h2 class="text-3xl font-semibold">Penja Apunts</h2>
-  <p class="text-sm text-neutral-600">Contribueix a Apunts Dades penjant apunts</p>
-</div>
+<div class="mx-auto max-w-2xl w-full">
+  <div class="space-y-2">
+    <h2 class="text-3xl font-semibold">Penja Apunts</h2>
+    <p class="text-sm text-neutral-600">
+      Contribueix a Apunts Dades penjant apunts per compartir-los amb la resta d'estudiants. 
+      Abans de penjar un apunt duplicat, comprova si ja està disponible a la plataforma.
+    </p>
+  </div>
 
-<form class="grid gap-4" onsubmit={upload}>
-  <div class="grid gap-2">
-    <Label for="title">Fitxer</Label>
-    <div class="relative h-60 w-full border-2 border-dashed rounded-lg hover:border-neutral-400 transition-colors flex items-center justify-center">
-      <input
-        type="file"
-        bind:files
-        required
-        class="absolute w-full h-full opacity-0 cursor-pointer"
-      />
-      {#if files?.[0]}
-        <p class="text-sm font-medium">{files[0].name}</p>
+  <form class="grid gap-4 mt-8" onsubmit={upload}>
+    <div class="grid gap-2">
+      <Label for="title">Títol</Label>
+      <Input id="title" type="text" bind:value={title} required />
+    </div>
+
+    <div class="grid grid-cols-2 gap-4">
+      <div class="grid gap-2">
+        <Label for="first-name">Assignatura</Label>
+        <Select.Root type="single" bind:value={subject} required>
+          <Select.Trigger>
+            {subject ? data.subjects.find(s => s.id === subject)?.title : "Selecciona una assignatura"}
+          </Select.Trigger>
+          <Select.Content>
+            {#each data.subjects as subject}
+              <Select.Item value={subject.id}>{subject.title}</Select.Item>
+            {/each}
+          </Select.Content>
+        </Select.Root>
+      </div>
+      <div class="grid gap-2">
+        <Label for="type">Tipus</Label>
+        <Select.Root type="single" bind:value={type} required>
+          <Select.Trigger>
+            {type ? noteTypes.find(t => t.value === type)?.label : "Selecciona un tipus"}
+          </Select.Trigger>
+          <Select.Content>
+            {#each noteTypes as { value, label }}
+              <Select.Item {value}>{label}</Select.Item>
+            {/each}
+          </Select.Content>
+        </Select.Root>
+      </div>
+    </div>
+
+    <div class="grid gap-2">
+      <Label for="show-author">Anonimitza l'autor</Label>
+      <Switch bind:checked={hideAuthor} />
+    </div>
+    
+    <div class="grid gap-2">
+      <Label for="title">Fitxer</Label>
+      <div class="relative h-60 w-full border-2 border-dashed rounded-lg hover:border-neutral-400 transition-colors flex items-center justify-center">
+        <input
+          type="file"
+          bind:files
+          required
+          class="absolute w-full h-full opacity-0 cursor-pointer"
+        />
+        {#if files?.[0]}
+          <p class="text-sm font-medium">{files[0].name}</p>
+        {:else}
+          <p class="text-sm">Feu clic per carregar o arrossegueu i deixeu anar</p>
+        {/if}
+      </div>
+    </div>
+
+    <Button type="submit" class="w-full" disabled={formLoading}>
+      {#if formLoading}
+        <LoaderCircle class="h-5 animate-spin" />
       {:else}
-        <p class="text-sm">Feu clic per carregar o arrossegueu i deixeu anar</p>
+        Penja Apunts
       {/if}
-    </div>
-  </div>
-
-  <div class="grid gap-2">
-    <Label for="title">Títol</Label>
-    <Input id="title" type="text" bind:value={title} required />
-  </div>
-
-  <div class="grid grid-cols-2 gap-4">
-    <div class="grid gap-2">
-      <Label for="first-name">Assignatura</Label>
-      <Select.Root type="single" bind:value={subject}>
-        <Select.Trigger>
-          {subject ? data.subjects.find(s => s.id === subject)?.title : "Selecciona una assignatura"}
-        </Select.Trigger>
-        <Select.Content>
-          {#each data.subjects as subject}
-            <Select.Item value={subject.id}>{subject.title}</Select.Item>
-          {/each}
-        </Select.Content>
-      </Select.Root>
-    </div>
-    <div class="grid gap-2">
-      <Label for="type">Tipus</Label>
-      <Select.Root type="single" bind:value={type}>
-        <Select.Trigger>
-          {type ? noteTypes.find(t => t.value === type)?.label : "Selecciona un tipus"}
-        </Select.Trigger>
-        <Select.Content>
-          {#each noteTypes as { value, label }}
-            <Select.Item {value}>{label}</Select.Item>
-          {/each}
-        </Select.Content>
-      </Select.Root>
-    </div>
-  </div>
-
-  <div class="grid gap-2">
-    <Label for="show-author">Anonimitza l'autor</Label>
-    <Switch bind:checked={hideAuthor} />
-  </div>
-
-  <Button type="submit" class="w-full" disabled={formLoading}>
-    {#if formLoading}
-      <LoaderCircle class="h-5 animate-spin" />
-    {:else}
-      Penja Apunts
-    {/if}
-  </Button>
-</form>
+    </Button>
+  </form>
+</div>
