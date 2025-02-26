@@ -38,6 +38,23 @@
 						title: "AP1",
 						url: "#",
 					},
+
+					{
+						title: "AC2",
+						url: "#",
+					},
+					{
+						title: "AP2",
+						url: "#",
+					},
+					{
+						title: "COM",
+						url: "#",
+					},
+					{
+						title: "PIE1",
+						url: "#",
+					},
 				],
 			},
 			{
@@ -46,15 +63,44 @@
 				icon: Bot,
 				items: [
 					{
-						title: "Genesis",
+						title: "AP3",
 						url: "#",
 					},
 					{
-						title: "Explorer",
+						title: "BD",
 						url: "#",
 					},
 					{
-						title: "Quantum",
+						title: "PIE2",
+						url: "#",
+					},
+					{
+						title: "SIS",
+						url: "#",
+					},
+					{
+						title: "TEOI",
+						url: "#",
+					},
+
+					{
+						title: "OM",
+						url: "#",
+					},
+					{
+						title: "AD",
+						url: "#",
+					},
+					{
+						title: "PSD",
+						url: "#",
+					},
+					{
+						title: "IPA",
+						url: "#",
+					},
+					{
+						title: "AA1",
 						url: "#",
 					},
 				],
