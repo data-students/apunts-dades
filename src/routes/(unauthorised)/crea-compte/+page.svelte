@@ -23,12 +23,11 @@
     formLoading = true;
     try {
       const data = {
+        name: `${firstName} ${lastName}`,
         email: email,
         emailVisibility: true,
         password: password,
         passwordConfirm: confirmPassword,
-        firstName: firstName,
-        lastName: lastName
       };
       const record = await pb.collection('users').create(data);
       const response = await pb.collection("users").authWithPassword(email, password);
