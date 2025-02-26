@@ -3,18 +3,19 @@
 </script>
 
 <div class="flex flex-1 flex-col gap-4 p-4 pt-0">
-	{#await data.assignatures}
-		Loading assignatures...
-	{:then assignatures}
-		{#each data.assignatures as assignatura}
-			<a href={`/assignatura/${assignatura.id}`} class="block">
+	{#await data.subjects}
+		Loading subjects...
+	{:then subjects}
+		{#each data.subjects as subject}
+			<a href={`/assignatura/${subject.id}`}>
 				<div class="space-y-2 hover:opacity-80 transition-opacity">
-					<h2>{assignatura.titol}</h2>
+					<h2>{subject.title}</h2>
+					<p>Q{subject.quarter}</p>
 				</div>
 			</a>
 		{/each}
 	{:catch error}
-		<p>Error loading assignatures: {error.message}</p>
+		<p>Error loading subjects: {error.message}</p>
 	{/await}
 
 	<div class="grid auto-rows-min gap-4 md:grid-cols-3">

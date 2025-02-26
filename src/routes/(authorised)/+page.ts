@@ -3,10 +3,10 @@ import { pb } from "$lib/pocketbase.ts";
 export async function load({ parent }) {
 
   await parent();
-  const assignatures = await pb.collection("assignatures").getFullList();
+  const subjects = await pb.collection("subjects").getFullList();
 
   return { 
-    assignatures,
+    subjects,
     title: "Inici"
   };
 }
