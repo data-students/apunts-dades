@@ -6,7 +6,6 @@
 	import { page } from '$app/state';
 
 	let { children, data } = $props();
-	console.log(data.user);
 </script>
 
 <svelte:head>
