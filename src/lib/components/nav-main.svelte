@@ -22,7 +22,7 @@
 </script>
 
 <Sidebar.Group>
-	<Sidebar.GroupLabel>Assignatures</Sidebar.GroupLabel>
+	<Sidebar.GroupLabel>Quadrimestres</Sidebar.GroupLabel>
 	<Sidebar.Menu>
 		{#each items as mainItem (mainItem.title)}
 			<Collapsible.Root open={mainItem.isActive}>

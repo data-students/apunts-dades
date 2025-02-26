@@ -17,7 +17,7 @@
 		},
 		navMain: [
 			{
-				title: "Primer",
+				title: "Q1",
 				url: "#",
 				icon: SquareTerminal,
 				isActive: true,
@@ -38,7 +38,14 @@
 						title: "AP1",
 						url: "#",
 					},
-
+				],
+			},
+			{
+				title: "Q2",
+				url: "#",
+				icon: SquareTerminal,
+				isActive: true,
+				items: [
 					{
 						title: "AC2",
 						url: "#",
@@ -58,7 +65,7 @@
 				],
 			},
 			{
-				title: "Segon",
+				title: "Q3",
 				url: "#",
 				icon: Bot,
 				items: [
@@ -82,7 +89,13 @@
 						title: "TEOI",
 						url: "#",
 					},
-
+				],
+			},
+			{
+				title: "Q4",
+				url: "#",
+				icon: Bot,
+				items: [
 					{
 						title: "OM",
 						url: "#",
@@ -106,47 +119,51 @@
 				],
 			},
 			{
-				title: "Tercer",
+				title: "Q5",
 				url: "#",
 				icon: BookOpen,
 				items: [
 					{
-						title: "Introduction",
+						title: "AA2",
 						url: "#",
 					},
 					{
-						title: "Get Started",
+						title: "BDA",
 						url: "#",
 					},
 					{
-						title: "Tutorials",
+						title: "CAI",
 						url: "#",
 					},
 					{
-						title: "Changelog",
+						title: "EI",
+						url: "#",
+					},
+					{
+						title: "VI",
 						url: "#",
 					},
 				],
 			},
 			{
-				title: "Quart",
+				title: "Q6",
 				url: "#",
 				icon: Settings2,
 				items: [
 					{
-						title: "General",
+						title: "POE",
 						url: "#",
 					},
 					{
-						title: "Team",
+						title: "PE",
 						url: "#",
 					},
 					{
-						title: "Billing",
+						title: "PIVA",
 						url: "#",
 					},
 					{
-						title: "Limits",
+						title: "TAED1",
 						url: "#",
 					},
 				],
