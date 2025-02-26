@@ -1,5 +1,6 @@
 <script lang="ts">
 	import * as Tabs from "$lib/components/ui/tabs/index.js";
+	import { Separator } from "$lib/components/ui/separator";
 
 	import SubjectCard from "$lib/components/SubjectCard.svelte";
 
@@ -17,10 +18,16 @@
     </Tabs.List>
 </Tabs.Root>
 
-<div class="grid auto-rows-min gap-4 md:grid-cols-3">
+<Separator />
 
+<div class="grid auto-rows-min gap-4 md:grid-cols-3">
 	{#await data.subjects}
-		Loading subjects...
+		<div class="grid auto-rows-min gap-4 md:grid-cols-3">
+			<div class="bg-muted/50 aspect-video rounded-xl"></div>
+			<div class="bg-muted/50 aspect-video rounded-xl"></div>
+			<div class="bg-muted/50 aspect-video rounded-xl"></div>
+		</div>
+		<div class="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min"></div>
 	{:then subjects}
 		{#each subjects as subject}
 			<SubjectCard subject={subject} />
@@ -29,13 +36,3 @@
 		<p>Error loading subjects: {error.message}</p>
 	{/await}
 </div>
-
-
-
-<div class="grid auto-rows-min gap-4 md:grid-cols-3">
-	<div class="bg-muted/50 aspect-video rounded-xl"></div>
-	<div class="bg-muted/50 aspect-video rounded-xl"></div>
-	<div class="bg-muted/50 aspect-video rounded-xl"></div>
-</div>
-
-<div class="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min"></div>
