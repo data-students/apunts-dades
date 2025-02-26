@@ -1,7 +1,8 @@
 <script lang="ts">
     import * as Tabs from "$lib/components/ui/tabs/index.js";
     import { Badge } from "$lib/components/ui/badge/index.js";
-    import { getFileUrl } from "$lib/pocketbase";
+    import { Separator } from "$lib/components/ui/separator";
+    import NoteCard from "$lib/components/NoteCard.svelte";
 
 	let { data } = $props();
     let selectedTab = $state("all");
@@ -11,7 +12,6 @@
         return notes.filter((note) => note.type === type);
     }
 </script>
-
 
 {#await data.subject}
     Loading subject...
@@ -33,25 +33,21 @@
     </Tabs.List>
 </Tabs.Root>
 
-{#await data.notes}
-    Loading notes...
-{:then notes}
-    {#each getNotesByType(notes, selectedTab) as notes}
-        <a href={getFileUrl(notes)} target="_blank">
-            <div class="space-y-2 hover:opacity-80 transition-opacity">
-                <h2>{notes.title}</h2>
-            </div>
-        </a>
-    {/each}
-{:catch error}
-    <p>Error loading notes: {error.message}</p>
-{/await}
+<Separator />
 
 <div class="grid auto-rows-min gap-4 md:grid-cols-3">
-    <div class="bg-muted/50 aspect-video rounded-xl"></div>
-    <div class="bg-muted/50 aspect-video rounded-xl"></div>
-    <div class="bg-muted/50 aspect-video rounded-xl"></div>
+    {#await data.notes}
+        <div class="grid auto-rows-min gap-4 md:grid-cols-3">
+            <div class="bg-muted/50 aspect-video rounded-xl"></div>
+            <div class="bg-muted/50 aspect-video rounded-xl"></div>
+            <div class="bg-muted/50 aspect-video rounded-xl"></div>
+        </div>
+        <div class="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min"></div>
+    {:then notes}
+        {#each getNotesByType(notes, selectedTab) as note}
+            <NoteCard note={note} />
+        {/each}
+    {:catch error}
+        <p>Error loading notes: {error.message}</p>
+    {/await}
 </div>
-
-<div class="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min"></div>
-

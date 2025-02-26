@@ -4,8 +4,6 @@
     import { BookOpen } from "lucide-svelte";
 
     let { subject } = $props();
-
-    console.log(subject);
 </script>
 
 <a href={`/assignatura/${subject.id}`}>

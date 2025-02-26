@@ -12,6 +12,6 @@ export async function load({ params, parent }) {
   return { 
     subject,
     notes,
-    title: subject.title
+    title: subject.acronym
   };
 }
