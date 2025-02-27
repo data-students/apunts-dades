@@ -13,7 +13,7 @@
         <ExternalLink class="absolute bottom-6 right-4 h-5" />
         <Card.Header>
             <Card.Title>{note.title}</Card.Title>
-            <Card.Description>{note.description}</Card.Description>
+            <Card.Description>{note.title}</Card.Description>
             <p class="text-sm">Compartit per {note.author}</p>
         </Card.Header>
     </Card.Root>

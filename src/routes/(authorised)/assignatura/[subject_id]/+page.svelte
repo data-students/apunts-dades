@@ -18,7 +18,7 @@
                 if (type !== "Tots" && note.type != type) return false;
                 
                 if (query) {
-                    const searchText = note.title.toLowerCase() + note.description.toLowerCase();
+                    const searchText = note.title.toLowerCase();
                     return searchText.includes(query.toLowerCase());
                 }
                 
