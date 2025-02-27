@@ -28,16 +28,20 @@
 {#await data.subject}
     <div class="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min"></div>
 {:then subject}
-    <div>
+    <div class="flex flex-col-reverse gap-4 md:flex-row md:items-center md:justify-between">
         <h2 class="text-3xl font-semibold">{subject.title}</h2>
-        <Badge variant="outline">{subject.quarter}</Badge>
+        <div class="flex gap-2">
+            <Badge variant="outline">{subject.type}</Badge>
+            <Badge variant="outline">{subject.quarter}</Badge>
+        </div>
     </div>
+    <Separator />
 {:catch error}
     <p>Error loading subject: {error.message}</p>
 {/await}
 
-<div class="flex items-center justify-between">
-    <Tabs.Root value={selectedTab} class="w-full" onValueChange={(value) => selectedTab = value}>
+<div class="flex flex-col-reverse gap-4 md:flex-row md:items-center md:justify-between">
+    <Tabs.Root value={selectedTab} onValueChange={(value) => selectedTab = value}>
         <Tabs.List>
             <Tabs.Trigger value="all">Tots</Tabs.Trigger>
             <Tabs.Trigger value="theory">Teoria</Tabs.Trigger>
@@ -51,8 +55,6 @@
         bind:value={searchQuery}
     />
 </div>
-
-<Separator />
 
 <div class="grid auto-rows-min gap-4 md:grid-cols-3">
     {#await data.notes}
