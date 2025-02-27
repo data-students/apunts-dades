@@ -1,22 +1,53 @@
 <script lang="ts">
 	import * as Tabs from "$lib/components/ui/tabs/index.js";
 	import { Separator } from "$lib/components/ui/separator";
+	import { Input } from "$lib/components/ui/input/index.js";
 
 	import SubjectCard from "$lib/components/SubjectCard.svelte";
 
-	let { data } = $props();
+	import { pb } from "$lib/pocketbase.ts";
 
-	let selectedTab = $state("all");
+	const currentUser = pb.authStore.model;
+	console.log(currentUser.subjects);
+
+	let { data } = $props();
+	let searchQuery = $state("");
+
+	let selectedTab = $state("current");
+
+	function filterSubjects(subjects: any[]) {
+        return subjects.filter(subject => {
+            if (searchQuery) {
+                const searchText = subject.title.toLowerCase();
+                if (!searchText.includes(searchQuery.toLowerCase())) {
+                    return false;
+                }
+            }
+
+            if (selectedTab === "current") {
+                return currentUser.subjects.includes(subject.id);
+            }
+
+            return true;
+        });
+    }
 </script>
 
 <h2 class="text-3xl font-semibold">Assignatures</h2>
 
-<Tabs.Root value={selectedTab} class="w-full" onValueChange={(value) => selectedTab = value}>
-    <Tabs.List>
-        <Tabs.Trigger value="all">Totes</Tabs.Trigger>
-        <Tabs.Trigger value="theory">Actuals</Tabs.Trigger>
-    </Tabs.List>
-</Tabs.Root>
+<div class="flex items-center justify-between">
+	<Tabs.Root value={selectedTab} class="w-full" onValueChange={(value) => selectedTab = value}>
+		<Tabs.List>
+			<Tabs.Trigger value="current">Actuals</Tabs.Trigger>
+			<Tabs.Trigger value="all">Totes</Tabs.Trigger>
+		</Tabs.List>
+	</Tabs.Root>
+    <Input 
+        placeholder="Busca assignatures..." 
+        class="max-w-sm" 
+        bind:value={searchQuery}
+    />
+</div>
 
 <Separator />
 
@@ -29,8 +60,10 @@
 		</div>
 		<div class="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min"></div>
 	{:then subjects}
-		{#each subjects as subject}
+		{#each filterSubjects(subjects) as subject}
 			<SubjectCard subject={subject} />
+		{:else}
+			<p class="text-neutral-600">Cap assignatura trobada</p>
 		{/each}
 	{:catch error}
 		<p>Error loading subjects: {error.message}</p>
