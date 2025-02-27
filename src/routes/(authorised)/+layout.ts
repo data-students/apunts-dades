@@ -7,5 +7,9 @@ export async function load() {
     throw redirect(302, "/inicia-sessio");
   }
 
-  return {};
+  const subjects = await pb.collection("subjects").getFullList();
+
+  return {
+    subjects
+  };
 }
