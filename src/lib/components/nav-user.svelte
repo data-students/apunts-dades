@@ -1,25 +1,14 @@
 <script lang="ts">
-	import BadgeCheck from "lucide-svelte/icons/badge-check";
-	import Bell from "lucide-svelte/icons/bell";
 	import ChevronsUpDown from "lucide-svelte/icons/chevrons-up-down";
-	import CreditCard from "lucide-svelte/icons/credit-card";
 	import LogOut from "lucide-svelte/icons/log-out";
-	import Sparkles from "lucide-svelte/icons/sparkles";
+	import Settings from "lucide-svelte/icons/settings";
+	import Upload from "lucide-svelte/icons/upload";
+	import File from "lucide-svelte/icons/file";
 
 	import * as Avatar from "$lib/components/ui/avatar/index.js";
 	import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
 	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
 	import { useSidebar } from "$lib/components/ui/sidebar/index.js";
-
-	let {
-		user,
-	}: {
-		user: {
-			name: string;
-			email: string;
-			avatar: string;
-		};
-	} = $props();
 
 	const sidebar = useSidebar();
 
@@ -45,7 +34,7 @@
 						class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
 					>
 						<Avatar.Root class="h-8 w-8 rounded-lg">
-							<Avatar.Image class="rounded-full" src={getUserAvatarUrl(currentUser)} alt={user.name} />
+							<Avatar.Image class="rounded-full" src={getUserAvatarUrl(currentUser)} alt={currentUser.name} />
 							<Avatar.Fallback class="rounded-full">Al</Avatar.Fallback>
 						</Avatar.Root>
 						<div class="grid flex-1 text-left text-sm leading-tight">
@@ -65,7 +54,7 @@
 				<DropdownMenu.Label class="p-0 font-normal">
 					<div class="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
 						<Avatar.Root class="h-8 w-8 rounded-lg">
-							<Avatar.Image class="rounded-full" src={getUserAvatarUrl(currentUser)} alt={user.name} />
+							<Avatar.Image class="rounded-full" src={getUserAvatarUrl(currentUser)} alt={currentUser.name} />
 							<Avatar.Fallback class="rounded-full">Al</Avatar.Fallback>
 						</Avatar.Root>
 						<div class="grid flex-1 text-left text-sm leading-tight">
@@ -76,25 +65,24 @@
 				</DropdownMenu.Label>
 				<DropdownMenu.Separator />
 				<DropdownMenu.Group>
-					<DropdownMenu.Item>
-						<Sparkles />
-						Upgrade to Pro
-					</DropdownMenu.Item>
-				</DropdownMenu.Group>
-				<DropdownMenu.Separator />
-				<DropdownMenu.Group>
-					<DropdownMenu.Item>
-						<BadgeCheck />
-						Account
-					</DropdownMenu.Item>
-					<DropdownMenu.Item>
-						<CreditCard />
-						Billing
-					</DropdownMenu.Item>
-					<DropdownMenu.Item>
-						<Bell />
-						Notifications
-					</DropdownMenu.Item>
+					<a href="/usuari/configuracio">
+						<DropdownMenu.Item>
+							<Settings />
+							Configuració
+						</DropdownMenu.Item>
+					</a>
+					<a href="/usuari/penja-apunts">
+						<DropdownMenu.Item>
+							<Upload />
+							Penja apunts
+						</DropdownMenu.Item>
+					</a>
+					<a href="/usuari/apunts-penjats">
+						<DropdownMenu.Item>
+							<File />
+							Apunts penjats
+						</DropdownMenu.Item>
+					</a>
 				</DropdownMenu.Group>
 				<DropdownMenu.Separator />
 				<DropdownMenu.Item onclick={logout}>
