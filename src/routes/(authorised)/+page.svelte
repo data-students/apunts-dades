@@ -8,7 +8,6 @@
 	import { pb } from "$lib/pocketbase.ts";
 
 	const currentUser = pb.authStore.model;
-	console.log(currentUser.subjects);
 
 	let { data } = $props();
 	let searchQuery = $state("");
@@ -18,7 +17,7 @@
 	function filterSubjects(subjects: any[]) {
         return subjects.filter(subject => {
             if (searchQuery) {
-                const searchText = subject.title.toLowerCase();
+                const searchText = subject.title.toLowerCase() + subject.acronym.toLowerCase();
                 if (!searchText.includes(searchQuery.toLowerCase())) {
                     return false;
                 }
