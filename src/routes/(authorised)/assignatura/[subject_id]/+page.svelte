@@ -64,6 +64,8 @@
     {:then notes}
         {#each filterNotes(notes, selectedTab, searchQuery) as note}
             <NoteCard note={note} />
+        {:else}
+            <p class="text-neutral-600">Cap apunt trobat</p>
         {/each}
     {:catch error}
         <p>Error loading notes: {error.message}</p>
