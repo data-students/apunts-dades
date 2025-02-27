@@ -9,11 +9,7 @@
 
   let { data } = $props();
 
-  const noteTypes = [
-    { value: 'theory', label: 'Teoria' },
-    { value: 'lab', label: 'Laboratori' },
-    { value: 'exam', label: 'Examens' }
-  ];
+  const noteTypes = ["Teoria", "Lab", "Examen"];
 
   let title = $state("");
   let files = $state(null);
@@ -48,7 +44,7 @@
 
 <div class="mx-auto max-w-2xl w-full">
   <div class="space-y-2">
-    <h2 class="text-3xl font-semibold">Penja Apunts</h2>
+    <h2 class="text-3xl font-semibold tracking-tight">Penja Apunts</h2>
     <p class="text-sm text-neutral-600">
       Contribueix a Apunts Dades penjant apunts per compartir-los amb la resta d'estudiants. 
       Abans de penjar un apunt duplicat, comprova si ja està disponible a la plataforma.
@@ -79,11 +75,11 @@
         <Label for="type">Tipus</Label>
         <Select.Root type="single" bind:value={type} required>
           <Select.Trigger>
-            {type ? noteTypes.find(t => t.value === type)?.label : "Selecciona un tipus"}
+            {type ? type : "Selecciona un tipus"}
           </Select.Trigger>
           <Select.Content>
-            {#each noteTypes as { value, label }}
-              <Select.Item {value}>{label}</Select.Item>
+            {#each noteTypes as value}
+              <Select.Item {value}>{value}</Select.Item>
             {/each}
           </Select.Content>
         </Select.Root>

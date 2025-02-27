@@ -1,12 +1,5 @@
-import { pb } from "$lib/pocketbase.ts";
-
-export async function load({ parent }) {
-
-  await parent();
-  const subjects = await pb.collection("subjects").getFullList();
-
+export async function load() {
   return {
-    subjects,
     title: "Penja Apunts"
   };
 }
