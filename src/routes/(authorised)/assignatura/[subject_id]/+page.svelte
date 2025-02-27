@@ -6,16 +6,16 @@
 
 	let { data } = $props();
 
-    let selectedTab = $state("all");
+    let selectedTab = $state("Tots");
     let searchQuery = $state("");
 
     function filterNotes(notes: any[], type: string, query: string) {
         return notes
             .filter(note => {
-                if (type !== "all" && note.type !== type) return false;
+                if (type !== "Tots" && note.type != type) return false;
                 
                 if (query) {
-                    const searchText = note.title.toLowerCase();
+                    const searchText = note.title.toLowerCase() + note.description.toLowerCase();
                     return searchText.includes(query.toLowerCase());
                 }
                 
@@ -36,10 +36,10 @@
 <div class="flex flex-col-reverse gap-4 md:flex-row md:items-center md:justify-between">
     <Tabs.Root value={selectedTab} onValueChange={(value) => selectedTab = value}>
         <Tabs.List>
-            <Tabs.Trigger value="all">Tots</Tabs.Trigger>
-            <Tabs.Trigger value="theory">Teoria</Tabs.Trigger>
-            <Tabs.Trigger value="lab">Laboratori</Tabs.Trigger>
-            <Tabs.Trigger value="exam">Examens</Tabs.Trigger>
+            <Tabs.Trigger value="Tots">Tots</Tabs.Trigger>
+            <Tabs.Trigger value="Teoria">Teoria</Tabs.Trigger>
+            <Tabs.Trigger value="Lab">Lab</Tabs.Trigger>
+            <Tabs.Trigger value="Examen">Examen</Tabs.Trigger>
         </Tabs.List>
     </Tabs.Root>
     <Input 
