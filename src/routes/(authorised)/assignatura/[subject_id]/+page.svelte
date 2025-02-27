@@ -2,8 +2,6 @@
     import * as Tabs from "$lib/components/ui/tabs/index.js";
     import { Separator } from "$lib/components/ui/separator";
     import { Input } from "$lib/components/ui/input/index.js";
-    import { Button } from "$lib/components/ui/button/index.js";
-    import CirclePlus from "lucide-svelte/icons/circle-plus";
     import NoteCard from "$lib/components/NoteCard.svelte";
 
 	let { data } = $props();
@@ -29,13 +27,7 @@
 {#await data.subject}
     <div class="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min"></div>
 {:then subject}
-    <div class="flex flex-col-reverse gap-4 md:flex-row md:items-center md:justify-between">
-        <h2 class="text-3xl font-semibold">{subject.title}</h2>
-        <Button href="/penja-apunts">
-            <CirclePlus />
-            <span>Penja apunt</span>
-        </Button>
-    </div>
+    <h2 class="text-3xl font-semibold">{subject.title}</h2>
     <Separator />
 {:catch error}
     <p>Error loading subject: {error.message}</p>
