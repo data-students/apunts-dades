@@ -8,6 +8,8 @@
 	let { data } = $props();
 
     let selectedTab = $state("Tots");
+    const noteTypes = ["Teoria", "Lab", "Examen"];
+
     let searchQuery = $state("");
 
     function filterNotes(notes: any[], type: string, query: string) {
@@ -38,9 +40,9 @@
     <Tabs.Root value={selectedTab} onValueChange={(value) => selectedTab = value}>
         <Tabs.List>
             <Tabs.Trigger value="Tots">Tots</Tabs.Trigger>
-            <Tabs.Trigger value="Teoria">Teoria</Tabs.Trigger>
-            <Tabs.Trigger value="Lab">Lab</Tabs.Trigger>
-            <Tabs.Trigger value="Examen">Examen</Tabs.Trigger>
+            {#each noteTypes as type}
+                <Tabs.Trigger value={type}>{type}</Tabs.Trigger>
+            {/each}
         </Tabs.List>
     </Tabs.Root>
 	<div class="relative w-full md:max-w-sm">
