@@ -44,7 +44,7 @@
 
 <div class="mx-auto max-w-2xl w-full">
   <div class="space-y-2">
-    <h2 class="text-3xl font-semibold">Penja Apunts</h2>
+    <h2 class="text-3xl font-semibold tracking-tight">Penja Apunts</h2>
     <p class="text-sm text-neutral-600">
       Contribueix a Apunts Dades penjant apunts per compartir-los amb la resta d'estudiants. 
       Abans de penjar un apunt duplicat, comprova si ja està disponible a la plataforma.

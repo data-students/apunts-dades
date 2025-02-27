@@ -30,7 +30,7 @@
 {#await data.subject}
     <div class="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min"></div>
 {:then subject}
-    <h2 class="text-3xl font-semibold">{subject.title}</h2>
+    <h2 class="text-3xl font-semibold tracking-tight">{subject.title}</h2>
     <Separator />
 {:catch error}
     <p>Error loading subject: {error.message}</p>

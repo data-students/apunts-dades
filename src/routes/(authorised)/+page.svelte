@@ -33,7 +33,7 @@
     }
 </script>
 
-<h2 class="text-3xl font-semibold">Assignatures</h2>
+<h2 class="text-3xl font-semibold tracking-tight">Assignatures</h2>
 <Separator />
 
 <div class="flex flex-col-reverse gap-4 md:flex-row md:items-center md:justify-between">
