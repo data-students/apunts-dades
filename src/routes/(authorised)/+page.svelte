@@ -2,6 +2,7 @@
 	import * as Tabs from "$lib/components/ui/tabs/index.js";
 	import { Separator } from "$lib/components/ui/separator";
 	import { Input } from "$lib/components/ui/input/index.js";
+	import { Search } from "lucide-svelte";
 
 	import SubjectCard from "$lib/components/SubjectCard.svelte";
 
@@ -33,22 +34,24 @@
 </script>
 
 <h2 class="text-3xl font-semibold">Assignatures</h2>
+<Separator />
 
-<div class="flex items-center justify-between">
+<div class="flex flex-col-reverse gap-4 md:flex-row md:items-center md:justify-between">
 	<Tabs.Root value={selectedTab} class="w-full" onValueChange={(value) => selectedTab = value}>
 		<Tabs.List>
 			<Tabs.Trigger value="current">Actuals</Tabs.Trigger>
 			<Tabs.Trigger value="all">Totes</Tabs.Trigger>
 		</Tabs.List>
 	</Tabs.Root>
-    <Input 
-        placeholder="Busca assignatures..." 
-        class="max-w-sm" 
-        bind:value={searchQuery}
-    />
+	<div class="relative w-full md:max-w-sm">
+		<Search class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+		<Input 
+			placeholder="Busca assignatures..." 
+			class="pl-9 w-full" 
+			bind:value={searchQuery}
+		/>
+	</div>
 </div>
-
-<Separator />
 
 <div class="grid auto-rows-min gap-4 md:grid-cols-3">
 	{#await data.subjects}
@@ -57,7 +60,6 @@
 			<div class="bg-muted/50 aspect-video rounded-xl"></div>
 			<div class="bg-muted/50 aspect-video rounded-xl"></div>
 		</div>
-		<div class="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min"></div>
 	{:then subjects}
 		{#each filterSubjects(subjects) as subject}
 			<SubjectCard subject={subject} />

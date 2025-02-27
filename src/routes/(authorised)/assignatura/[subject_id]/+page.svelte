@@ -2,6 +2,7 @@
     import * as Tabs from "$lib/components/ui/tabs/index.js";
     import { Separator } from "$lib/components/ui/separator";
     import { Input } from "$lib/components/ui/input/index.js";
+    import { Search } from "lucide-svelte";
     import NoteCard from "$lib/components/NoteCard.svelte";
 
 	let { data } = $props();
@@ -42,11 +43,14 @@
             <Tabs.Trigger value="Examen">Examen</Tabs.Trigger>
         </Tabs.List>
     </Tabs.Root>
-    <Input 
-        placeholder="Busca apunts..." 
-        class="max-w-sm" 
-        bind:value={searchQuery}
-    />
+	<div class="relative w-full md:max-w-sm">
+		<Search class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+		<Input 
+			placeholder="Busca assignatures..." 
+			class="pl-9 w-full" 
+			bind:value={searchQuery}
+		/>
+	</div>
 </div>
 
 <div class="grid auto-rows-min gap-4 md:grid-cols-3">
