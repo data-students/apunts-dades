@@ -14,6 +14,7 @@
         <Card.Header>
             <Card.Title>{note.title}</Card.Title>
             <Card.Description>{note.title}</Card.Description>
+            <p class="text-sm">Compartit per {note.author}</p>
         </Card.Header>
     </Card.Root>
 </a>
