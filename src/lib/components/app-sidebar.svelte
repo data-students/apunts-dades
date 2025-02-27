@@ -8,6 +8,12 @@
 	import Send from "lucide-svelte/icons/send";
 	import Settings2 from "lucide-svelte/icons/settings-2";
 	import SquareTerminal from "lucide-svelte/icons/square-terminal";
+	import Box from "lucide-svelte/icons/box";
+	import DataBase from "lucide-svelte/icons/database";
+	import Rocket from "lucide-svelte/icons/rocket";
+	import BrainCircuit from "lucide-svelte/icons/brain-circuit";
+	import Bug from "lucide-svelte/icons/bug";
+	import Grip from "lucide-svelte/icons/grip";
 
 	const data = {
 		user: {
@@ -19,7 +25,7 @@
 			{
 				title: "Q1",
 				url: "#",
-				icon: SquareTerminal,
+				icon: Bug,
 				isActive: true,
 				items: [
 					{
@@ -43,7 +49,7 @@
 			{
 				title: "Q2",
 				url: "#",
-				icon: SquareTerminal,
+				icon: Box,
 				isActive: true,
 				items: [
 					{
@@ -67,7 +73,7 @@
 			{
 				title: "Q3",
 				url: "#",
-				icon: Bot,
+				icon: DataBase,
 				items: [
 					{
 						title: "AP3",
@@ -94,7 +100,7 @@
 			{
 				title: "Q4",
 				url: "#",
-				icon: Bot,
+				icon: Rocket,
 				items: [
 					{
 						title: "OM",
@@ -121,7 +127,7 @@
 			{
 				title: "Q5",
 				url: "#",
-				icon: BookOpen,
+				icon: BrainCircuit,
 				items: [
 					{
 						title: "AA2",
@@ -148,7 +154,7 @@
 			{
 				title: "Q6",
 				url: "#",
-				icon: Settings2,
+				icon: Grip,
 				items: [
 					{
 						title: "POE",
