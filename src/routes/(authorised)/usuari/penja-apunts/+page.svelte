@@ -31,7 +31,6 @@
 		data.append("type", type);
 		data.append("author", author);
 		const record = await pb.collection("notes").create(data);
-		console.log(record);
 		// success
 	  } catch (error) {
 		// error
