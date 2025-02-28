@@ -54,8 +54,8 @@
     </div>
 {:then subjects}
     {#each data.quarters as quarter}
-        <div class="mt-4">
-            {#if quarterSubjects(quarter).length > 0}   
+        {#if quarterSubjects(quarter).length > 0}
+            <div class="mb-4">
                 <h2 class="text-lg font-semibold">{quarter}</h2>
                 <Separator class="mt-2 mb-4" />
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -63,8 +63,8 @@
                         <SubjectCard subject={subject} />
                     {/each}
                 </div>
-            {/if}
-        </div>
+            </div>
+        {/if}
     {/each}
 {:catch error}
     <p class="text-sm text-red-500 text-center mt-32">Error carregant assignatures: {error.message}</p>
