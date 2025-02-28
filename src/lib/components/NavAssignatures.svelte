@@ -14,43 +14,35 @@
 				{#snippet child({ props })}
 					<Sidebar.MenuItem {...props}>
 						<Sidebar.MenuButton>
-							{#snippet tooltipContent()}
-								{mainItem.title}
-							{/snippet}
-							{#snippet child({ props })}
-								<a href={mainItem.url} {...props}>
-									<mainItem.icon />
-									<span>{mainItem.title}</span>
-								</a>
-							{/snippet}
+							<mainItem.icon />
+							{mainItem.title}
 						</Sidebar.MenuButton>
-						{#if mainItem.items?.length}
-							<Collapsible.Trigger>
-								{#snippet child({ props })}
-									<Sidebar.MenuAction
-										{...props}
-										class="data-[state=open]:rotate-90"
-									>
-										<ChevronRight />
-										<span class="sr-only">Toggle</span>
-									</Sidebar.MenuAction>
-								{/snippet}
-							</Collapsible.Trigger>
-							<Collapsible.Content>
-								<Sidebar.MenuSub>
-									{#each mainItem.items as subItem (subItem.title)}
-										<Sidebar.MenuSubItem>
-											<Sidebar.MenuSubButton href={subItem.url}>
-												<span>{subItem.title}</span>
-											</Sidebar.MenuSubButton>
-										</Sidebar.MenuSubItem>
-									{/each}
-								</Sidebar.MenuSub>
-							</Collapsible.Content>
-						{/if}
+						<Collapsible.Trigger>
+							{#snippet child({ props })}
+								<Sidebar.MenuAction
+									{...props}
+									class="data-[state=open]:rotate-90"
+								>
+									<ChevronRight />
+									<span class="sr-only">Toggle</span>
+								</Sidebar.MenuAction>
+							{/snippet}
+						</Collapsible.Trigger>
+						<Collapsible.Content>
+							<Sidebar.MenuSub>
+								{#each mainItem.items as subItem (subItem.title)}
+									<Sidebar.MenuSubItem>
+										<Sidebar.MenuSubButton href={subItem.url}>
+											<span>{subItem.title}</span>
+										</Sidebar.MenuSubButton>
+									</Sidebar.MenuSubItem>
+								{/each}
+							</Sidebar.MenuSub>
+						</Collapsible.Content>
 					</Sidebar.MenuItem>
 				{/snippet}
 			</Collapsible.Root>
 		{/each}
 	</Sidebar.Menu>
+	
 </Sidebar.Group>
