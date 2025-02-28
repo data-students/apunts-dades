@@ -2,9 +2,10 @@
 	import { Label } from "$lib/components/ui/label/index.ts";
 	import { Input } from "$lib/components/ui/input/index.ts";
 	import { Button } from "$lib/components/ui/button/index.ts";
-	import { LoaderCircle } from "lucide-svelte";
 	import { Switch } from "$lib/components/ui/switch/index.js";
 	import * as Select from "$lib/components/ui/select/index.js";
+	import { LoaderCircle } from "lucide-svelte";
+	import { toast } from "svelte-sonner";
 	
 	import { pb } from "$lib/pocketbase.ts";
   
@@ -21,29 +22,23 @@
 
 	let files = $state(null);
   
-	let form = $state({
-		loading: false,
-		error: false
-	});
+	let loading = $state(false);
 
 	async function upload() {
-	  form.loading = true;
+	  loading = true;
 	  try {
 		note.file = files[0];
 		const record = await pb.collection("notes").create(note);
-		window.location.reload();
-		// success
 	  } catch (error) {
-		form.error = true;
-		// error
+		toast.error('Error al penjar apunts');
 	  } finally {
 		note.title = null;
 		note.subject = null;
 		note.type = null;
 		note.hideAuthor = false;
 		note.file = null;
-		form.error = false;
-		form.loading = false;
+		loading = false;
+		toast.success('Apunts penjats correctament');
 	  }
 	}
 </script>
@@ -101,11 +96,8 @@
 			{/if}
 		</div>
 	</div>
-	{#if form.error}
-		<span class="text-sm text-red-500">Error al penjar apunts.</span>
-	{/if}
-	<Button type="submit" class="w-full" disabled={form.loading}>
-		{#if form.loading}
+	<Button type="submit" class="w-full" disabled={loading}>
+		{#if loading}
 			<LoaderCircle class="h-5 animate-spin" />
 		{:else}
 			Penja Apunts

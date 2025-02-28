@@ -5,6 +5,7 @@
   import { Button } from "$lib/components/ui/button/index.ts";
   import { Separator } from "$lib/components/ui/separator";
   import { LoaderCircle } from "lucide-svelte";
+  import { toast } from "svelte-sonner";
 
   import { goto } from "$app/navigation";
 
@@ -15,23 +16,20 @@
     password: ""
   })
 
-  let form = $state({
-		loading: false,
-		error: false
-	});
+  let loading = $state(false);
 
   async function login() {
-    form.error = false;
-    form.loading = true;
+    loading = true;
     try {
       const response = await pb.collection("users").authWithPassword(credentials.email, credentials.password);
       if (pb.authStore.isValid) {
         goto("/");
       }
     } catch (error) {
-      form.error = true;
+      toast.error('Error al iniciar sessió. Verifica les teves credencials.');
     } finally {
-      form.loading = false;
+      loading = false;
+      toast.success('Sessió iniciada correctament');
     }
   }
 
@@ -70,11 +68,8 @@
           </div>
           <Input id="password" type="password" autocomplete="password" required bind:value={credentials.password} />
         </div>
-        {#if form.error}
-          <span class="text-sm text-red-500">Error al iniciar sessió. Verifica les teves credencials.</span>
-        {/if}
-        <Button type="submit" class="w-full" disabled={form.loading}>
-          {#if form.loading}
+        <Button type="submit" class="w-full" disabled={loading}>
+          {#if loading}
             <LoaderCircle class="h-5 animate-spin" />
           {:else}
             Inicia sessió

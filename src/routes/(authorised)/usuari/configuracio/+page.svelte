@@ -4,6 +4,7 @@
     import * as Select from "$lib/components/ui/select/index.js";
     import { Button } from "$lib/components/ui/button/index.ts";
     import { LoaderCircle } from "lucide-svelte";
+    import { toast } from "svelte-sonner";
 
     import { getUserAvatarUrl } from "$lib/pocketbase.ts";
 
@@ -13,10 +14,7 @@
 
     let user = $state(data.user);
 
-    let form = $state({
-		loading: false,
-		error: false
-	});
+    let loading = $state(false);
     
     let emailUPC = $derived(!(user.email && user.email.includes("@")) || user.email.endsWith("estudiantat.upc.edu"));
     
@@ -30,16 +28,14 @@
     );
 
     async function updateUser() {
-        form.loading = true;
+        loading = true;
 	  try {
         const record = await pb.collection('users').update(data.user.id, user);
-        window.location.reload();
-		// success
 	  } catch (error) {
-        form.error = true;
-		// error
+        toast.error('Error al actualitzar la configuració');
 	  } finally {
-        form.loading = false;
+        loading = false;
+        toast.success('Configuració actualitzada correctament');
       }
     }
 </script>
@@ -73,11 +69,8 @@
             <img src={getUserAvatarUrl(data.user)} alt={user.name} class="h-16 w-16" />
         </div>
     {/if}
-    {#if form.error}
-        <span class="text-sm text-red-500">Error al actualitzar la configuració.</span>
-    {/if}
     <Button type="submit" class="w-full">
-        {#if form.loading}
+        {#if loading}
             <LoaderCircle class="h-5 animate-spin" />
         {:else}
             Guardar

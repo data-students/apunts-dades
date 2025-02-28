@@ -4,25 +4,23 @@
   import { Input } from "$lib/components/ui/input/index.ts";
   import { Button } from "$lib/components/ui/button/index.ts";
   import { LoaderCircle } from "lucide-svelte";
+  import { toast } from "svelte-sonner";
   
   import { pb } from "$lib/pocketbase.ts";
 
   let email = $state("");
-  
-  let form = $state({
-		loading: false,
-		error: false
-	});
+
+  let loading = $state(false);
 
   async function recover() {
-    form.error = false;
-    form.loading = true;
+    loading = true;
     try {
       const response = await pb.collection('users').requestVerification(email);
     } catch (error) {
-      form.error = true;
+      toast.error('Error al recuperar la contrasenya. Verifica el correu electrònic.');
     } finally {
-      form.loading = false;
+      loading = false;
+      toast.success('Correu de recuperació enviat correctament');
     }
   }
 </script>
@@ -43,11 +41,8 @@
           <Label for="email">Correu electrònic</Label>
           <Input id="email" type="email" autocomplete="email" placeholder="alumne@estudiantat.upc.edu" bind:value={email} required />
         </div>
-        {#if form.error}
-          <span class="text-sm text-red-500">Aquest email no està associat a cap compte.</span>
-        {/if}
-        <Button type="submit" class="w-full" disabled={form.loading}>
-          {#if form.loading}
+        <Button type="submit" class="w-full" disabled={loading}>
+          {#if loading}
             <LoaderCircle class="h-5 animate-spin" />
           {:else}
             Envia correu de recuperació

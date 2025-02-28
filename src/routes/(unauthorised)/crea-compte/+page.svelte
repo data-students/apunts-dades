@@ -5,6 +5,7 @@
   import { Button } from "$lib/components/ui/button/index.ts";
   import { Separator } from "$lib/components/ui/separator";
   import { LoaderCircle } from "lucide-svelte";
+  import { toast } from "svelte-sonner";
   import { goto } from "$app/navigation";
 
   import { pb } from "$lib/pocketbase.ts";
@@ -20,17 +21,13 @@
     passwordConfirm: ""
   });
   
-  let form = $state({
-		loading: false,
-		error: false
-	});
+  let loading = $state(false);
 
   let passwordMatch = $derived(!(user.password && user.confirmPassword) || user.password === user.confirmPassword);
   let emailUPC = $derived(!(user.email && user.email.includes("@")) || user.email.endsWith("estudiantat.upc.edu"));
   
   async function register() {
-    form.error = false;
-    form.loading = true;
+    loading = true;
     try {
       user.name = firstName + " " + lastName;
       const record = await pb.collection('users').create(user);
@@ -39,9 +36,10 @@
         goto("/");
       }
     } catch (error) {
-      form.error = true;
+      toast.error('Error al crear el compte. Credencials invàlides.');
     } finally {
-      form.loading = false;
+      loading = false;
+      toast.success('Compte creat correctament');
     }
   }
 
@@ -95,11 +93,8 @@
             <span class="text-sm text-red-500">Les contrasenyes han de coincidir.</span>
           {/if}
         </div>
-        {#if form.error}
-          <span class="text-sm text-red-500">Error al crear el compte. Credencials invàlides.</span>
-        {/if}
-        <Button type="submit" class="w-full" disabled={!passwordMatch || !emailUPC || form.loading}>
-          {#if form.loading}
+        <Button type="submit" class="w-full" disabled={!passwordMatch || !emailUPC || loading}>
+          {#if loading}
             <LoaderCircle class="h-5 animate-spin" />
           {:else}
             Registra't
