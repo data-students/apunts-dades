@@ -10,8 +10,6 @@
   
 	let { data } = $props();
   
-	const noteTypes = ["Teoria", "Lab", "Examen"];
-  
 	let note = $state({
 		title: null,
 		subject: null,
@@ -76,7 +74,7 @@
 				{note.type ? note.type : "Selecciona un tipus"}
 			</Select.Trigger>
 			<Select.Content>
-				{#each noteTypes as value}
+				{#each data.noteTypes as value}
 				<Select.Item {value}>{value}</Select.Item>
 				{/each}
 			</Select.Content>

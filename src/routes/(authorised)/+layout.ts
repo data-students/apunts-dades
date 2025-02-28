@@ -10,8 +10,13 @@ export async function load() {
   const subjects = await pb.collection("subjects").getFullList();
   const user = pb.authStore.model;
 
+  const quarters = ["Q1", "Q2", "Q3", "Q4", "Q5", "Q6"];
+  const noteTypes = ["Teoria", "Lab", "Examen"];
+
   return {
     subjects,
-    user
+    user,
+    quarters,
+    noteTypes
   };
 }

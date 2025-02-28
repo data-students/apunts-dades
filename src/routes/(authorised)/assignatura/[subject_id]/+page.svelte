@@ -7,8 +7,6 @@
 
 	let { data } = $props();
 
-    const noteTypes = ["Teoria", "Lab", "Examen"];
-
     let selectedTab = $state("Tots");
     let searchQuery = $state("");
 
@@ -28,7 +26,7 @@
     <Tabs.Root value={selectedTab} onValueChange={(value) => selectedTab = value}>
         <Tabs.List>
             <Tabs.Trigger value="Tots">Tots</Tabs.Trigger>
-            {#each noteTypes as type}
+            {#each data.noteTypes as type}
                 <Tabs.Trigger value={type}>{type}</Tabs.Trigger>
             {/each}
         </Tabs.List>
