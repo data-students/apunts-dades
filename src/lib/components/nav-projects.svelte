@@ -68,10 +68,12 @@
 			</Sidebar.MenuItem>
 		{/each}
 		<Sidebar.MenuItem>
-			<Sidebar.MenuButton>
-				<Upload />
-				<a href="/penja-apunts">Penja Apunts</a>
-			</Sidebar.MenuButton>
+			<a href="/usuari/penja-apunts">
+				<Sidebar.MenuButton>
+					<Upload />
+					Penja Apunts
+				</Sidebar.MenuButton>
+			</a>
 		</Sidebar.MenuItem>
 	</Sidebar.Menu>
 </Sidebar.Group>
