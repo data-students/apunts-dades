@@ -62,11 +62,11 @@
         <Label for="first-name">Assignatura</Label>
         <Select.Root type="single" bind:value={subject} required>
           <Select.Trigger>
-            {subject ? data.subjects.find(s => s.id === subject)?.title : "Selecciona una assignatura"}
+            {subject ? data.subjects.find(s => s.id === subject)?.acronym : "Selecciona una assignatura"}
           </Select.Trigger>
           <Select.Content>
             {#each data.subjects as subject}
-              <Select.Item value={subject.id}>{subject.title}</Select.Item>
+              <Select.Item value={subject.id}>{subject.acronym}</Select.Item>
             {/each}
           </Select.Content>
         </Select.Root>
