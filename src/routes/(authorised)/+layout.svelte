@@ -1,8 +1,10 @@
 <script lang="ts">
 	import * as Breadcrumb from "$lib/components/ui/breadcrumb/index.js";
 	import { Separator } from "$lib/components/ui/separator/index.js";
-    import AppSidebar from "$lib/components/app-sidebar.svelte";
 	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
+
+    import AppSidebar from "$lib/components/app-sidebar.svelte";
+	
 	import { page } from '$app/state';
 
 	let { children } = $props();
@@ -24,10 +26,10 @@
 					<Breadcrumb.Item class="hidden md:block">
 						<Breadcrumb.Link href="/">Inici</Breadcrumb.Link>
 					</Breadcrumb.Item>
-					{#if page.data.title != "Inici"}
+					{#if page.data.breadcrumb != "Inici"}
 						<Breadcrumb.Separator class="hidden md:block" />
 						<Breadcrumb.Item>
-							<Breadcrumb.Page>{page.data.title}</Breadcrumb.Page>
+							<Breadcrumb.Page>{page.data.breadcrumb}</Breadcrumb.Page>
 						</Breadcrumb.Item>
 					{/if}
 				</Breadcrumb.List>
@@ -35,6 +37,8 @@
 		</div>
 	</header>
 	<div class="flex flex-1 flex-col gap-4 p-4 pt-0">
+		<h2 class="text-3xl font-semibold tracking-tight">{page.data.title}</h2>
+		<Separator />
 		{@render children()}
 	</div>
 	</Sidebar.Inset>

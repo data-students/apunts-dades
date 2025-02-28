@@ -8,8 +8,10 @@ export async function load() {
   }
 
   const subjects = await pb.collection("subjects").getFullList();
+  const user = pb.authStore.model;
 
   return {
-    subjects
+    subjects,
+    user
   };
 }

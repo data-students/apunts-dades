@@ -1,10 +1,9 @@
 <script lang="ts">
     import { Label } from "$lib/components/ui/label/index.ts";
-    import { Separator } from "$lib/components/ui/separator";
     import * as Select from "$lib/components/ui/select/index.js";
   
     let { data } = $props();
-    let selected = $state<string[]>([]);
+    let selected = $state([]);
     
     const selectedLabels = $derived(
         selected.length
@@ -16,15 +15,16 @@
     );
 </script>
 
-<h2 class="text-3xl font-semibold tracking-tight">Configuració</h2>
-<Separator />
-
-<Label for="subjects">Assignatures</Label>
-<Select.Root type="multiple" bind:value={selected}>
-	<Select.Trigger>{selectedLabels}</Select.Trigger>
-	<Select.Content>
-		{#each data.subjects as subject}
-			<Select.Item value={subject.id}>{subject.acronym}</Select.Item>
-		{/each}
-	</Select.Content>
-</Select.Root>
+<form class="grid gap-4 pt-2">
+    <div class="grid gap-2">
+        <Label for="subjects">Assignatures</Label>
+        <Select.Root type="multiple" bind:value={selected}>
+            <Select.Trigger>{selectedLabels}</Select.Trigger>
+            <Select.Content>
+                {#each data.subjects as subject}
+                    <Select.Item value={subject.id}>{subject.acronym}</Select.Item>
+                {/each}
+            </Select.Content>
+        </Select.Root>
+    </div>
+</form>

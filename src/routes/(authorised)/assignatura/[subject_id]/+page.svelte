@@ -1,15 +1,15 @@
 <script lang="ts">
     import * as Tabs from "$lib/components/ui/tabs/index.js";
-    import { Separator } from "$lib/components/ui/separator";
     import { Input } from "$lib/components/ui/input/index.js";
     import { Search } from "lucide-svelte";
+    
     import NoteCard from "$lib/components/NoteCard.svelte";
 
 	let { data } = $props();
 
-    let selectedTab = $state("Tots");
     const noteTypes = ["Teoria", "Lab", "Examen"];
 
+    let selectedTab = $state("Tots");
     let searchQuery = $state("");
 
     function filterNotes(notes: any[], type: string, query: string) {
@@ -27,15 +27,6 @@
     }
 </script>
 
-{#await data.subject}
-    <div class="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min"></div>
-{:then subject}
-    <h2 class="text-3xl font-semibold tracking-tight">{subject.title}</h2>
-    <Separator />
-{:catch error}
-    <p>Error loading subject: {error.message}</p>
-{/await}
-
 <div class="flex flex-col-reverse gap-4 md:flex-row md:items-center md:justify-between">
     <Tabs.Root value={selectedTab} onValueChange={(value) => selectedTab = value}>
         <Tabs.List>
@@ -48,7 +39,7 @@
 	<div class="relative w-full md:max-w-sm">
 		<Search class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
 		<Input 
-			placeholder="Busca assignatures..." 
+			placeholder="Busca apunts..." 
 			class="pl-9 w-full" 
 			bind:value={searchQuery}
 		/>
@@ -66,7 +57,7 @@
         {#each filterNotes(notes, selectedTab, searchQuery) as note}
             <NoteCard note={note} />
         {:else}
-            <p class="text-neutral-600">Cap apunt trobat</p>
+            <p class="text-muted-foreground text-sm">Cap apunt trobat</p>
         {/each}
     {:catch error}
         <p>Error carregant apunts: {error.message}</p>

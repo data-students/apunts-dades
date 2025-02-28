@@ -1,5 +1,6 @@
-export async function load() {
-  return { 
-    title: "Inici"
+export function load() {
+  return {
+    title: "Assignatures",
+    breadcrumb: "Assignatures"
   };
 }

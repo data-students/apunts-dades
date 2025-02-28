@@ -10,8 +10,10 @@
 	import BrainCircuit from "lucide-svelte/icons/brain-circuit";
 	import Bug from "lucide-svelte/icons/bug";
 	import Grip from "lucide-svelte/icons/grip";
+	
 	import { pb } from "$lib/pocketbase.ts";
 
+	// TODO: Replace with data from the layout to avoid duplicated query
 	let user = pb.authStore.model;
 
 	const data = {

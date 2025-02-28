@@ -1,18 +1,13 @@
 <script lang="ts">
 	import * as Tabs from "$lib/components/ui/tabs/index.js";
-	import { Separator } from "$lib/components/ui/separator";
 	import { Input } from "$lib/components/ui/input/index.js";
 	import { Search } from "lucide-svelte";
 
 	import SubjectCard from "$lib/components/SubjectCard.svelte";
 
-	import { pb } from "$lib/pocketbase.ts";
-
-	const currentUser = pb.authStore.model;
-
 	let { data } = $props();
-	let searchQuery = $state("");
 
+	let searchQuery = $state("");
 	let selectedTab = $state("current");
 
 	function filterSubjects(subjects: any[]) {
@@ -25,16 +20,13 @@
             }
 
             if (selectedTab === "current") {
-                return currentUser.subjects.includes(subject.id);
+                return data.user.subjects.includes(subject.id);
             }
 
             return true;
         });
     }
 </script>
-
-<h2 class="text-3xl font-semibold tracking-tight">Assignatures</h2>
-<Separator />
 
 <div class="flex flex-col-reverse gap-4 md:flex-row md:items-center md:justify-between">
 	<Tabs.Root value={selectedTab} class="w-full" onValueChange={(value) => selectedTab = value}>
@@ -64,7 +56,7 @@
         {#each filterSubjects(subjects) as subject}
             <SubjectCard subject={subject} />
         {:else}
-            <p class="text-neutral-600">Cap assignatura trobada</p>
+            <p class="text-muted-foreground text-sm">Cap assignatura trobada</p>
         {/each}
     {:catch error}
         <p>Error carregant assignatures: {error.message}</p>

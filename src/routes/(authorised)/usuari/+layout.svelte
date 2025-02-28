@@ -3,9 +3,8 @@
     import { page } from '$app/state';
     import { cubicInOut } from "svelte/easing";
     import { crossfade } from "svelte/transition";
-    import Separator from "$lib/components/ui/separator/separator.svelte";
 
-    let { children, data } = $props();
+    let { children } = $props();
 
     const items = [
         { href: "/usuari/configuracio", title: "Configuració" },
@@ -22,9 +21,6 @@
         easing: cubicInOut,
     });
 </script>
-
-<h2 class="text-3xl font-semibold tracking-tight">{current.title}</h2>
-<Separator />
 
 <div class="flex flex-col space-y-8 lg:flex-row lg:space-x-12 lg:space-y-0">
     <aside class="lg:w-1/5">
@@ -47,7 +43,7 @@
             {/each}
         </nav>
     </aside>
-    <div class="flex-1 lg:max-w-2xl ">
+    <div class="flex-1 flex-col gap-4 lg:max-w-2xl">
         {@render children()}
     </div>
 </div>
