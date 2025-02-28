@@ -2,6 +2,7 @@
 	import * as Tabs from "$lib/components/ui/tabs/index.js";
 	import { Input } from "$lib/components/ui/input/index.js";
     import { Button } from "$lib/components/ui/button";
+    import Separator from "$lib/components/ui/separator/separator.svelte";
     import Search from "lucide-svelte/icons/search";
     import CirclePlus from "lucide-svelte/icons/circle-plus";
 
@@ -22,6 +23,10 @@
         
         return true;
     }));
+
+    function quarterSubjects(quarter) {
+        return filteredSubjects.filter(subject => subject.quarter === quarter);
+    }
 </script>
 
 <div class="flex flex-col-reverse gap-4 md:flex-row md:items-center md:justify-between">
@@ -48,11 +53,19 @@
         <div class="bg-muted/50 aspect-video rounded-xl hidden lg:block"></div>
     </div>
 {:then subjects}
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {#each filteredSubjects as subject}
-            <SubjectCard subject={subject} />
-        {/each}
-    </div>
+    {#each data.quarters as quarter}
+        <div class="mt-4">
+            {#if quarterSubjects(quarter).length > 0}   
+                <h2 class="text-lg font-semibold">{quarter}</h2>
+                <Separator class="mt-2 mb-4" />
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {#each quarterSubjects(quarter) as subject}
+                        <SubjectCard subject={subject} />
+                    {/each}
+                </div>
+            {/if}
+        </div>
+    {/each}
 {:catch error}
     <p class="text-sm text-red-500 text-center mt-32">Error carregant assignatures: {error.message}</p>
 {/await}
