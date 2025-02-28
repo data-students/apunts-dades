@@ -16,7 +16,7 @@
 		title: null,
 		subject: null,
 		type: null,
-		hide_author: false,
+		hideAuthor: false,
 		file: null,
 		author: data.user.id
 	});
@@ -42,7 +42,7 @@
 		note.title = null;
 		note.subject = null;
 		note.type = null;
-		note.hide_author = false;
+		note.hideAuthor = false;
 		note.file = null;
 		form.error = false;
 		form.loading = false;
@@ -85,7 +85,7 @@
 	</div>
 	<div class="grid gap-2">
 		<Label for="show-author">Anonimitza l'autor</Label>
-		<Switch bind:checked={note.hide_author} />
+		<Switch bind:checked={note.hideAuthor} />
 	</div>
 	<div class="grid gap-2">
 		<Label for="title">Fitxer</Label>
