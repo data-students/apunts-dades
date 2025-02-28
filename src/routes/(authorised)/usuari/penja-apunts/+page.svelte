@@ -12,36 +12,39 @@
   
 	const noteTypes = ["Teoria", "Lab", "Examen"];
   
-	let title = $state("");
+	let note = $state({
+		title: null,
+		subject: null,
+		type: null,
+		hide_author: false,
+		file: null,
+		author: data.user.id
+	});
 	let files = $state(null);
-	let subject = $state(null);
-	let type = $state(null);
-	let hideAuthor = $state(false);
-	let formLoading = $state(false);
-	let author = data.user.id;
   
+	let form = $state({
+		loading: false,
+		error: false
+	});
+
 	async function upload() {
-	  formLoading = true;
+	  form.loading = true;
 	  try {
-		const data = new FormData();
-		data.append("title", title);
-		data.append("file", files[0]);
-		data.append("hide_author", hideAuthor);
-		data.append("subject", subject);
-		data.append("type", type);
-		data.append("author", author);
-		const record = await pb.collection("notes").create(data);
+		note.file = files[0];
+		const record = await pb.collection("notes").create(note);
 		window.location.reload();
 		// success
 	  } catch (error) {
+		form.error = true;
 		// error
 	  } finally {
-		title = "";
-		files = null;
-		subject = null;
-		type = null;
-		hideAuthor = false;
-		formLoading = false;
+		note.title = null;
+		note.subject = null;
+		note.type = null;
+		note.hide_author = false;
+		note.file = null;
+		form.error = false;
+		form.loading = false;
 	  }
 	}
 </script>
@@ -49,15 +52,14 @@
 <form class="grid gap-4 pt-2" onsubmit={upload}>
 	<div class="grid gap-2">
 		<Label for="title">Títol</Label>
-		<Input id="title" type="text" bind:value={title} required />
+		<Input id="title" type="text" bind:value={note.title} required />
 	</div>
-
 	<div class="grid grid-cols-2 gap-4">
 	<div class="grid gap-2">
 		<Label for="first-name">Assignatura</Label>
-		<Select.Root type="single" bind:value={subject} required>
+		<Select.Root type="single" bind:value={note.subject} required>
 			<Select.Trigger>
-				{subject ? data.subjects.find(s => s.id === subject)?.acronym : "Selecciona una assignatura"}
+				{note.subject ? data.subjects.find(s => s.id === note.subject)?.acronym : "Selecciona una assignatura"}
 			</Select.Trigger>
 			<Select.Content>
 				{#each data.subjects as subject}
@@ -68,9 +70,9 @@
 	</div>
 	<div class="grid gap-2">
 		<Label for="type">Tipus</Label>
-		<Select.Root type="single" bind:value={type} required>
+		<Select.Root type="single" bind:value={note.type} required>
 			<Select.Trigger>
-				{type ? type : "Selecciona un tipus"}
+				{note.type ? note.type : "Selecciona un tipus"}
 			</Select.Trigger>
 			<Select.Content>
 				{#each noteTypes as value}
@@ -80,10 +82,9 @@
 		</Select.Root>
 	</div>
 	</div>
-
 	<div class="grid gap-2">
 		<Label for="show-author">Anonimitza l'autor</Label>
-		<Switch bind:checked={hideAuthor} />
+		<Switch bind:checked={note.hide_author} />
 	</div>
 
 	<div class="grid gap-2">
@@ -102,9 +103,11 @@
 			{/if}
 		</div>
 	</div>
-
-	<Button type="submit" class="w-full" disabled={formLoading}>
-		{#if formLoading}
+	{#if form.error}
+		<span class="text-sm text-red-500">Error al penjar apunts.</span>
+	{/if}
+	<Button type="submit" class="w-full" disabled={form.loading}>
+		{#if form.loading}
 			<LoaderCircle class="h-5 animate-spin" />
 		{:else}
 			Penja Apunts
