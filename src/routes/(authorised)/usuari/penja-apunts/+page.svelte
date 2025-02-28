@@ -31,6 +31,7 @@
 		data.append("type", type);
 		data.append("author", author);
 		const record = await pb.collection("notes").create(data);
+		window.location.reload();
 		// success
 	  } catch (error) {
 		// error
@@ -81,23 +82,23 @@
 	</div>
 
 	<div class="grid gap-2">
-	<Label for="show-author">Anonimitza l'autor</Label>
-	<Switch bind:checked={hideAuthor} />
+		<Label for="show-author">Anonimitza l'autor</Label>
+		<Switch bind:checked={hideAuthor} />
 	</div>
 
 	<div class="grid gap-2">
 		<Label for="title">Fitxer</Label>
 		<div class="relative h-60 w-full border-2 border-dashed rounded-lg hover:border-neutral-400 transition-colors flex items-center justify-center">
 			<input
-			type="file"
-			bind:files
-			required
-			class="absolute w-full h-full opacity-0 cursor-pointer"
+				type="file"
+				bind:files
+				required
+				class="absolute w-full h-full opacity-0 cursor-pointer"
 			/>
 			{#if files?.[0]}
-			<p class="text-sm font-medium">{files[0].name}</p>
+				<p class="text-sm font-medium">{files[0].name}</p>
 			{:else}
-			<p class="text-sm">Feu clic per carregar o arrossegueu i deixeu anar</p>
+				<p class="text-sm">Feu clic per carregar o arrossegueu i deixeu anar</p>
 			{/if}
 		</div>
 	</div>
