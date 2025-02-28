@@ -53,20 +53,20 @@
 	</div>
 </div>
 
-<div class="grid auto-rows-min gap-4 md:grid-cols-3">
-	{#await data.subjects}
-		<div class="grid auto-rows-min gap-4 md:grid-cols-3">
-			<div class="bg-muted/50 aspect-video rounded-xl"></div>
-			<div class="bg-muted/50 aspect-video rounded-xl"></div>
-			<div class="bg-muted/50 aspect-video rounded-xl"></div>
-		</div>
-	{:then subjects}
-		{#each filterSubjects(subjects) as subject}
-			<SubjectCard subject={subject} />
-		{:else}
-			<p class="text-neutral-600">Cap assignatura trobada</p>
-		{/each}
-	{:catch error}
-		<p>Error loading subjects: {error.message}</p>
-	{/await}
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    {#await data.subjects}
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="bg-muted/50 aspect-video rounded-xl"></div>
+            <div class="bg-muted/50 aspect-video rounded-xl hidden sm:block"></div>
+            <div class="bg-muted/50 aspect-video rounded-xl hidden lg:block"></div>
+        </div>
+    {:then subjects}
+        {#each filterSubjects(subjects) as subject}
+            <SubjectCard subject={subject} />
+        {:else}
+            <p class="text-neutral-600">Cap assignatura trobada</p>
+        {/each}
+    {:catch error}
+        <p>Error carregant assignatures: {error.message}</p>
+    {/await}
 </div>

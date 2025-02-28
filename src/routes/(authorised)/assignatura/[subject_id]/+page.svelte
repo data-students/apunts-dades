@@ -55,12 +55,12 @@
 	</div>
 </div>
 
-<div class="grid auto-rows-min gap-4 md:grid-cols-3">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
     {#await data.notes}
-        <div class="grid auto-rows-min gap-4 md:grid-cols-3">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <div class="bg-muted/50 aspect-video rounded-xl"></div>
-            <div class="bg-muted/50 aspect-video rounded-xl"></div>
-            <div class="bg-muted/50 aspect-video rounded-xl"></div>
+            <div class="bg-muted/50 aspect-video rounded-xl hidden sm:block"></div>
+            <div class="bg-muted/50 aspect-video rounded-xl hidden lg:block"></div>
         </div>
     {:then notes}
         {#each filterNotes(notes, selectedTab, searchQuery) as note}
@@ -69,6 +69,6 @@
             <p class="text-neutral-600">Cap apunt trobat</p>
         {/each}
     {:catch error}
-        <p>Error loading notes: {error.message}</p>
+        <p>Error carregant apunts: {error.message}</p>
     {/await}
 </div>
