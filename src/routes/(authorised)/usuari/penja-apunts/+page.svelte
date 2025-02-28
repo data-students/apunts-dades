@@ -20,6 +20,7 @@
 		file: null,
 		author: data.user.id
 	});
+
 	let files = $state(null);
   
 	let form = $state({
@@ -86,7 +87,6 @@
 		<Label for="show-author">Anonimitza l'autor</Label>
 		<Switch bind:checked={note.hide_author} />
 	</div>
-
 	<div class="grid gap-2">
 		<Label for="title">Fitxer</Label>
 		<div class="relative h-60 w-full border-2 border-dashed rounded-lg hover:border-neutral-400 transition-colors flex items-center justify-center">

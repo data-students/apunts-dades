@@ -12,8 +12,11 @@
     let { data } = $props();
 
     let user = $state(data.user);
-    let formError = $state(false);
-    let formLoading = $state(false);
+
+    let form = $state({
+		loading: false,
+		error: false
+	});
     
     let emailUPC = $derived(!(user.email && user.email.includes("@")) || user.email.endsWith("estudiantat.upc.edu"));
     
@@ -27,15 +30,16 @@
     );
 
     async function updateUser() {
-        formLoading = true;
+        form.loading = true;
 	  try {
         const record = await pb.collection('users').update(data.user.id, user);
         window.location.reload();
 		// success
 	  } catch (error) {
+        form.error = true;
 		// error
 	  } finally {
-        formLoading = false;
+        form.loading = false;
       }
     }
 </script>
@@ -45,7 +49,6 @@
         <Label for="first-name">Nom</Label>
         <Input id="first-name" bind:value={user.name} required />
     </div>
-
     <div class="grid gap-2">
         <Label for="email">Correu electrònic</Label>
         <Input id="email" type="email" bind:value={user.email} required />
@@ -53,7 +56,6 @@
           <span class="text-sm text-red-500">Només s'accepten adreçes pertanyents a la UPC.</span>
         {/if}
     </div>
-
     <div class="grid gap-2">
         <Label for="subjects">Assignatures cursades actualment</Label>
         <Select.Root type="multiple" bind:value={user.subjects}>
@@ -65,19 +67,17 @@
             </Select.Content>
         </Select.Root>
     </div>
-
     {#if user.avatar}
         <div class="grid gap-2">
             <Label>Avatar</Label>
             <img src={getUserAvatarUrl(data.user)} alt={user.name} class="h-16 w-16" />
         </div>
     {/if}
-
-    {#if formError}
-        <span class="text-sm text-red-500">Error al crear el compte. Credencials invàlides.</span>
+    {#if form.error}
+        <span class="text-sm text-red-500">Error al actualitzar la configuració.</span>
     {/if}
     <Button type="submit" class="w-full">
-        {#if formLoading}
+        {#if form.loading}
             <LoaderCircle class="h-5 animate-spin" />
         {:else}
             Guardar

@@ -6,38 +6,42 @@
   import { Separator } from "$lib/components/ui/separator";
   import { LoaderCircle } from "lucide-svelte";
   import { goto } from "$app/navigation";
+
   import { pb } from "$lib/pocketbase.ts";
 
   let firstName = $state("");
   let lastName = $state("");
-  let email = $state("");
-  let password = $state("");
-  let confirmPassword = $state("");
-  let formError = $state(false);
-  let formLoading = $state(false);
-  let passwordMatch = $derived(!(password && confirmPassword) || password === confirmPassword);
-  let emailUPC = $derived(!(email && email.includes("@")) || email.endsWith("estudiantat.upc.edu"));
+
+  let user = $state({
+    name: "",
+    email: "",
+    emailVisibility: true,
+    password: "",
+    passwordConfirm: ""
+  });
+  
+  let form = $state({
+		loading: false,
+		error: false
+	});
+
+  let passwordMatch = $derived(!(user.password && user.confirmPassword) || user.password === user.confirmPassword);
+  let emailUPC = $derived(!(user.email && user.email.includes("@")) || user.email.endsWith("estudiantat.upc.edu"));
   
   async function register() {
-    formError = false;
-    formLoading = true;
+    form.error = false;
+    form.loading = true;
     try {
-      const data = {
-        name: `${firstName} ${lastName}`,
-        email: email,
-        emailVisibility: true,
-        password: password,
-        passwordConfirm: confirmPassword,
-      };
-      const record = await pb.collection('users').create(data);
-      const response = await pb.collection("users").authWithPassword(email, password);
+      user.name = firstName + " " + lastName;
+      const record = await pb.collection('users').create(user);
+      const response = await pb.collection("users").authWithPassword(user.email, user.password);
       if (pb.authStore.isValid) {
         goto("/");
       }
     } catch (error) {
-      formError = true;
+      form.error = true;
     } finally {
-      formLoading = false;
+      form.loading = false;
     }
   }
 
@@ -75,27 +79,27 @@
         </div>
         <div class="grid gap-2">
           <Label for="email">Correu electrònic</Label>
-          <Input id="email" type="email" autocomplete="email" placeholder="alumne@estudiantat.upc.edu" bind:value={email} required />
+          <Input id="email" type="email" autocomplete="email" placeholder="alumne@estudiantat.upc.edu" bind:value={user.email} required />
           {#if !emailUPC}
             <span class="text-sm text-red-500">Només s'accepten adreçes pertanyents a la UPC.</span>
           {/if}
         </div>
         <div class="grid gap-2">
           <Label for="password">Contrasenya</Label>
-          <Input id="password" type="password" autocomplete="password" required bind:value={password} />
+          <Input id="password" type="password" autocomplete="password" required bind:value={user.password} />
         </div>
         <div class="grid gap-2">
           <Label for="confirm-password">Confirma la Contrasenya</Label>
-          <Input id="confirm-password" type="password" autocomplete="password" required bind:value={confirmPassword} />
+          <Input id="confirm-password" type="password" autocomplete="password" required bind:value={user.passwordConfirm} />
           {#if !passwordMatch}
             <span class="text-sm text-red-500">Les contrasenyes han de coincidir.</span>
           {/if}
         </div>
-        {#if formError}
+        {#if form.error}
           <span class="text-sm text-red-500">Error al crear el compte. Credencials invàlides.</span>
         {/if}
-        <Button type="submit" class="w-full" disabled={!passwordMatch || !emailUPC || formLoading}>
-          {#if formLoading}
+        <Button type="submit" class="w-full" disabled={!passwordMatch || !emailUPC || form.loading}>
+          {#if form.loading}
             <LoaderCircle class="h-5 animate-spin" />
           {:else}
             Registra't

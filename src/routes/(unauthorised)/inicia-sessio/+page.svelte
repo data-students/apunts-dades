@@ -5,26 +5,33 @@
   import { Button } from "$lib/components/ui/button/index.ts";
   import { Separator } from "$lib/components/ui/separator";
   import { LoaderCircle } from "lucide-svelte";
+
   import { goto } from "$app/navigation";
+
   import { pb } from "$lib/pocketbase.ts";
-  
-  let email = $state("");
-  let password = $state("");
-  let formError = $state(false);
-  let formLoading = $state(false);
+
+  let credentials = $state({
+    email: "",
+    password: ""
+  })
+
+  let form = $state({
+		loading: false,
+		error: false
+	});
 
   async function login() {
-    formError = false;
-    formLoading = true;
+    form.error = false;
+    form.loading = true;
     try {
-      const response = await pb.collection("users").authWithPassword(email, password);
+      const response = await pb.collection("users").authWithPassword(credentials.email, credentials.password);
       if (pb.authStore.isValid) {
         goto("/");
       }
     } catch (error) {
-      formError = true;
+      form.error = true;
     } finally {
-      formLoading = false;
+      form.loading = false;
     }
   }
 
@@ -52,7 +59,7 @@
       <form class="grid gap-4" onsubmit={login}>
         <div class="grid gap-2">
           <Label for="email">Correu electrònic</Label>
-          <Input id="email" type="email" autocomplete="email" placeholder="alumne@estudiantat.upc.edu" bind:value={email} required />
+          <Input id="email" type="email" autocomplete="email" placeholder="alumne@estudiantat.upc.edu" bind:value={credentials.email} required />
         </div>
         <div class="grid gap-2">
           <div class="flex items-center">
@@ -61,13 +68,13 @@
               Has oblidat la contrasenya?
             </a>
           </div>
-          <Input id="password" type="password" autocomplete="password" required bind:value={password} />
+          <Input id="password" type="password" autocomplete="password" required bind:value={credentials.password} />
         </div>
-        {#if formError}
+        {#if form.error}
           <span class="text-sm text-red-500">Error al iniciar sessió. Verifica les teves credencials.</span>
         {/if}
-        <Button type="submit" class="w-full" disabled={formLoading}>
-          {#if formLoading}
+        <Button type="submit" class="w-full" disabled={form.loading}>
+          {#if form.loading}
             <LoaderCircle class="h-5 animate-spin" />
           {:else}
             Inicia sessió

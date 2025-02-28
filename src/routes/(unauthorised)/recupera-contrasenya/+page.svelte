@@ -4,21 +4,25 @@
   import { Input } from "$lib/components/ui/input/index.ts";
   import { Button } from "$lib/components/ui/button/index.ts";
   import { LoaderCircle } from "lucide-svelte";
+  
   import { pb } from "$lib/pocketbase.ts";
 
   let email = $state("");
-  let formError = $state(false);
-  let formLoading = $state(false);
+  
+  let form = $state({
+		loading: false,
+		error: false
+	});
 
   async function recover() {
-    formError = false;
-    formLoading = true;
+    form.error = false;
+    form.loading = true;
     try {
       const response = await pb.collection('users').requestVerification(email);
     } catch (error) {
-      formError = true;
+      form.error = true;
     } finally {
-      formLoading = false;
+      form.loading = false;
     }
   }
 </script>
@@ -39,11 +43,11 @@
           <Label for="email">Correu electrònic</Label>
           <Input id="email" type="email" autocomplete="email" placeholder="alumne@estudiantat.upc.edu" bind:value={email} required />
         </div>
-        {#if formError}
+        {#if form.error}
           <span class="text-sm text-red-500">Aquest email no està associat a cap compte.</span>
         {/if}
-        <Button type="submit" class="w-full" disabled={formLoading}>
-          {#if formLoading}
+        <Button type="submit" class="w-full" disabled={form.loading}>
+          {#if form.loading}
             <LoaderCircle class="h-5 animate-spin" />
           {:else}
             Envia correu de recuperació
