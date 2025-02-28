@@ -5,7 +5,7 @@
 	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
 	import { page } from '$app/state';
 
-	let { children, data } = $props();
+	let { children } = $props();
 </script>
 
 <svelte:head>
