@@ -54,7 +54,9 @@
         {#each filteredNotes as note}
             <NoteCard note={note} />
         {:else}
-            <p class="text-muted-foreground text-sm">Cap apunt trobat</p>
+            <div></div>
+            <p class="text-muted-foreground text-sm text-center mt-32">Cap apunt trobat</p>
+            <div></div>
         {/each}
     {:catch error}
         <p>Error carregant apunts: {error.message}</p>

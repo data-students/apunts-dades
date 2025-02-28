@@ -50,7 +50,9 @@
         {#each filteredSubjects as subject}
             <SubjectCard subject={subject} />
         {:else}
-            <p class="text-muted-foreground text-sm">Cap assignatura trobada</p>
+            <div></div>
+            <p class="text-muted-foreground text-sm text-center mt-32">Cap assignatura trobada</p>
+            <div></div>
         {/each}
     {:catch error}
         <p>Error carregant assignatures: {error.message}</p>
