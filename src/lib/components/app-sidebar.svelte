@@ -1,26 +1,21 @@
 <script lang="ts" module>
-	import BookOpen from "lucide-svelte/icons/book-open";
-	import Bot from "lucide-svelte/icons/bot";
 	import ChartPie from "lucide-svelte/icons/chart-pie";
 	import Frame from "lucide-svelte/icons/frame";
 	import LifeBuoy from "lucide-svelte/icons/life-buoy";
 	import Map from "lucide-svelte/icons/map";
 	import Send from "lucide-svelte/icons/send";
-	import Settings2 from "lucide-svelte/icons/settings-2";
-	import SquareTerminal from "lucide-svelte/icons/square-terminal";
 	import Box from "lucide-svelte/icons/box";
 	import DataBase from "lucide-svelte/icons/database";
 	import Rocket from "lucide-svelte/icons/rocket";
 	import BrainCircuit from "lucide-svelte/icons/brain-circuit";
 	import Bug from "lucide-svelte/icons/bug";
 	import Grip from "lucide-svelte/icons/grip";
+	import { pb } from "$lib/pocketbase.ts";
+
+	let user = pb.authStore.model;
 
 	const data = {
-		user: {
-			name: "Estudiant GECD",
-			email: "alumne@estudiantat.upc.edu",
-			avatar: "https://upload.wikimedia.org/wikipedia/commons/9/97/Logo_UPC.svg",
-		},
+		user: user,
 		navMain: [
 			{
 				title: "Q1",
@@ -226,7 +221,7 @@
 					{#snippet child({ props })}
 						<a href="/" {...props}>
 							<div class="size-9 border rounded overflow-hidden">
-								<img src="https://avatars.githubusercontent.com/u/91702672" alt="Apunts Dades" />
+								<img src="/icons/icon-192x192.png" alt="Apunts Dades" />
 							</div>
 							<div class="grid flex-1 text-left text-sm leading-tight">
 								<span class="truncate font-semibold">Apunts Dades</span>

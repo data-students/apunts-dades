@@ -15,7 +15,7 @@
 	import { goto } from "$app/navigation";
     import { pb, getUserAvatarUrl } from "$lib/pocketbase.ts";
 
-	const user = pb.authStore.model;
+	let { user } = $props();
 
 	async function logout() {
 		pb.authStore.clear();
