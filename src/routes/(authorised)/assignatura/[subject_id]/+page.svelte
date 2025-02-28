@@ -1,7 +1,9 @@
 <script lang="ts">
     import * as Tabs from "$lib/components/ui/tabs/index.js";
     import { Input } from "$lib/components/ui/input/index.js";
-    import { Search } from "lucide-svelte";
+    import { Button } from "$lib/components/ui/button";
+    import Search from "lucide-svelte/icons/search";
+    import Upload from "lucide-svelte/icons/upload";
     
     import NoteCard from "$lib/components/NoteCard.svelte";
 
@@ -56,3 +58,13 @@
 {:catch error}
     <p class="text-sm text-red-500 text-center mt-32">Error carregant apunts: {error.message}</p>
 {/await}
+
+{#if data.notes.length === 0}
+    <div class="text-center mt-32">
+        <p class="mb-8 text-muted-foreground">Aquesta assignatura encara no te cap apunt.</p>
+        <Button href="/usuari/penja-apunts">
+            <Upload />
+            Penja apunts
+        </Button>
+    </div>
+{/if}
