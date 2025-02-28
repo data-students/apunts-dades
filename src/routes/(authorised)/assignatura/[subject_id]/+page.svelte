@@ -43,22 +43,18 @@
 	</div>
 </div>
 
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-    {#await data.notes}
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <div class="bg-muted/50 aspect-video rounded-xl"></div>
-            <div class="bg-muted/50 aspect-video rounded-xl hidden sm:block"></div>
-            <div class="bg-muted/50 aspect-video rounded-xl hidden lg:block"></div>
-        </div>
-    {:then notes}
+{#await data.notes}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="bg-muted/50 aspect-video rounded-xl"></div>
+        <div class="bg-muted/50 aspect-video rounded-xl hidden sm:block"></div>
+        <div class="bg-muted/50 aspect-video rounded-xl hidden lg:block"></div>
+    </div>
+{:then notes}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {#each filteredNotes as note}
             <NoteCard note={note} />
-        {:else}
-            <div></div>
-            <p class="text-muted-foreground text-sm text-center mt-32">Cap apunt trobat</p>
-            <div></div>
         {/each}
-    {:catch error}
-        <p>Error carregant apunts: {error.message}</p>
-    {/await}
-</div>
+    </div>
+{:catch error}
+    <p class="text-sm text-red-500 text-center mt-32">Error carregant apunts: {error.message}</p>
+{/await}

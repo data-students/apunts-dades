@@ -1,7 +1,9 @@
 <script lang="ts">
 	import * as Tabs from "$lib/components/ui/tabs/index.js";
 	import { Input } from "$lib/components/ui/input/index.js";
-	import { Search } from "lucide-svelte";
+    import { Button } from "$lib/components/ui/button";
+    import Search from "lucide-svelte/icons/search";
+    import CirclePlus from "lucide-svelte/icons/circle-plus";
 
 	import SubjectCard from "$lib/components/SubjectCard.svelte";
 
@@ -39,22 +41,28 @@
 	</div>
 </div>
 
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-    {#await data.subjects}
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <div class="bg-muted/50 aspect-video rounded-xl"></div>
-            <div class="bg-muted/50 aspect-video rounded-xl hidden sm:block"></div>
-            <div class="bg-muted/50 aspect-video rounded-xl hidden lg:block"></div>
-        </div>
-    {:then subjects}
+{#await data.subjects}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="bg-muted/50 aspect-video rounded-xl"></div>
+        <div class="bg-muted/50 aspect-video rounded-xl hidden sm:block"></div>
+        <div class="bg-muted/50 aspect-video rounded-xl hidden lg:block"></div>
+    </div>
+{:then subjects}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {#each filteredSubjects as subject}
             <SubjectCard subject={subject} />
-        {:else}
-            <div></div>
-            <p class="text-muted-foreground text-sm text-center mt-32">Cap assignatura trobada</p>
-            <div></div>
         {/each}
-    {:catch error}
-        <p>Error carregant assignatures: {error.message}</p>
-    {/await}
-</div>
+    </div>
+{:catch error}
+    <p class="text-sm text-red-500 text-center mt-32">Error carregant assignatures: {error.message}</p>
+{/await}
+
+{#if data.user.subjects.length === 0 && selectedTab === "current"}
+    <div class="text-center mt-32">
+        <p class="mb-8 text-muted-foreground">Afegeix les assignatures que estàs cursant per veure-les aqui.</p>
+        <Button href="/usuari/configuracio">
+            <CirclePlus />
+            Afegeix assignatures
+        </Button>
+    </div>
+{/if}
