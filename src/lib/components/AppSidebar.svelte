@@ -6,7 +6,6 @@
     import Send from "lucide-svelte/icons/send";
     import Upload from "lucide-svelte/icons/upload";
     import File from "lucide-svelte/icons/file";
-	import Folder from "lucide-svelte/icons/folder";
 
     let {
         ref = $bindable(null), 
@@ -17,7 +16,6 @@
     const items = $derived(data.quarters.map(quarter => ({
         title: quarter,
         url: "#",
-        icon: Folder,
         isActive: false,
         items: data.subjects
             .filter(subject => subject.quarter === quarter)
