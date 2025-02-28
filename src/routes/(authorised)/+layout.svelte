@@ -3,11 +3,11 @@
 	import { Separator } from "$lib/components/ui/separator/index.js";
 	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
 
-    import AppSidebar from "$lib/components/app-sidebar.svelte";
+    import AppSidebar from "$lib/components/AppSidebar.svelte";
 	
 	import { page } from '$app/state';
 
-	let { children } = $props();
+	let { children, data } = $props();
 </script>
 
 <svelte:head>
@@ -15,7 +15,7 @@
 </svelte:head>
 
 <Sidebar.Provider>
-	<AppSidebar />
+	<AppSidebar data={data} />
 	<Sidebar.Inset>
 	<header class="flex h-16 shrink-0 items-center gap-2">
 		<div class="flex items-center gap-2 px-4">

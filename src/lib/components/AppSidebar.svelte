@@ -1,23 +1,27 @@
-<script lang="ts" module>
-	import ChartPie from "lucide-svelte/icons/chart-pie";
-	import Frame from "lucide-svelte/icons/frame";
-	import LifeBuoy from "lucide-svelte/icons/life-buoy";
-	import Map from "lucide-svelte/icons/map";
-	import Send from "lucide-svelte/icons/send";
-	import Box from "lucide-svelte/icons/box";
-	import DataBase from "lucide-svelte/icons/database";
-	import Rocket from "lucide-svelte/icons/rocket";
-	import BrainCircuit from "lucide-svelte/icons/brain-circuit";
-	import Bug from "lucide-svelte/icons/bug";
-	import Grip from "lucide-svelte/icons/grip";
-	
-	import { pb } from "$lib/pocketbase.ts";
+<script lang="ts">
+    import NavMain from "$lib/components/NavAssignatures.svelte";
+    import NavUser from "$lib/components/NavUsuari.svelte";
+    import * as Sidebar from "$lib/components/ui/sidebar/index.js";
 
-	// TODO: Replace with data from the layout to avoid duplicated query
-	let user = pb.authStore.model;
+    import Send from "lucide-svelte/icons/send";
+    import Box from "lucide-svelte/icons/box";
+    import DataBase from "lucide-svelte/icons/database";
+    import Rocket from "lucide-svelte/icons/rocket";
+    import BrainCircuit from "lucide-svelte/icons/brain-circuit";
+    import Bug from "lucide-svelte/icons/bug";
+    import Grip from "lucide-svelte/icons/grip";
+    import Upload from "lucide-svelte/icons/upload";
+    import File from "lucide-svelte/icons/file";
+
+    let { 
+        ref = $bindable(null), 
+        data: pageData,
+        ...restProps 
+    } = $props();
 
 	const data = {
-		user: user,
+		user: pageData.user,
+		feedback: pageData.feedback,
 		navMain: [
 			{
 				title: "Q1",
@@ -171,48 +175,8 @@
 					},
 				],
 			},
-		],
-		navSecondary: [
-			{
-				title: "Support",
-				url: "#",
-				icon: LifeBuoy,
-			},
-			{
-				title: "Feedback",
-				url: "#",
-				icon: Send,
-			},
-		],
-		projects: [
-			{
-				name: "Design Engineering",
-				url: "#",
-				icon: Frame,
-			},
-			{
-				name: "Sales & Marketing",
-				url: "#",
-				icon: ChartPie,
-			},
-			{
-				name: "Travel",
-				url: "#",
-				icon: Map,
-			},
-		],
+		]
 	};
-</script>
-
-<script lang="ts">
-	import NavMain from "$lib/components/nav-main.svelte";
-	import NavProjects from "$lib/components/nav-projects.svelte";
-	import NavSecondary from "$lib/components/nav-secondary.svelte";
-	import NavUser from "$lib/components/nav-user.svelte";
-	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
-	import type { ComponentProps } from "svelte";
-
-	let { ref = $bindable(null), ...restProps }: ComponentProps<typeof Sidebar.Root> = $props();
 </script>
 
 <Sidebar.Root bind:ref variant="inset" {...restProps}>
@@ -237,8 +201,40 @@
 	</Sidebar.Header>
 	<Sidebar.Content>
 		<NavMain items={data.navMain} />
-		<NavProjects projects={data.projects} />
-		<NavSecondary items={data.navSecondary} class="mt-auto" />
+		<Sidebar.Group class="group-data-[collapsible=icon]:hidden">
+			<Sidebar.GroupLabel>Navegació</Sidebar.GroupLabel>
+			<Sidebar.Menu>
+				<Sidebar.MenuItem>
+					<a href="/usuari/penja-apunts">
+						<Sidebar.MenuButton>
+							<Upload />
+							Penja Apunts
+						</Sidebar.MenuButton>
+					</a>
+				</Sidebar.MenuItem>
+				<Sidebar.MenuItem>
+					<a href="/usuari/apunts-penjats">
+						<Sidebar.MenuButton>
+							<File />
+							Apunts Penjats
+						</Sidebar.MenuButton>
+					</a>
+				</Sidebar.MenuItem>
+			</Sidebar.Menu>
+		</Sidebar.Group>
+
+		<Sidebar.Group class="group-data-[collapsible=icon]:hidden mt-auto">
+			<Sidebar.Menu>
+				<Sidebar.MenuItem>
+					<a href={data.feedback} target="_blank">
+						<Sidebar.MenuButton>
+							<Send />
+							Feedback
+						</Sidebar.MenuButton>
+					</a>
+				</Sidebar.MenuItem>
+			</Sidebar.Menu>
+		</Sidebar.Group>
 	</Sidebar.Content>
 	<Sidebar.Footer>
 		<NavUser user={data.user} />

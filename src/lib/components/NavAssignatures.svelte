@@ -3,26 +3,11 @@
 	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
 	import ChevronRight from "lucide-svelte/icons/chevron-right";
 
-	let {
-		items,
-	}: {
-		items: {
-			title: string;
-			url: string;
-			// This should be `Component` after lucide-svelte updates types
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			icon: any;
-			isActive?: boolean;
-			items?: {
-				title: string;
-				url: string;
-			}[];
-		}[];
-	} = $props();
+	let { items } = $props();
 </script>
 
 <Sidebar.Group>
-	<Sidebar.GroupLabel>Quadrimestres</Sidebar.GroupLabel>
+	<Sidebar.GroupLabel>Assignatures</Sidebar.GroupLabel>
 	<Sidebar.Menu>
 		{#each items as mainItem (mainItem.title)}
 			<Collapsible.Root open={mainItem.isActive}>

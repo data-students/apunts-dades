@@ -9,14 +9,17 @@ export async function load() {
 
   const subjects = await pb.collection("subjects").getFullList();
   const user = pb.authStore.model;
+  user.initials = user.name[0].toUpperCase();
 
   const quarters = ["Q1", "Q2", "Q3", "Q4", "Q5", "Q6"];
   const noteTypes = ["Teoria", "Lab", "Examen"];
+  const feedback = "https://github.com/data-students/apunts-dades/issues";
 
   return {
     subjects,
     user,
     quarters,
-    noteTypes
+    noteTypes,
+    feedback
   };
 }
