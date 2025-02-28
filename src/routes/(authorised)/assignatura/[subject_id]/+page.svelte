@@ -12,19 +12,16 @@
     let selectedTab = $state("Tots");
     let searchQuery = $state("");
 
-    function filterNotes(notes: any[], type: string, query: string) {
-        return notes
-            .filter(note => {
-                if (type !== "Tots" && note.type != type) return false;
-                
-                if (query) {
-                    const searchText = note.title.toLowerCase();
-                    return searchText.includes(query.toLowerCase());
-                }
-                
-                return true;
-            });
-    }
+    let filteredNotes = $derived(data.notes.filter(note => {
+        if (selectedTab !== "Tots" && note.type !== selectedTab) return false;
+        
+        if (searchQuery) {
+            const searchText = note.title.toLowerCase();
+            return searchText.includes(searchQuery.toLowerCase());
+        }
+        
+        return true;
+    }));
 </script>
 
 <div class="flex flex-col-reverse gap-4 md:flex-row md:items-center md:justify-between">
@@ -54,7 +51,7 @@
             <div class="bg-muted/50 aspect-video rounded-xl hidden lg:block"></div>
         </div>
     {:then notes}
-        {#each filterNotes(notes, selectedTab, searchQuery) as note}
+        {#each filteredNotes as note}
             <NoteCard note={note} />
         {:else}
             <p class="text-muted-foreground text-sm">Cap apunt trobat</p>

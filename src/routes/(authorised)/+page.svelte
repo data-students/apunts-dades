@@ -10,22 +10,16 @@
 	let searchQuery = $state("");
 	let selectedTab = $state("current");
 
-	function filterSubjects(subjects: any[]) {
-        return subjects.filter(subject => {
-            if (searchQuery) {
-                const searchText = subject.title.toLowerCase() + subject.acronym.toLowerCase();
-                if (!searchText.includes(searchQuery.toLowerCase())) {
-                    return false;
-                }
-            }
-
-            if (selectedTab === "current") {
-                return data.user.subjects.includes(subject.id);
-            }
-
-            return true;
-        });
-    }
+    const filteredSubjects = $derived(data.subjects.filter(subject => {
+        if (selectedTab === "current" && !data.user.subjects.includes(subject.id)) return false;
+        
+        if (searchQuery) {
+            const searchText = (subject.title + " " + subject.acronym).toLowerCase();
+            return searchText.includes(searchQuery.toLowerCase());
+        }
+        
+        return true;
+    }));
 </script>
 
 <div class="flex flex-col-reverse gap-4 md:flex-row md:items-center md:justify-between">
@@ -53,7 +47,7 @@
             <div class="bg-muted/50 aspect-video rounded-xl hidden lg:block"></div>
         </div>
     {:then subjects}
-        {#each filterSubjects(subjects) as subject}
+        {#each filteredSubjects as subject}
             <SubjectCard subject={subject} />
         {:else}
             <p class="text-muted-foreground text-sm">Cap assignatura trobada</p>
