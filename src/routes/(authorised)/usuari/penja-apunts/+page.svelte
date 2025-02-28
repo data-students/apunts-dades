@@ -18,6 +18,7 @@
 	let type = $state(null);
 	let hideAuthor = $state(false);
 	let formLoading = $state(false);
+	let author = data.user.id;
   
 	async function upload() {
 	  formLoading = true;
@@ -28,7 +29,9 @@
 		data.append("hide_author", hideAuthor);
 		data.append("subject", subject);
 		data.append("type", type);
+		data.append("author", author);
 		const record = await pb.collection("notes").create(data);
+		console.log(record);
 		// success
 	  } catch (error) {
 		// error
