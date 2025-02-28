@@ -15,7 +15,6 @@
 
     const items = $derived(data.quarters.map(quarter => ({
         title: quarter,
-        url: "#",
         isActive: false,
         items: data.subjects
             .filter(subject => subject.quarter === quarter)
