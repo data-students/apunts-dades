@@ -31,11 +31,12 @@
         loading = true;
 	  try {
         const record = await pb.collection('users').update(data.user.id, user);
+        toast.success('Configuració actualitzada correctament', { duration: 1000 });
+        setTimeout(() => window.location.reload(), 1500);
 	  } catch (error) {
         toast.error('Error al actualitzar la configuració');
 	  } finally {
         loading = false;
-        toast.success('Configuració actualitzada correctament');
       }
     }
 </script>
