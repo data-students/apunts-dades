@@ -15,6 +15,6 @@
     </div>
     <Card.Header class="pb-6">
         <Card.Title>{note.title}</Card.Title>
-        <Card.Description>{note.subject}</Card.Description>
+        <Card.Description>{note.expand.subject.title}</Card.Description>
     </Card.Header>
 </Card.Root>
