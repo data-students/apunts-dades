@@ -46,10 +46,6 @@
 	</div>
 </div>
 
-{#each data.topics as topic}
-    <span>{topic.title}</span>
-{/each}
-
 {#await data.notes}
     {#each Array.from({ length: 24 }) as _, index (index)}
         <div class="bg-muted/50 aspect-video h-12 w-full rounded-lg"></div>
@@ -60,6 +56,7 @@
             <Table.Header>
                 <Table.Row class="hover:bg-transparent">
                     <Table.Head>Títol</Table.Head>
+                    <Table.Head>Tema</Table.Head>
                     <Table.Head>Tipus</Table.Head>
                     <Table.Head>Autor</Table.Head>
                     <Table.Head class="hidden md:table-cell">Penjat</Table.Head>
@@ -74,6 +71,11 @@
                             class="contents"
                         >
                             <Table.Cell class="font-semibold">{note.title}</Table.Cell>
+                            <Table.Cell>
+                                {#if note.expand.topic}
+                                    {note.expand.topic.title}
+                                {/if}
+                            </Table.Cell>
                             <Table.Cell>
                                 <Badge variant="outline">{note.type}</Badge>
                             </Table.Cell>

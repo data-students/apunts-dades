@@ -7,7 +7,9 @@ export async function load() {
     throw redirect(302, "/inicia-sessio");
   }
 
-  const subjects = await pb.collection("subjects").getFullList();
+  const subjects = await pb.collection("subjects").getFullList({
+      sort: "acronym"
+  });
   const user = pb.authStore.model;
   user.initials = user.name[0].toUpperCase();
 

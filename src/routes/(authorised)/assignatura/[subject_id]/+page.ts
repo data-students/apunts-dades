@@ -9,17 +9,13 @@ export async function load({ params, parent }) {
 
   const notes = await pb.collection('notes').getFullList({
       filter: `subject = "${subject_id}"`,
-      expand: "author"
-  });
-
-  const topics = await pb.collection('topics').getFullList({
-    filter: `subject = "${subject_id}"`
+      expand: "author,topic",
+      sort: "topic.title"
   });
   
   return { 
     subject,
     notes,
-    topics,
     title: subject.title,
     breadcrumb: subject.acronym
   };
