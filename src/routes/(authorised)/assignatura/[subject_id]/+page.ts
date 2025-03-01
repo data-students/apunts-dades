@@ -11,7 +11,7 @@ export async function load({ params, parent }) {
       filter: `subject = "${subject_id}"`,
       expand: "author"
   });
-
+  
   return { 
     subject,
     notes,

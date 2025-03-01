@@ -12,10 +12,10 @@
         <Card.Header>
             <Card.Title>{note.title}</Card.Title>
             <Card.Description>
-                {#if !note.hideAuthor}
-                    Compartit per {note.expand.author.name}
+                {#if note.hideAuthor}
+                    Compartit per anònim   
                 {:else}
-                    Compartit per anònim
+                    Compartit per {note.expand.author.name}
                 {/if}
             </Card.Description>
         </Card.Header>
