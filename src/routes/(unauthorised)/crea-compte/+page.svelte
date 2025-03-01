@@ -32,13 +32,11 @@
     try {
       user.name = firstName + " " + lastName;
       const record = await pb.collection('users').create(user);
-      const response = await pb.collection("users").authWithPassword(user.email, user.password);
-      if (pb.authStore.isValid) {
-        toast.success('Compte creat correctament!');
-        goto("/");
-      }
+      const response = await pb.collection('users').requestVerification(user.email);
+      toast.success('Compte creat correctament. Verifica el correu electrònic');
+      goto("/inicia-sessio");
     } catch (error) {
-      toast.error('Error al crear el compte. Credencials invàlides.');
+      toast.error('Error al crear el compte. Credencials invàlides');
     } finally {
       loading = false;
     }
@@ -53,14 +51,14 @@
             "name": response.meta.name,
             // "avatar": response.meta.avatarUrl
           });
-          toast.success('Compte creat correctament!');
+          toast.success('Compte creat correctament');
         } else {
-          toast.success('Sessió iniciada correctament!');
+          toast.success('Sessió iniciada correctament');
         }
         goto("/");
       }
     } catch (error) {
-      toast.error('Error al crear compte amb Google.');
+      toast.error('Error al crear compte amb Google');
     }
   }
 </script>
@@ -83,7 +81,7 @@
             <Input id="first-name" autocomplete="first-name" placeholder="Rosa" bind:value={firstName} required />
           </div>
           <div class="grid gap-2">
-            <Label for="last-name">Cognom</Label>
+            <Label for="last-name">Cognoms</Label>
             <Input id="last-name" autocomplete="last-name" placeholder="Melano" bind:value={lastName} required />
           </div>
         </div>

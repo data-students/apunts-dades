@@ -23,11 +23,16 @@
     try {
       const response = await pb.collection("users").authWithPassword(credentials.email, credentials.password);
       if (pb.authStore.isValid) {
-        toast.success('Sessió iniciada correctament');
-        goto("/");
+        if (!response.record.verified) {
+          toast.error('Verifica el correu electrònic abans d\'iniciar sessió');
+          pb.authStore.clear();
+        } else {
+          toast.success('Sessió iniciada correctament');
+          goto("/");
+        }
       }
     } catch (error) {
-      toast.error('Error al iniciar sessió. Verifica les teves credencials.');
+      toast.error('Error al iniciar sessió. Verifica les credencials');
     } finally {
       loading = false;
     }
@@ -42,14 +47,14 @@
             "name": response.meta.name,
             // "avatar": response.meta.avatarUrl
           });
-          toast.success('Compte creat correctament!');
+          toast.success('Compte creat correctament');
         } else {
-          toast.success('Sessió iniciada correctament!');
+          toast.success('Sessió iniciada correctament');
         }
         goto("/");
       }
     } catch (error) {
-      toast.error('Error al iniciar sessió amb Google.');
+      toast.error('Error al iniciar sessió amb Google');
     }
   }
 </script>

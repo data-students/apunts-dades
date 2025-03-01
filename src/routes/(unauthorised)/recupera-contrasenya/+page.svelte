@@ -16,9 +16,9 @@
     loading = true;
     try {
       const response = await pb.collection('users').requestPasswordReset(email);
-      toast.success('Correu de recuperació enviat correctament.');
+      toast.success('Correu de recuperació enviat correctament');
     } catch (error) {
-      toast.error('Error al recuperar la contrasenya. Verifica el correu electrònic.');
+      toast.error('Error al recuperar la contrasenya. Verifica el correu electrònic');
     } finally {
       loading = false;
     }
