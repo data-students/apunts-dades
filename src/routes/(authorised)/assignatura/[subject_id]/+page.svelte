@@ -92,19 +92,17 @@
                 {/each}
             </Table.Body>
         </Table.Root>
-    {:else if data.notes.length > 0}
+    {:else if data.notes.length === 0}
+        <div class="text-center mt-32">
+            <p class="mb-8 text-muted-foreground">Aquesta assignatura encara no te cap apunt.</p>
+            <Button href="/usuari/penja-apunts">
+                <Upload />
+                Penja apunts
+            </Button>
+        </div>
+    {:else}
         <p class="text-sm text-muted-foreground text-center mt-32">Cap apunt trobat</p>
     {/if}
 {:catch error}
     <p class="text-sm text-red-500 text-center mt-32">Error carregant apunts: {error.message}</p>
 {/await}
-
-{#if data.notes.length === 0}
-    <div class="text-center mt-32">
-        <p class="mb-8 text-muted-foreground">Aquesta assignatura encara no te cap apunt.</p>
-        <Button href="/usuari/penja-apunts">
-            <Upload />
-            Penja apunts
-        </Button>
-    </div>
-{/if}

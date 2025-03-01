@@ -67,19 +67,17 @@
                 </div>
             {/if}
         {/each}
-    {:else if data.subjects.length > 0}
+    {:else if selectedTab === "current" && data.user.subjects.length === 0}
+        <div class="text-center mt-32">
+            <p class="mb-8 text-muted-foreground">Afegeix les assignatures que estàs cursant per veure-les aqui.</p>
+            <Button href="/usuari/configuracio">
+                <CirclePlus />
+                Afegeix assignatures
+            </Button>
+        </div>
+    {:else}
         <p class="text-sm text-muted-foreground text-center mt-32">Cap assignatura trobada</p>
     {/if}
 {:catch error}
     <p class="text-sm text-red-500 text-center mt-32">Error carregant assignatures: {error.message}</p>
 {/await}
-
-{#if data.user.subjects.length === 0 && selectedTab === "current"}
-    <div class="text-center mt-32">
-        <p class="mb-8 text-muted-foreground">Afegeix les assignatures que estàs cursant per veure-les aqui.</p>
-        <Button href="/usuari/configuracio">
-            <CirclePlus />
-            Afegeix assignatures
-        </Button>
-    </div>
-{/if}
