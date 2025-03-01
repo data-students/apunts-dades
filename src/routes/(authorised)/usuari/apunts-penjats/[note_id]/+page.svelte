@@ -12,17 +12,28 @@
     let { data } = $props();
 
     let note = $state(data.note);
+    let files = $state(null);
 
     let loading = $state(false);
 
     async function updateNote() {
         loading = true;
         try {
+            if (files) {
+                // Delete the old file
+                await pb.collection('notes').update(data.note.id, {
+                    'file': []
+                });
+                
+                // Update with the new file
+                note.file = files[0];
+            }
+            
             const record = await pb.collection('notes').update(data.note.id, note);
-            console.log(record);
             toast.success('Apunts actualitzats correctament');
         } catch (error) {
             toast.error('Error al actualitzar els apunts');
+            console.error(error);
         } finally {
             loading = false;
         }
@@ -66,6 +77,21 @@
         <Label for="hideAuthor">Anonimitza l'autor</Label>
         <Switch id="hideAuthor" bind:checked={note.hideAuthor} />
     </div>
+	<div class="grid gap-2">
+		<Label for="title">Fitxer</Label>
+		<div class="relative h-60 w-full border-2 border-dashed rounded-lg hover:border-neutral-400 transition-colors flex items-center justify-center">
+			<input
+				type="file"
+				bind:files
+				class="absolute w-full h-full opacity-0 cursor-pointer"
+			/>
+			{#if files}
+				<p class="text-sm font-medium">{files[0].name}</p>
+			{:else}
+                <p class="text-sm font-medium">{note.file[0]}</p>
+			{/if}
+		</div>
+	</div>
     <Button type="submit" class="w-full">
         {#if loading}
             <LoaderCircle class="h-5 animate-spin" />
