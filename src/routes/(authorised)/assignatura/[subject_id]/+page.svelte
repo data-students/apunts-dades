@@ -46,6 +46,10 @@
 	</div>
 </div>
 
+{#each data.topics as topic}
+    <span>{topic.title}</span>
+{/each}
+
 {#await data.notes}
     {#each Array.from({ length: 24 }) as _, index (index)}
         <div class="bg-muted/50 aspect-video h-12 w-full rounded-lg"></div>
