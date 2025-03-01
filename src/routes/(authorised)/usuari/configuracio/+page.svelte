@@ -73,7 +73,7 @@
         {#if loading}
             <LoaderCircle class="h-5 animate-spin" />
         {:else}
-            Guardar
+            Guardar canvis
         {/if}
     </Button>
 </form>

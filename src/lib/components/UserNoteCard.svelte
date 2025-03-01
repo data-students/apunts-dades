@@ -8,7 +8,7 @@
 
 <Card.Root class="relative group">
     <div class="absolute right-4 top-4">
-        <Button>
+        <Button href={`/usuari/apunts-penjats/${note.id}`}>
             <Edit />
             Edit
         </Button>
