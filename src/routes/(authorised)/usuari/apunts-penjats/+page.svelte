@@ -25,7 +25,7 @@
                 <Table.Row class="hover:bg-transparent">
                     <Table.Head>Títol</Table.Head>
                     <Table.Head>Assignatura</Table.Head>
-                    <Table.Head class="hidden md:table-cell">Penjat</Table.Head>
+                    <Table.Head class="hidden md:table-cell max-w-20">Penjat</Table.Head>
                     <Table.Head class="max-w-4"></Table.Head>
                 </Table.Row>
             </Table.Header>
@@ -34,8 +34,8 @@
                     <Table.Row >
                         <a href={`/usuari/apunts-penjats/${note.id}`} class="contents">
                             <Table.Cell class="font-semibold">{note.title}</Table.Cell>
-                            <Table.Cell>{note.expand.subject.title}</Table.Cell>
-                            <Table.Cell class="hidden md:table-cell">{formatDate(note.created)}</Table.Cell>
+                            <Table.Cell>{note.expand.subject.acronym}</Table.Cell>
+                            <Table.Cell class="hidden md:table-cell max-w-20">{formatDate(note.created)}</Table.Cell>
                             <Table.Cell class="max-w-4">
                                 <Edit class="w-4 h-4" />
                             </Table.Cell>
