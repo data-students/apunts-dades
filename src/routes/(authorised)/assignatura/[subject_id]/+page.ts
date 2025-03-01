@@ -8,7 +8,8 @@ export async function load({ params, parent }) {
   const subject = subjects.find(s => s.id === subject_id);
 
   const notes = await pb.collection('notes').getFullList({
-      filter: `subject = "${subject_id}"`
+      filter: `subject = "${subject_id}"`,
+      expand: "author"
   });
 
   return { 

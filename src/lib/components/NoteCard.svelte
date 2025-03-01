@@ -13,7 +13,7 @@
             <Card.Title>{note.title}</Card.Title>
             <Card.Description>
                 {#if !note.hideAuthor}
-                    Compartit per {note.author}
+                    Compartit per {note.expand.author.name}
                 {:else}
                     Compartit per anònim
                 {/if}
