@@ -53,19 +53,23 @@
         <div class="bg-muted/50 aspect-video rounded-xl hidden lg:block"></div>
     </div>
 {:then subjects}
-    {#each data.quarters as quarter}
-        {#if quarterSubjects(quarter).length > 0}
-            <div class="mb-4">
-                <h2 class="text-lg font-semibold">{quarter}</h2>
-                <Separator class="mt-2 mb-4" />
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {#each quarterSubjects(quarter) as subject}
-                        <SubjectCard subject={subject} />
-                    {/each}
+    {#if filteredSubjects.length > 0}
+        {#each data.quarters as quarter}
+            {#if quarterSubjects(quarter).length > 0}
+                <div class="mb-4">
+                    <h2 class="text-lg font-semibold">{quarter}</h2>
+                    <Separator class="mt-2 mb-4" />
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {#each quarterSubjects(quarter) as subject}
+                            <SubjectCard subject={subject} />
+                        {/each}
+                    </div>
                 </div>
-            </div>
-        {/if}
-    {/each}
+            {/if}
+        {/each}
+    {:else if data.subjects.length > 0}
+        <p class="text-sm text-muted-foreground text-center mt-32">Cap assignatura trobada</p>
+    {/if}
 {:catch error}
     <p class="text-sm text-red-500 text-center mt-32">Error carregant assignatures: {error.message}</p>
 {/await}

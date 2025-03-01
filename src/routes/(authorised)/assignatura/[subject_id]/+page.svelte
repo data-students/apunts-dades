@@ -55,11 +55,9 @@
 </div>
 
 {#await data.notes}
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <div class="bg-muted/50 aspect-video rounded-xl"></div>
-        <div class="bg-muted/50 aspect-video rounded-xl hidden sm:block"></div>
-        <div class="bg-muted/50 aspect-video rounded-xl hidden lg:block"></div>
-    </div>
+    {#each Array.from({ length: 24 }) as _, index (index)}
+        <div class="bg-muted/50 aspect-video h-12 w-full rounded-lg"></div>
+    {/each}
 {:then notes}
     {#if filteredNotes.length > 0}
         <Table.Root>
