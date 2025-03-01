@@ -37,7 +37,7 @@
 		</div>
 	</header>
 	<div class="flex flex-1 flex-col gap-4 p-4 pt-0">
-		<h2 class="text-3xl font-semibold tracking-tight">{page.data.title}</h2>
+		<h2 class="text-2xl md:text-3xl font-semibold tracking-tight">{page.data.title}</h2>
 		<Separator />
 		{@render children()}
 	</div>
