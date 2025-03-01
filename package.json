@@ -28,5 +28,8 @@
 		"typescript": "^5.7.3",
 		"vite": "^6.0.7"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"posthog-js": "^1.224.1"
+	}
 }
