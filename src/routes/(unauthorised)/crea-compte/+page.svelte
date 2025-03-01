@@ -34,9 +34,9 @@
       const record = await pb.collection('users').create(user);
       const response = await pb.collection("users").authWithPassword(user.email, user.password);
       if (pb.authStore.isValid) {
+        toast.success('Compte creat correctament!');
         goto("/");
       }
-      toast.success('Compte creat correctament');
     } catch (error) {
       toast.error('Error al crear el compte. Credencials invàlides.');
     } finally {
@@ -48,9 +48,20 @@
     try {
       const response = await pb.collection('users').authWithOAuth2({ provider: 'google' });
       if (pb.authStore.isValid) {
+        if (response.meta.isNew) {
+          const record = await pb.collection('users').update(response.record.id, {
+            "name": response.meta.name,
+            // "avatar": response.meta.avatarUrl
+          });
+          toast.success('Compte creat correctament!');
+        } else {
+          toast.success('Sessió iniciada correctament!');
+        }
         goto("/");
       }
-    } catch (error) {}
+    } catch (error) {
+      toast.error('Error al crear compte amb Google.');
+    }
   }
 </script>
 
