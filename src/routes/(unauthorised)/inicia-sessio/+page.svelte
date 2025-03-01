@@ -25,11 +25,11 @@
       if (pb.authStore.isValid) {
         goto("/");
       }
+      toast.success('Sessió iniciada correctament');
     } catch (error) {
       toast.error('Error al iniciar sessió. Verifica les teves credencials.');
     } finally {
       loading = false;
-      toast.success('Sessió iniciada correctament');
     }
   }
 

@@ -23,8 +23,9 @@
   
   let loading = $state(false);
 
-  let passwordMatch = $derived(!(user.password && user.confirmPassword) || user.password === user.confirmPassword);
   let emailUPC = $derived(!(user.email && user.email.includes("@")) || user.email.endsWith("estudiantat.upc.edu"));
+  let passwordMatch = $derived(!(user.password && user.passwordConfirm) || user.password === user.passwordConfirm);
+  let passwordLength = $derived(user.password === "" || user.password.length >= 8);
   
   async function register() {
     loading = true;
@@ -35,11 +36,11 @@
       if (pb.authStore.isValid) {
         goto("/");
       }
+      toast.success('Compte creat correctament');
     } catch (error) {
       toast.error('Error al crear el compte. Credencials invàlides.');
     } finally {
       loading = false;
-      toast.success('Compte creat correctament');
     }
   }
 
@@ -92,8 +93,11 @@
           {#if !passwordMatch}
             <span class="text-sm text-red-500">Les contrasenyes han de coincidir.</span>
           {/if}
+          {#if !passwordLength}
+            <span class="text-sm text-red-500">La contrasenya ha de tenir almenys 8 caracters.</span>
+          {/if}
         </div>
-        <Button type="submit" class="w-full" disabled={!passwordMatch || !emailUPC || loading}>
+        <Button type="submit" class="w-full" disabled={!passwordMatch || !emailUPC || !passwordLength || loading}>
           {#if loading}
             <LoaderCircle class="h-5 animate-spin" />
           {:else}
