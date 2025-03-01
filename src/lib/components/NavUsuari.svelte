@@ -9,6 +9,7 @@
 	import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
 	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
 	import { useSidebar } from "$lib/components/ui/sidebar/index.js";
+	import { toast } from "svelte-sonner";
 
 	const sidebar = useSidebar();
 
@@ -20,6 +21,7 @@
 	async function logout() {
 		pb.authStore.clear();
 		goto("/inicia-sessio");
+		toast.success('Sessió tancada correctament');
 	}
 </script>
 
