@@ -8,6 +8,7 @@
     import Upload from "lucide-svelte/icons/upload";
 
     import { getFileUrl } from "$lib/pocketbase";
+    import { formatDate } from "$lib/utils";
     
 	let { data } = $props();
     
@@ -24,15 +25,6 @@
         
         return true;
     }));
-
-    function formatDate(dateString) {
-        const date = new Date(dateString);
-        return new Intl.DateTimeFormat('ca-ES', {
-            day: '2-digit',
-            month: '2-digit',
-            year: 'numeric'
-        }).format(date);
-    }
 </script>
 
 <div class="flex flex-col-reverse gap-4 md:flex-row md:items-center md:justify-between">

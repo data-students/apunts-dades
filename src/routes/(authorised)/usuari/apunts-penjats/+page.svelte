@@ -4,18 +4,11 @@
     import Upload from "lucide-svelte/icons/upload";
     import Edit from "lucide-svelte/icons/pencil";
 
+    import { formatDate } from "$lib/utils";
+
     let { data } = $props();
 
     let userNotes = data.notes.filter(note => note.author === data.user.id);
-
-    function formatDate(dateString) {
-        const date = new Date(dateString);
-        return new Intl.DateTimeFormat('ca-ES', {
-            day: '2-digit',
-            month: '2-digit',
-            year: 'numeric'
-        }).format(date);
-    }
 </script>
 
 <div class="mt-4">
