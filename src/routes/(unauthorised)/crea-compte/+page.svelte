@@ -120,7 +120,7 @@
         <span>Registra't amb Google</span>
       </Button>
       <div class="mt-4 text-sm text-center">
-        No tens compte?
+        Ja tens compte?
         <a href="/inicia-sessio" class="underline">Inicia sessió</a>
       </div>
     </Card.Content>
