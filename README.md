@@ -25,7 +25,9 @@ Les suggerències i contribucions són benvingudes.
 
 4. **Crea un arxiu ```.env```:**
    ```sh
-   VITE_POCKETBASE_ENDPOINT=https://api.apuntsdades.com
+    PUBLIC_POCKETBASE_ENDPOINT=https://api.apuntsdades.com
+    PUBLIC_POSTHOG_KEY=
+    PUBLIC_POSTHOG_HOST=
     ```
 
 5. **Executa l'aplicació**
