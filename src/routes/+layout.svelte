@@ -7,12 +7,15 @@
 
 	let { children } = $props();
 
+	const posthogKey = import.meta.env.VITE_PUBLIC_POSTHOG_KEY;
+	const posthogHost = import.meta.env.VITE_PUBLIC_POSTHOG_HOST;
+
 	onMount(() => {
 		if (browser) {
 			posthog.init(
-				import.meta.env.VITE_PUBLIC_POSTHOG_KEY,
+				posthogKey,
 				{ 
-					api_host: import.meta.env.VITE_PUBLIC_POSTHOG_HOST,
+					api_host: posthogHost,
 					person_profiles: 'identified_only',
 				}
 			)
