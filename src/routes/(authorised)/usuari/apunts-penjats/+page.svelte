@@ -43,7 +43,7 @@
                     <Table.Head>Títol</Table.Head>
                     <Table.Head>Assignatura</Table.Head>
                     <Table.Head class="hidden md:table-cell">Penjat</Table.Head>
-                    <Table.Head class="max-w-16"></Table.Head>
+                    <Table.Head class="max-w-20 lg:max-w-16"></Table.Head>
                 </Table.Row>
             </Table.Header>
             <Table.Body>
@@ -57,7 +57,7 @@
                             <Table.Cell class="font-semibold">{note.title}</Table.Cell>
                             <Table.Cell>{note.expand.subject.acronym}</Table.Cell>
                             <Table.Cell class="hidden md:table-cell">{formatDate(note.created)}</Table.Cell>
-                            <Table.Cell class="max-w-16 flex space-x-2">
+                            <Table.Cell class="max-w-20 lg:max-w-16 flex space-x-2">
                                 <Button 
                                     variant="default"
                                     href={`/usuari/apunts-penjats/${note.id}`} 
