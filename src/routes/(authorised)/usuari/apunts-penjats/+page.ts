@@ -1,6 +1,8 @@
 import { pb } from "$lib/pocketbase.ts";
 
-export async function load({ parent }) {
+export async function load({ parent, depends }) {
+
+  depends('app:user');
 
   const { user } = await parent();
   

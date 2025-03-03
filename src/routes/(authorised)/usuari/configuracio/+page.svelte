@@ -6,6 +6,7 @@
     import { LoaderCircle } from "lucide-svelte";
     import { toast } from "svelte-sonner";
 
+    import { invalidate } from '$app/navigation';
     import { getUserAvatarUrl } from "$lib/pocketbase.ts";
 
     import { pb } from "$lib/pocketbase.ts";
@@ -30,9 +31,9 @@
     async function updateUser() {
         loading = true;
 	  try {
-        const record = await pb.collection('users').update(data.user.id, user);
-        toast.success('Configuració actualitzada correctament', { duration: 1000 });
-        setTimeout(() => window.location.reload(), 1500);
+        await pb.collection('users').update(data.user.id, user);
+        invalidate('app:root');
+        toast.success('Configuració actualitzada correctament');
 	  } catch (error) {
         toast.error('Error al actualitzar la configuració');
 	  } finally {

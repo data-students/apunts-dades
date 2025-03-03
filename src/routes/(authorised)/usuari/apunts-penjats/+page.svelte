@@ -7,36 +7,36 @@
     import Trash from "lucide-svelte/icons/trash";
     import { toast } from "svelte-sonner";
 
+    import { invalidate } from '$app/navigation';
     import { pb, getFileUrl } from "$lib/pocketbase.ts";
     import { formatDate } from "$lib/utils";
 
     let { data } = $props();
 
-    let userNotes = $state(data.notes);
     let noteToDelete = $state(null); 
-    let isDialogOpen = $state(false);
+    let dialogOpen = $state(false);
 
     function confirmDelete(event, id) {
         event.preventDefault();
-        noteToDelete = userNotes.find(note => note.id === id);
-        isDialogOpen = true;
+        noteToDelete = data.notes.find(note => note.id === id);
+        dialogOpen = true;
     }
 
     async function deleteNote() {
         try {
             await pb.collection('notes').delete(noteToDelete.id);
-            userNotes = userNotes.filter(note => note.id !== noteToDelete.id);
+            invalidate('app:user');
             toast.success('Apunts eliminats correctament');
         } catch (error) {
             toast.error('Error al eliminar els apunts');
         } finally {
-            isDialogOpen = false;
+            dialogOpen = false;
         }
     }
 </script>
 
 <div class="mt-4">
-    {#if userNotes.length > 0}
+    {#if data.notes.length > 0}
         <Table.Root>
             <Table.Header>
                 <Table.Row class="hover:bg-transparent">
@@ -47,7 +47,7 @@
                 </Table.Row>
             </Table.Header>
             <Table.Body>
-                {#each userNotes as note}
+                {#each data.notes as note}
                     <a 
                         href={getFileUrl(note)} 
                         target="_blank"
@@ -87,7 +87,7 @@
     {/if}
 </div>
 
-<AlertDialog.Root bind:open={isDialogOpen}>
+<AlertDialog.Root bind:open={dialogOpen}>
     <AlertDialog.Content>
       <AlertDialog.Header>
         <AlertDialog.Title>
