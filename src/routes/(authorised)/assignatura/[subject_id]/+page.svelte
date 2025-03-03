@@ -58,7 +58,7 @@
                     <Table.Head>Títol</Table.Head>
                     <Table.Head>Tema</Table.Head>
                     <Table.Head>Tipus</Table.Head>
-                    <Table.Head>Autor</Table.Head>
+                    <Table.Head>Compartit per</Table.Head>
                     <Table.Head class="hidden md:table-cell">Penjat</Table.Head>
                 </Table.Row>
             </Table.Header>

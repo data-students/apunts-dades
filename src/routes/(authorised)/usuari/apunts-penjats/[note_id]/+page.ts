@@ -1,8 +1,9 @@
+import { pb } from "$lib/pocketbase.ts";
+
 export async function load({ params, parent }) {
     const { note_id } = params;
 
-    const { notes } = await parent();
-    const note = notes.find(n => n.id === note_id);
+    const note = await pb.collection('notes').getOne(note_id);
 
     return {
         note,
