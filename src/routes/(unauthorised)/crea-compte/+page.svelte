@@ -31,8 +31,8 @@
     loading = true;
     try {
       user.name = firstName + " " + lastName;
-      const record = await pb.collection('users').create(user);
-      const response = await pb.collection('users').requestVerification(user.email);
+      await pb.collection('users').create(user);
+      await pb.collection('users').requestVerification(user.email);
       toast.success('Compte creat correctament. Verifica el correu electrònic');
       goto("/inicia-sessio");
     } catch (error) {
@@ -47,7 +47,7 @@
       const response = await pb.collection('users').authWithOAuth2({ provider: 'google' });
       if (pb.authStore.isValid) {
         if (response.meta.isNew) {
-          const record = await pb.collection('users').update(response.record.id, {
+          await pb.collection('users').update(response.record.id, {
             "name": response.meta.name,
             // "avatar": response.meta.avatarUrl
           });

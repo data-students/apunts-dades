@@ -28,7 +28,7 @@
 	  loading = true;
 	  try {
 		note.file = files[0];
-		const record = await pb.collection("notes").create(note);
+		await pb.collection("notes").create(note);
 	  } catch (error) {
 		toast.error('Error al penjar apunts');
 	  } finally {

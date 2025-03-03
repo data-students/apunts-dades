@@ -43,7 +43,7 @@
       const response = await pb.collection('users').authWithOAuth2({ provider: 'google' });
       if (pb.authStore.isValid) {
         if (response.meta.isNew) {
-          const record = await pb.collection('users').update(response.record.id, {
+          await pb.collection('users').update(response.record.id, {
             "name": response.meta.name,
             // "avatar": response.meta.avatarUrl
           });

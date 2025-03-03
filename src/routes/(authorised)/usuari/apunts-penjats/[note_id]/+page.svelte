@@ -29,7 +29,7 @@
                 note.file = files[0];
             }
             
-            const record = await pb.collection('notes').update(data.note.id, note);
+            await pb.collection('notes').update(data.note.id, note);
             toast.success('Apunts actualitzats correctament');
         } catch (error) {
             toast.error('Error al actualitzar els apunts');
