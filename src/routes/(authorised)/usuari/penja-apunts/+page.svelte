@@ -37,6 +37,7 @@
 		note.type = null;
 		note.hideAuthor = false;
 		note.file = null;
+		files = null;
 		loading = false;
 		toast.success('Apunts penjats correctament');
 	  }
