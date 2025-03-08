@@ -58,7 +58,7 @@
                     <Table.Head>Títol</Table.Head>
                     <Table.Head>Tema</Table.Head>
                     <Table.Head>Tipus</Table.Head>
-                    <Table.Head>Compartit per</Table.Head>
+                    <Table.Head class="hidden md:table-cell">Compartit per</Table.Head>
                     <Table.Head class="hidden md:table-cell">Penjat</Table.Head>
                 </Table.Row>
             </Table.Header>
@@ -79,7 +79,7 @@
                             <Table.Cell>
                                 <Badge variant="outline">{note.type}</Badge>
                             </Table.Cell>
-                            <Table.Cell>
+                            <Table.Cell class="hidden md:table-cell">
                                 {#if note.hideAuthor}
                                     Anònim
                                 {:else}
