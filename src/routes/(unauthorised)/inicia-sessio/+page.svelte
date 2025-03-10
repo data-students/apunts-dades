@@ -9,7 +9,7 @@
 
   import { goto } from "$app/navigation";
 
-  import { pb } from "$lib/pocketbase.ts";
+  import { pb } from "$lib/pocketbase";
 
   let credentials = $state({
     email: "",
@@ -82,7 +82,7 @@
               Has oblidat la contrasenya?
             </a>
           </div>
-          <Input id="password" type="password" autocomplete="password" required bind:value={credentials.password} />
+          <Input id="password" type="password" required bind:value={credentials.password} />
         </div>
         <Button type="submit" class="w-full" disabled={loading}>
           {#if loading}

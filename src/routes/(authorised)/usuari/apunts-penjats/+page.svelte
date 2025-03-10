@@ -8,17 +8,18 @@
     import { toast } from "svelte-sonner";
 
     import { invalidate } from '$app/navigation';
-    import { pb, getFileUrl } from "$lib/pocketbase.ts";
+    import { pb, getFileUrl } from "$lib/pocketbase";
     import { formatDate } from "$lib/utils";
+	import type { Note } from "$lib/types";
 
     let { data } = $props();
 
-    let noteToDelete = $state(null); 
+    let noteToDelete = $state(null) as Note | null; 
     let dialogOpen = $state(false);
 
-    function confirmDelete(event, id) {
+    function confirmDelete(event: Event, id: string) {
         event.preventDefault();
-        noteToDelete = data.notes.find(note => note.id === id);
+        noteToDelete = data.notes.find(note => note.id === id) || null;
         dialogOpen = true;
     }
 
@@ -91,7 +92,11 @@
     <AlertDialog.Content>
       <AlertDialog.Header>
         <AlertDialog.Title>
-            Eliminar "{noteToDelete.title}"?
+            {#if noteToDelete}
+                Eliminar "{noteToDelete.title}"?
+            {:else}
+                Eliminar apunts?
+            {/if}
         </AlertDialog.Title>
         <AlertDialog.Description>
           Aquesta acció és irreversible. Els apunts seran eliminats permanentment.

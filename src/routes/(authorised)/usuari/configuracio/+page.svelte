@@ -7,9 +7,7 @@
     import { toast } from "svelte-sonner";
 
     import { invalidate } from '$app/navigation';
-    import { getUserAvatarUrl } from "$lib/pocketbase.ts";
-
-    import { pb } from "$lib/pocketbase.ts";
+    import { pb, getUserAvatarUrl } from "$lib/pocketbase";
 
     let { data } = $props();
 

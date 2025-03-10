@@ -7,34 +7,35 @@
 	import { LoaderCircle } from "lucide-svelte";
 	import { toast } from "svelte-sonner";
 	
-	import { pb } from "$lib/pocketbase.ts";
+	import { pb } from "$lib/pocketbase";
+	import type { Note } from "$lib/types";
   
 	let { data } = $props();
   
 	let note = $state({
-		title: null,
-		subject: null,
-		type: null,
+		title: "",
+		subject: "",
+		type: "",
 		hideAuthor: false,
 		file: null,
 		author: data.user.id
-	});
+	}) as Note;
 
-	let files = $state(null);
+	let files: FileList | null = $state(null);
   
 	let loading = $state(false);
 
 	async function upload() {
 	  loading = true;
 	  try {
-		note.file = files[0];
+		note.file = files?.[0] || null;
 		await pb.collection("notes").create(note);
 	  } catch (error) {
 		toast.error('Error al penjar apunts');
 	  } finally {
-		note.title = null;
-		note.subject = null;
-		note.type = null;
+		note.title = "";
+		note.subject = "";
+		note.type = "";
 		note.hideAuthor = false;
 		note.file = null;
 		files = null;
