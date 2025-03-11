@@ -1,10 +1,9 @@
-import { pb } from "$lib/pocketbase";
-import type { Note } from "$lib/types";
+import { pb } from "$lib/pocketbase.ts";
 
-export async function load({ params }) {
+export async function load({ params, parent }) {
     const { note_id } = params;
 
-    const note = await pb.collection('notes').getOne(note_id) as Note;
+    const note = await pb.collection('notes').getOne(note_id);
 
     return {
         note,

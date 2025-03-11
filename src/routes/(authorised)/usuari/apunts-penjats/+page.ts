@@ -1,5 +1,4 @@
-import { pb } from "$lib/pocketbase";
-import type { Note } from "$lib/types";
+import { pb } from "$lib/pocketbase.ts";
 
 export async function load({ parent, depends }) {
 
@@ -10,7 +9,7 @@ export async function load({ parent, depends }) {
   const notes = await pb.collection('notes').getFullList({
       filter: `author = "${user.id}"`,
       expand: "subject"
-  }) as Note[];
+  });
 
   return {
     notes,

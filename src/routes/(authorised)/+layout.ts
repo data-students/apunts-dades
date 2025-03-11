@@ -1,6 +1,5 @@
-import { pb } from "$lib/pocketbase";
+import { pb } from "$lib/pocketbase.ts";
 import { redirect } from "@sveltejs/kit";
-import type { Subject, User } from "$lib/types";
 
 export async function load({ depends }) {
   // User is not authenticated, login required
@@ -12,9 +11,8 @@ export async function load({ depends }) {
   
   const subjects = await pb.collection("subjects").getFullList({
       sort: "acronym"
-  }) as Subject[];
-
-  const user = pb.authStore.model as User;
+  });
+  const user = pb.authStore.model;
   user.initials = user.name[0].toUpperCase();
 
   const quarters = ["Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7"];
