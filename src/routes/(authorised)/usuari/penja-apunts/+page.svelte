@@ -46,21 +46,20 @@
 	}
 </script>
 
-<div class="bg-gray-100 p-4 rounded-lg text-center">
+<div class="bg-white-100 p-4 rounded-lg text-center">
 	<i class="text-xl">Good Practices</i> <br>
 	<span class="text-[17px]">
-	No cal posar el nom de l'assignatura ni el tema al títol del fitxer. <br>
-	Indiqueu-ho a les etiquetes. Si no trobeu el tema dels apunts <br>
+	No cal posar el nom de l'assignatura ni el tema al títol del fitxer,
+	indiqueu-ho a les etiquetes. Si no trobeu el tema dels apunts
 	que voleu penjar, pengeu-los sense tema i obriu un 
 	</span>
 
 	<a href={data.feedback} target="_blank" class="inline-flex items-center space-x-1">
 		<span class="underline">GitHub Issue</span>
 		<ExternalLink class="inline-block w-4 h-4" style="transform: translateY(0px);" />
-	</a> <br>
+	</a>
 	indicant quin tema falta i de quina assignatura.
 </div>
-<br>
 
 <form class="grid gap-4 pt-2" onsubmit={upload}>
 	<div class="grid gap-2">
