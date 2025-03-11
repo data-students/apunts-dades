@@ -7,12 +7,12 @@
     import { LoaderCircle } from "lucide-svelte";
     import { toast } from "svelte-sonner";
 
-    import { pb } from "$lib/pocketbase";
+    import { pb } from "$lib/pocketbase.ts";
 
     let { data } = $props();
 
     let note = $state(data.note);
-    let files = $state(null) as FileList | null;
+    let files = $state(null);
 
     let loading = $state(false);
 
@@ -86,7 +86,7 @@
 				class="absolute w-full h-full opacity-0 cursor-pointer"
 			/>
 			{#if files}
-				<p class="text-sm font-medium">{files[0]?.name}</p>
+				<p class="text-sm font-medium">{files[0].name}</p>
 			{:else}
                 <p class="text-sm font-medium">{note.file[0]}</p>
 			{/if}

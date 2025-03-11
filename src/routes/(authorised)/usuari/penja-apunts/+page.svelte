@@ -9,35 +9,34 @@
 	import Send from "lucide-svelte/icons/send";
 	import { ExternalLink } from 'lucide-svelte';
 	
-	import { pb } from "$lib/pocketbase";
-	import type { Note } from "$lib/types";
+	import { pb } from "$lib/pocketbase.ts";
   
 	let { data } = $props();
   
 	let note = $state({
-		title: "",
-		subject: "",
-		type: "",
+		title: null,
+		subject: null,
+		type: null,
 		hideAuthor: false,
 		file: null,
 		author: data.user.id
-	}) as Note;
+	});
 
-	let files: FileList | null = $state(null);
+	let files = $state(null);
   
 	let loading = $state(false);
 
 	async function upload() {
 	  loading = true;
 	  try {
-		note.file = files?.[0] || null;
+		note.file = files[0];
 		await pb.collection("notes").create(note);
 	  } catch (error) {
 		toast.error('Error al penjar apunts');
 	  } finally {
-		note.title = "";
-		note.subject = "";
-		note.type = "";
+		note.title = null;
+		note.subject = null;
+		note.type = null;
 		note.hideAuthor = false;
 		note.file = null;
 		files = null;

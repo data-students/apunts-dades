@@ -24,7 +24,7 @@
         return true;
     }));
 
-    function quarterSubjects(quarter: string) {
+    function quarterSubjects(quarter) {
         return filteredSubjects.filter(subject => subject.quarter === quarter);
     }
 </script>
