@@ -50,14 +50,15 @@
 	<i class="text-xl">Good Practices</i> <br>
 	<span class="text-[17px]">
 	No cal posar el nom de l'assignatura ni el tema al títol del fitxer. <br>
-	Indiqueu-ho a les especificacions. Si no trobeu el tema dels apunts <br>
+	Indiqueu-ho a les etiquetes. Si no trobeu el tema dels apunts <br>
 	que voleu penjar, pengeu-los sense tema i obriu un 
 	</span>
 
 	<a href={data.feedback} target="_blank" class="inline-flex items-center space-x-1">
 		<span class="underline">GitHub Issue</span>
 		<ExternalLink class="inline-block w-4 h-4" style="transform: translateY(0px);" />
-	</a>
+	</a> <br>
+	indicant quin tema falta i de quina assignatura.
 </div>
 <br>
 
