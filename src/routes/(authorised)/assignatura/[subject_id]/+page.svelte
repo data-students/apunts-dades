@@ -11,8 +11,6 @@
     import { formatDate } from "$lib/utils";
     
 	let { data } = $props();
-
-    console.log(data.notes);
     
     let selectedTab = $state("Tots");
     let searchQuery = $state("");
