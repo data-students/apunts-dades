@@ -11,6 +11,8 @@
     import { formatDate } from "$lib/utils";
     
 	let { data } = $props();
+
+    console.log(data.notes);
     
     let selectedTab = $state("Tots");
     let searchQuery = $state("");
@@ -72,17 +74,19 @@
                         >
                             <Table.Cell class="font-semibold">{note.title}</Table.Cell>
                             <Table.Cell>
-                                {#if note.expand.topic}
+                                {#if note.expand && note.expand.topic}
                                     {note.expand.topic.title}
                                 {/if}
                             </Table.Cell>
                             <Table.Cell>
-                                <Badge variant="outline">{note.type}</Badge>
+                                {#if note.type}
+                                    <Badge variant="outline">{note.type}</Badge>
+                                {/if}
                             </Table.Cell>
                             <Table.Cell class="hidden md:table-cell">
                                 {#if note.hideAuthor}
                                     Anònim
-                                {:else}
+                                {:else if note.expand && note.expand.author}
                                     {note.expand.author.name}
                                 {/if}
                             </Table.Cell>
