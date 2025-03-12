@@ -8,7 +8,7 @@
   import { toast } from "svelte-sonner";
   import { goto } from "$app/navigation";
 
-  import { pb } from "$lib/pocketbase.ts";
+  import { pb } from "$lib/pocketbase";
 
   let firstName = $state("");
   let lastName = $state("");
@@ -78,11 +78,11 @@
         <div class="grid grid-cols-2 gap-4">
           <div class="grid gap-2">
             <Label for="first-name">Nom</Label>
-            <Input id="first-name" autocomplete="first-name" placeholder="Rosa" bind:value={firstName} required />
+            <Input id="first-name" placeholder="Rosa" bind:value={firstName} required />
           </div>
           <div class="grid gap-2">
             <Label for="last-name">Cognoms</Label>
-            <Input id="last-name" autocomplete="last-name" placeholder="Melano" bind:value={lastName} required />
+            <Input id="last-name" placeholder="Melano" bind:value={lastName} required />
           </div>
         </div>
         <div class="grid gap-2">
@@ -94,11 +94,11 @@
         </div>
         <div class="grid gap-2">
           <Label for="password">Contrasenya</Label>
-          <Input id="password" type="password" autocomplete="password" required bind:value={user.password} />
+          <Input id="password" type="password" required bind:value={user.password} />
         </div>
         <div class="grid gap-2">
           <Label for="confirm-password">Confirma la Contrasenya</Label>
-          <Input id="confirm-password" type="password" autocomplete="password" required bind:value={user.passwordConfirm} />
+          <Input id="confirm-password" type="password" required bind:value={user.passwordConfirm} />
           {#if !passwordMatch}
             <span class="text-sm text-red-500">Les contrasenyes han de coincidir.</span>
           {/if}

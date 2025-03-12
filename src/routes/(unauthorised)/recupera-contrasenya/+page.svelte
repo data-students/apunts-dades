@@ -6,7 +6,7 @@
   import { LoaderCircle } from "lucide-svelte";
   import { toast } from "svelte-sonner";
   
-  import { pb } from "$lib/pocketbase.ts";
+  import { pb } from "$lib/pocketbase";
 
   let email = $state("");
 

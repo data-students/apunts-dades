@@ -6,37 +6,36 @@
 	import * as Select from "$lib/components/ui/select/index.js";
 	import { LoaderCircle } from "lucide-svelte";
 	import { toast } from "svelte-sonner";
-	import Send from "lucide-svelte/icons/send";
-	import { ExternalLink } from 'lucide-svelte';
 	
-	import { pb } from "$lib/pocketbase.ts";
+	import { pb } from "$lib/pocketbase";
+	import type { Note } from "$lib/types";
   
 	let { data } = $props();
   
 	let note = $state({
-		title: null,
-		subject: null,
-		type: null,
+		title: "",
+		subject: "",
+		type: "",
 		hideAuthor: false,
 		file: null,
 		author: data.user.id
-	});
+	}) as Note;
 
-	let files = $state(null);
+	let files: FileList | null = $state(null);
   
 	let loading = $state(false);
 
 	async function upload() {
 	  loading = true;
 	  try {
-		note.file = files[0];
+		note.file = files?.[0] || null;
 		await pb.collection("notes").create(note);
 	  } catch (error) {
 		toast.error('Error al penjar apunts');
 	  } finally {
-		note.title = null;
-		note.subject = null;
-		note.type = null;
+		note.title = "";
+		note.subject = "";
+		note.type = "";
 		note.hideAuthor = false;
 		note.file = null;
 		files = null;
@@ -45,22 +44,7 @@
 	  }
 	}
 </script>
-
-<div class="bg-white-100 p-4 rounded-lg text-center">
-	<i class="text-xl">Good Practices</i> <br>
-	<span class="text-[17px]">
-	No cal posar el nom de l'assignatura ni el tema al títol del fitxer,
-	indiqueu-ho a les etiquetes. Si no trobeu el tema dels apunts
-	que voleu penjar, pengeu-los sense tema i obriu un 
-	</span>
-
-	<a href={data.feedback} target="_blank" class="inline-flex items-center space-x-1">
-		<span class="underline">GitHub Issue</span>
-		<ExternalLink class="inline-block w-4 h-4" style="transform: translateY(0px);" />
-	</a>
-	indicant quin tema falta i de quina assignatura.
-</div>
-
+  
 <form class="grid gap-4 pt-2" onsubmit={upload}>
 	<div class="grid gap-2">
 		<Label for="title">Títol</Label>

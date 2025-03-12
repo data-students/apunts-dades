@@ -1,4 +1,4 @@
-import { pb } from "$lib/pocketbase.ts";
+import { pb } from "$lib/pocketbase";
 import { redirect } from "@sveltejs/kit";
 
 export async function load() {
