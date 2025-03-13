@@ -4,8 +4,12 @@
 	import { Button } from "$lib/components/ui/button/index.ts";
 	import { Switch } from "$lib/components/ui/switch/index.js";
 	import * as Select from "$lib/components/ui/select/index.js";
+	import * as Alert from "$lib/components/ui/alert/index.js";
 	import { LoaderCircle } from "lucide-svelte";
 	import { toast } from "svelte-sonner";
+
+	import { ExternalLink } from "lucide-svelte";
+	import { Info } from 'lucide-svelte';
 	
 	import { pb } from "$lib/pocketbase";
 	import type { Note } from "$lib/types";
@@ -44,7 +48,26 @@
 	  }
 	}
 </script>
-  
+
+<Alert.Root>
+	<Info class="size-4" />
+	<Alert.Title>Bones pràctiques</Alert.Title>
+	<Alert.Description>
+		No cal posar el nom de l'assignatura ni el tema al títol del fitxer,
+		indiqueu-ho a les etiquetes. <br>Si no trobeu el tema dels apunts
+		que voleu penjar, pengeu-los sense tema i obriu un 
+		<a href={data.feedback} target="_blank" class="inline-flex items-center space-x-1">
+			<span class="hover:underline inline-flex items-center space-x-1">
+				<span>GitHub Issue</span>
+				<ExternalLink class="h-4 w-4 -translate-y-0.5" />
+			</span>
+		</a>
+		indicant quni tema falta i de quina assignatura.
+	</Alert.Description>
+</Alert.Root>
+
+<div style="height: 0.7rem;"></div>
+
 <form class="grid gap-4 pt-2" onsubmit={upload}>
 	<div class="grid gap-2">
 		<Label for="title">Títol</Label>
