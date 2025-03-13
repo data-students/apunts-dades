@@ -16,8 +16,8 @@ export type Note = {
     title: string;
     file: File | null;
     subject: string;
-    type: string;
     topic: string;
+    type: string;
     author: string;
     hideAuthor: boolean;
     created: Date;
@@ -31,6 +31,14 @@ export type Subject = {
     acronym: string;
     quarter: string;
     type: string;
+    created: Date;
+    updated: Date;
+}
+
+export type Topic = {
+    id: string;
+    title: string;
+    subject: string;
     created: Date;
     updated: Date;
 }

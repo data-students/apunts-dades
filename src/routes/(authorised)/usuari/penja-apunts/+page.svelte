@@ -17,6 +17,7 @@
 	let note = $state({
 		title: "",
 		subject: "",
+		topic: "",
 		type: "",
 		hideAuthor: false,
 		file: null,
@@ -37,6 +38,7 @@
 	  } finally {
 		note.title = "";
 		note.subject = "";
+		note.topic = "";
 		note.type = "";
 		note.hideAuthor = false;
 		note.file = null;
@@ -60,33 +62,56 @@
 		<Label for="title">Títol</Label>
 		<Input id="title" type="text" bind:value={note.title} required />
 	</div>
-	<div class="grid grid-cols-2 gap-4">
-	<div class="grid gap-2">
-		<Label for="first-name">Assignatura</Label>
-		<Select.Root type="single" bind:value={note.subject} required>
-			<Select.Trigger>
-				{note.subject ? data.subjects.find(s => s.id === note.subject)?.acronym : "Selecciona una assignatura"}
-			</Select.Trigger>
-			<Select.Content>
-				{#each data.subjects as subject}
-				<Select.Item value={subject.id}>{subject.acronym}</Select.Item>
-				{/each}
-			</Select.Content>
-		</Select.Root>
-	</div>
-	<div class="grid gap-2">
-		<Label for="type">Tipus</Label>
-		<Select.Root type="single" bind:value={note.type} required>
-			<Select.Trigger>
-				{note.type ? note.type : "Selecciona un tipus"}
-			</Select.Trigger>
-			<Select.Content>
-				{#each data.noteTypes as value}
-				<Select.Item {value}>{value}</Select.Item>
-				{/each}
-			</Select.Content>
-		</Select.Root>
-	</div>
+	<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+		<div class="grid gap-2">
+			<Label for="first-name">Assignatura</Label>
+			<Select.Root type="single" bind:value={note.subject} required onValueChange={() => note.topic = ""}>
+				<Select.Trigger>
+					{note.subject ? data.subjects.find(s => s.id === note.subject)?.acronym : "Selecciona una assignatura"}
+				</Select.Trigger>
+				<Select.Content>
+					{#each data.subjects as subject}
+						<Select.Item value={subject.id}>{subject.acronym}</Select.Item>
+					{/each}
+				</Select.Content>
+			</Select.Root>
+		</div>
+		<div class="grid gap-2">
+			<Label for="topic">Tema</Label>
+			<Select.Root type="single" bind:value={note.topic} required disabled={!note.subject}>
+				<Select.Trigger>
+					{#if note.topic && note.subject}
+						{data.topics.find(t => t.id === note.topic)?.title || "Selecciona un tema"}
+					{:else if note.subject}
+						Selecciona un tema
+					{:else}
+						Primer selecciona una assignatura
+					{/if}
+				</Select.Trigger>
+				<Select.Content>
+					{#if note.subject}
+						{#each data.topics.filter(t => t.subject === note.subject) as topic}
+							<Select.Item value={topic.id}>{topic.title}</Select.Item>
+						{/each}
+					{:else}
+						<Select.Item value="" disabled>Primer selecciona una assignatura</Select.Item>
+					{/if}
+				</Select.Content>
+			</Select.Root>
+		</div>
+		<div class="grid gap-2">
+			<Label for="type">Tipus</Label>
+			<Select.Root type="single" bind:value={note.type} required>
+				<Select.Trigger>
+					{note.type ? note.type : "Selecciona un tipus"}
+				</Select.Trigger>
+				<Select.Content>
+					{#each data.noteTypes as value}
+						<Select.Item {value}>{value}</Select.Item>
+					{/each}
+				</Select.Content>
+			</Select.Root>
+		</div>
 	</div>
 	<div class="grid gap-2">
 		<Label for="show-author">Anonimitza l'autor</Label>

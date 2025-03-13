@@ -49,7 +49,7 @@
         <Label for="email">Correu electrònic</Label>
         <Input id="email" type="email" bind:value={user.email} required />
         {#if !emailUPC}
-          <span class="text-sm text-red-500">Només s'accepten adreçes pertanyents a la UPC.</span>
+            <span class="text-sm text-red-500">Només s'accepten adreçes pertanyents a la UPC.</span>
         {/if}
     </div>
     <div class="grid gap-2">
