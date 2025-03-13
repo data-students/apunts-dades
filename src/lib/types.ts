@@ -18,6 +18,7 @@ export type Note = {
     subject: string;
     topic: string;
     type: string;
+    course: string;
     author: string;
     hideAuthor: boolean;
     created: Date;

@@ -19,6 +19,7 @@ export async function load({ depends }) {
 
   const quarters = ["Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7"];
   const noteTypes = ["Teoria", "Problemes", "Lab", "Examen"];
+  const courses = ["2018-2019", "2019-2020", "2020-2021", "2021-2022", "2022-2023", "2023-2024", "2024-2025", "2025-2026", "2026-2027"];
   const feedback = "https://github.com/data-students/apunts-dades/issues";
 
   return {
@@ -26,6 +27,7 @@ export async function load({ depends }) {
     user,
     quarters,
     noteTypes,
+    courses,
     feedback
   };
 }

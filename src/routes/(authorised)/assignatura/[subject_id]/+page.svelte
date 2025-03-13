@@ -8,7 +8,6 @@
     import Upload from "lucide-svelte/icons/upload";
 
     import { getFileUrl } from "$lib/pocketbase";
-    import { formatDate } from "$lib/utils";
     
 	let { data } = $props();
     
@@ -30,7 +29,11 @@
                 ? note.expand.author.name.toLowerCase().includes(query)
                 : false;
                 
-            return titleMatch || topicMatch || authorMatch;
+            const courseMatch = note.course
+                ? note.course.toLowerCase().includes(query)
+                : false;
+                
+            return titleMatch || topicMatch || authorMatch || courseMatch;
         }
         
         return true;
@@ -68,8 +71,8 @@
                     <Table.Head>Títol</Table.Head>
                     <Table.Head>Tema</Table.Head>
                     <Table.Head>Tipus</Table.Head>
+                    <Table.Head class="hidden md:table-cell">Curs acadèmic</Table.Head>
                     <Table.Head class="hidden md:table-cell">Compartit per</Table.Head>
-                    <Table.Head class="hidden md:table-cell">Penjat</Table.Head>
                 </Table.Row>
             </Table.Header>
             <Table.Body>
@@ -92,13 +95,17 @@
                                 {/if}
                             </Table.Cell>
                             <Table.Cell class="hidden md:table-cell">
+                                {#if note.course}
+                                    {note.course}
+                                {/if}         
+                            </Table.Cell>
+                            <Table.Cell class="hidden md:table-cell">
                                 {#if note.hideAuthor}
                                     Anònim
                                 {:else if note.expand && note.expand.author}
                                     {note.expand.author.name}
                                 {/if}
                             </Table.Cell>
-                            <Table.Cell class="hidden md:table-cell">{formatDate(note.created)}</Table.Cell>
                         </a>
                     </Table.Row>
                 {/each}

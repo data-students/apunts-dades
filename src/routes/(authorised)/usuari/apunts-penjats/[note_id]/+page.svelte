@@ -95,6 +95,19 @@
 				</Select.Content>
 			</Select.Root>
 		</div>
+		<div class="grid gap-2">
+			<Label for="course">Curs Acadèmic</Label>
+			<Select.Root type="single" bind:value={note.course} required>
+				<Select.Trigger>
+					{note.course ? note.course : "Selecciona un curs acadèmic"}
+				</Select.Trigger>
+				<Select.Content>
+					{#each data.courses as value}
+						<Select.Item {value}>{value}</Select.Item>
+					{/each}
+				</Select.Content>
+			</Select.Root>
+		</div>
 	</div>
     <div class="grid gap-2">
         <Label for="hideAuthor">Anonimitza l'autor</Label>
