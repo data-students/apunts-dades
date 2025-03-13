@@ -19,8 +19,18 @@
         if (selectedTab !== "Tots" && note.type !== selectedTab) return false;
         
         if (searchQuery) {
-            const searchText = note.title.toLowerCase();
-            return searchText.includes(searchQuery.toLowerCase());
+            const query = searchQuery.toLowerCase();
+            const titleMatch = note.title.toLowerCase().includes(query);
+            
+            const topicMatch = note.expand?.topic?.title 
+                ? note.expand.topic.title.toLowerCase().includes(query)
+                : false;
+            
+            const authorMatch = !note.hideAuthor && note.expand?.author?.name
+                ? note.expand.author.name.toLowerCase().includes(query)
+                : false;
+                
+            return titleMatch || topicMatch || authorMatch;
         }
         
         return true;
