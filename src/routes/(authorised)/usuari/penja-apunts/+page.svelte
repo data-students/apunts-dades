@@ -48,7 +48,7 @@
 	}
 </script>
 
-<Alert.Root>
+<Alert.Root class="mt-2">
 	<Info class="size-4" />
 	<Alert.Title>Bones pràctiques</Alert.Title>
 	<Alert.Description>
@@ -56,9 +56,7 @@
 	</Alert.Description>
 </Alert.Root>
 
-<div style="height: 0.7rem;"></div>
-
-<form class="grid gap-4 pt-2" onsubmit={upload}>
+<form class="grid gap-4 pt-4" onsubmit={upload}>
 	<div class="grid gap-2">
 		<Label for="title">Títol</Label>
 		<Input id="title" type="text" bind:value={note.title} required />
