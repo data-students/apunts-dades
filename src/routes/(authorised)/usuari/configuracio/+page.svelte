@@ -3,7 +3,7 @@
     import { Input } from "$lib/components/ui/input/index.ts";
     import * as Select from "$lib/components/ui/select/index.js";
     import { Button } from "$lib/components/ui/button/index.ts";
-    import { LoaderCircle } from "lucide-svelte";
+    import LoaderCircle from "lucide-svelte/icons/loader-circle";
     import { toast } from "svelte-sonner";
 
     import { invalidate } from '$app/navigation';

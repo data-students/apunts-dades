@@ -3,7 +3,7 @@
   import { Label } from "$lib/components/ui/label/index.ts";
   import { Input } from "$lib/components/ui/input/index.ts";
   import { Button } from "$lib/components/ui/button/index.ts";
-  import { LoaderCircle } from "lucide-svelte";
+  import LoaderCircle from "lucide-svelte/icons/loader-circle";
   import { toast } from "svelte-sonner";
   
   import { pb } from "$lib/pocketbase";

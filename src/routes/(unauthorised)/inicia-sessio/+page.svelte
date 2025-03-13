@@ -4,7 +4,7 @@
   import { Input } from "$lib/components/ui/input/index.ts";
   import { Button } from "$lib/components/ui/button/index.ts";
   import { Separator } from "$lib/components/ui/separator";
-  import { LoaderCircle } from "lucide-svelte";
+  import LoaderCircle from "lucide-svelte/icons/loader-circle";
   import { toast } from "svelte-sonner";
 
   import { goto } from "$app/navigation";
