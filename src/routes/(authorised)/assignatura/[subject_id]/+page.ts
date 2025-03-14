@@ -11,8 +11,18 @@ export async function load({ params, parent }) {
   const notes = await pb.collection('notes').getFullList({
       filter: `subject = "${subject_id}"`,
       expand: "author,topic",
-      sort: "topic.title"
   }) as Note[];
+
+  // sort numerically, not alphabetically
+  notes.sort((a, b) => {
+    const topicA = a.expand?.topic?.title || '';
+    const topicB = b.expand?.topic?.title || '';
+    
+    const numA = parseInt(topicA.split('.')[0]) || 0;
+    const numB = parseInt(topicB.split('.')[0]) || 0;
+    
+    return numA - numB;
+  });
   
   return { 
     subject,
