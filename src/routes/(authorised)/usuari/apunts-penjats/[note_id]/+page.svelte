@@ -124,7 +124,7 @@
 			{#if files}
 				<p class="text-sm font-medium">{files[0]?.name}</p>
 			{:else}
-                <p class="text-sm font-medium">{note.file[0]}</p>
+                <p class="text-sm font-medium">{note.file}</p>
 			{/if}
 		</div>
 	</div>
