@@ -23,7 +23,7 @@
   
   let loading = $state(false);
 
-  let emailUPC = $derived(!(user.email && user.email.includes("@")) || user.email.endsWith("estudiantat.upc.edu"));
+  let emailUPC = $derived(!(user.email && user.email.includes("@")) || user.email.endsWith("upc.edu"));
   let passwordMatch = $derived(!(user.password && user.passwordConfirm) || user.password === user.passwordConfirm);
   let passwordLength = $derived(user.password === "" || user.password.length >= 8);
   

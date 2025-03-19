@@ -15,7 +15,7 @@
 
     let loading = $state(false);
     
-    let emailUPC = $derived(!(user.email && user.email.includes("@")) || user.email.endsWith("estudiantat.upc.edu"));
+    let emailUPC = $derived(!(user.email && user.email.includes("@")) || user.email.endsWith("upc.edu"));
     
     const selectedLabels = $derived(
         user.subjects.length
