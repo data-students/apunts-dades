@@ -16,36 +16,44 @@ Les suggerències i contribucions són benvingudes.
 
    Assegura't de tenir instal·lat [Node.js](https://nodejs.org/) i [npm](https://www.npmjs.com/).
 
-2. **Clona el repositori**
+2. **Fes un fork i clona el repositori**
    ```sh
-   git clone https://github.com/data-students/apunts-dades
+   # Fes un fork del repositori a GitHub
+   # Clona el teu fork
+   git clone https://github.com/username/apunts-dades
    cd apunts-dades
-    ```
+   ```
 
 3. **Instal·la les dependències**
    ```sh
    npm install
-    ```
+   ```
 
 4. **Crea un arxiu ```.env```:**
    ```sh
-    PUBLIC_POCKETBASE_ENDPOINT=https://api.apuntsdades.com
-    PUBLIC_POSTHOG_KEY=
-    PUBLIC_POSTHOG_HOST=
-    ```
+   PUBLIC_POCKETBASE_ENDPOINT=https://api.apuntsdades.com
+   PUBLIC_POSTHOG_KEY=
+   PUBLIC_POSTHOG_HOST=
+   ```
 
 5. **Executa l'aplicació**
    ```sh
    npm run dev
-    ```
+   ```
 
-6. **Fes commit dels canvis**
-
-    Segueix el format establert per [Conventional Commits](https://www.conventionalcommits.org/):
-
+6. **Contribueix amb canvis**
+   
    ```sh
+   # Fes els canvis necessaris i després commit
    git add .
-   git commit -m "Descripció dels canvis"
-    ```
+   git commit -m "tipus: descripció dels canvis"
+   
+   # Puja els canvis al teu fork
+   git push origin main
+   ```
+   
+   Segueix el format establert per [Conventional Commits](https://www.conventionalcommits.org/).
+   
+   Després, ves al teu fork a GitHub i crea una Pull Request cap al repositori original.
 
-El deploy de l'aplicació amb els canvis es farà automaticament.
+El deploy de l'aplicació amb els canvis es farà automàticament un cop s'accepti la teva Pull Request.
