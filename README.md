@@ -4,6 +4,10 @@ Repositori d'apunts del Grau en Ciència i Enginyeria de Dades de la UPC.
 
 ![404shots_so](https://github.com/user-attachments/assets/e9fbcb66-0c98-46a1-8fe5-9b12271c95db)
 
+Mira el Vídeo:
+
+[![Watch the video](https://img.youtube.com/vi/rlvBrrhoito/maxresdefault.jpg)](https://www.youtube.com/watch?v=rlvBrrhoito)
+
 Les suggerències i contribucions són benvingudes.
 
 ## Instal·lació i Execució en Local
