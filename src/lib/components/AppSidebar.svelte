@@ -1,28 +1,26 @@
 <script lang="ts">
-    import NavMain from "$lib/components/NavAssignatures.svelte";
-    import NavUser from "$lib/components/NavUsuari.svelte";
-    import * as Sidebar from "$lib/components/ui/sidebar/index.js";
+	import NavMain from '$lib/components/NavAssignatures.svelte';
+	import NavUser from '$lib/components/NavUsuari.svelte';
+	import * as Sidebar from '$lib/components/ui/sidebar/index.js';
 
-    import Send from "lucide-svelte/icons/send";
-    import Upload from "lucide-svelte/icons/upload";
-    import File from "lucide-svelte/icons/file";
+	import Send from 'lucide-svelte/icons/send';
+	import Upload from 'lucide-svelte/icons/upload';
+	import File from 'lucide-svelte/icons/file';
 
-    let {
-        ref = $bindable(null), 
-        data,
-        ...restProps
-    } = $props();
+	let { ref = $bindable(null), data, ...restProps } = $props();
 
-    const items = $derived(data.quarters.map(quarter => ({
-        title: quarter,
-        isActive: false,
-        items: data.subjects
-            .filter(subject => subject.quarter === quarter)
-            .map(subject => ({
-                title: subject.acronym,
-                url: `/assignatura/${subject.id}`
-            }))
-    })));
+	const items = $derived(
+		data.quarters.map((quarter) => ({
+			title: quarter,
+			isActive: false,
+			items: data.subjects
+				.filter((subject) => subject.quarter === quarter)
+				.map((subject) => ({
+					title: subject.acronym,
+					url: `/assignatura/${subject.id}`
+				}))
+		}))
+	);
 </script>
 
 <Sidebar.Root bind:ref variant="inset" {...restProps}>
@@ -46,7 +44,7 @@
 		</Sidebar.Menu>
 	</Sidebar.Header>
 	<Sidebar.Content>
-		<NavMain items={items} />
+		<NavMain {items} />
 		<Sidebar.Group class="group-data-[collapsible=icon]:hidden">
 			<Sidebar.GroupLabel>Navegació</Sidebar.GroupLabel>
 			<Sidebar.Menu>

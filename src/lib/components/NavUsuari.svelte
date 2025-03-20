@@ -1,26 +1,26 @@
 <script lang="ts">
-	import ChevronsUpDown from "lucide-svelte/icons/chevrons-up-down";
-	import LogOut from "lucide-svelte/icons/log-out";
-	import Settings from "lucide-svelte/icons/settings";
-	import Upload from "lucide-svelte/icons/upload";
-	import File from "lucide-svelte/icons/file";
+	import ChevronsUpDown from 'lucide-svelte/icons/chevrons-up-down';
+	import LogOut from 'lucide-svelte/icons/log-out';
+	import Settings from 'lucide-svelte/icons/settings';
+	import Upload from 'lucide-svelte/icons/upload';
+	import File from 'lucide-svelte/icons/file';
 
-	import * as Avatar from "$lib/components/ui/avatar/index.js";
-	import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
-	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
-	import { useSidebar } from "$lib/components/ui/sidebar/index.js";
-	import { toast } from "svelte-sonner";
+	import * as Avatar from '$lib/components/ui/avatar/index.js';
+	import * as DropdownMenu from '$lib/components/ui/dropdown-menu/index.js';
+	import * as Sidebar from '$lib/components/ui/sidebar/index.js';
+	import { useSidebar } from '$lib/components/ui/sidebar/index.js';
+	import { toast } from 'svelte-sonner';
 
 	const sidebar = useSidebar();
 
-	import { goto } from "$app/navigation";
-    import { pb, getUserAvatarUrl } from "$lib/pocketbase.ts";
+	import { goto } from '$app/navigation';
+	import { pb, getUserAvatarUrl } from '$lib/pocketbase.ts';
 
 	let { user } = $props();
 
 	async function logout() {
 		pb.authStore.clear();
-		goto("/inicia-sessio");
+		goto('/inicia-sessio');
 		toast.success('Sessió tancada correctament');
 	}
 </script>
@@ -37,7 +37,9 @@
 					>
 						<Avatar.Root class="h-8 w-8 rounded-lg">
 							<Avatar.Image class="rounded-full" src={getUserAvatarUrl(user)} alt={user.name} />
-							<Avatar.Fallback class="rounded-full bg-purple-400 text-white">{user.initials}</Avatar.Fallback>
+							<Avatar.Fallback class="rounded-full bg-purple-400 text-white"
+								>{user.initials}</Avatar.Fallback
+							>
 						</Avatar.Root>
 						<div class="grid flex-1 text-left text-sm leading-tight">
 							<span class="truncate font-semibold">{user.name}</span>
@@ -49,7 +51,7 @@
 			</DropdownMenu.Trigger>
 			<DropdownMenu.Content
 				class="w-[--bits-dropdown-menu-anchor-width] min-w-56 rounded-lg"
-				side={sidebar.isMobile ? "bottom" : "right"}
+				side={sidebar.isMobile ? 'bottom' : 'right'}
 				align="end"
 				sideOffset={4}
 			>
@@ -57,7 +59,9 @@
 					<div class="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
 						<Avatar.Root class="h-8 w-8 rounded-lg">
 							<Avatar.Image class="rounded-full" src={getUserAvatarUrl(user)} alt={user.name} />
-							<Avatar.Fallback class="rounded-full bg-purple-400 text-white">{user.initials}</Avatar.Fallback>
+							<Avatar.Fallback class="rounded-full bg-purple-400 text-white"
+								>{user.initials}</Avatar.Fallback
+							>
 						</Avatar.Root>
 						<div class="grid flex-1 text-left text-sm leading-tight">
 							<span class="truncate font-semibold">{user.name}</span>
