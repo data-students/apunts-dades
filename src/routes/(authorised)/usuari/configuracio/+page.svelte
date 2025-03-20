@@ -59,7 +59,7 @@
 		<Select.Root type="multiple" bind:value={user.subjects}>
 			<Select.Trigger>{selectedLabels}</Select.Trigger>
 			<Select.Content>
-				{#each data.subjects as subject}
+				{#each data.subjects as subject (subject.id)}
 					<Select.Item value={subject.id}>{subject.acronym}</Select.Item>
 				{/each}
 			</Select.Content>

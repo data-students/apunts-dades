@@ -24,6 +24,7 @@ export type Note = {
 	created: Date;
 	updated: Date;
 	expand: any;
+	collectionId: string;
 };
 
 export type Subject = {

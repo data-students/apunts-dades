@@ -45,7 +45,7 @@
 	<Tabs.Root value={selectedTab} onValueChange={(value) => (selectedTab = value)}>
 		<Tabs.List>
 			<Tabs.Trigger value="Tots">Tots</Tabs.Trigger>
-			{#each data.noteTypes as type}
+			{#each data.noteTypes as type (type)}
 				<Tabs.Trigger value={type}>{type}</Tabs.Trigger>
 			{/each}
 		</Tabs.List>
@@ -73,7 +73,7 @@
 				</Table.Row>
 			</Table.Header>
 			<Table.Body>
-				{#each filteredNotes as note}
+				{#each filteredNotes as note (note.id)}
 					<Table.Row class="hover:cursor-pointer">
 						<a href={getFileUrl(note)} target="_blank" class="contents">
 							<Table.Cell class="font-semibold">{note.title}</Table.Cell>

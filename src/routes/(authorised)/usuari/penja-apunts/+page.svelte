@@ -80,7 +80,7 @@
 						: 'Selecciona una assignatura'}
 				</Select.Trigger>
 				<Select.Content>
-					{#each data.subjects as subject}
+					{#each data.subjects as subject (subject.id)}
 						<Select.Item value={subject.id}>{subject.acronym}</Select.Item>
 					{/each}
 				</Select.Content>
@@ -100,7 +100,7 @@
 				</Select.Trigger>
 				<Select.Content>
 					{#if note.subject}
-						{#each data.topics.filter((t) => t.subject === note.subject) as topic}
+						{#each data.topics.filter((t) => t.subject === note.subject) as topic (topic.id)}
 							<Select.Item value={topic.id}>{topic.title}</Select.Item>
 						{/each}
 					{:else}
@@ -116,7 +116,7 @@
 					{note.type ? note.type : 'Selecciona un tipus'}
 				</Select.Trigger>
 				<Select.Content>
-					{#each data.noteTypes as value}
+					{#each data.noteTypes as value (value)}
 						<Select.Item {value}>{value}</Select.Item>
 					{/each}
 				</Select.Content>
@@ -129,7 +129,7 @@
 					{note.course ? note.course : 'Selecciona un curs acadèmic'}
 				</Select.Trigger>
 				<Select.Content>
-					{#each data.courses as value}
+					{#each data.courses as value (value)}
 						<Select.Item {value}>{value}</Select.Item>
 					{/each}
 				</Select.Content>

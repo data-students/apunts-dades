@@ -48,7 +48,7 @@
 				</Table.Row>
 			</Table.Header>
 			<Table.Body>
-				{#each data.notes as note}
+				{#each data.notes as note (note.id)}
 					<a href={getFileUrl(note)} target="_blank" class="contents">
 						<Table.Row>
 							<Table.Cell class="font-semibold">{note.title}</Table.Cell>

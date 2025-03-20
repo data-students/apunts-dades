@@ -23,7 +23,7 @@
 <div class="flex flex-col space-y-8 lg:flex-row lg:space-x-12 lg:space-y-0">
 	<aside class="lg:w-1/5">
 		<nav class="flex flex-col space-y-1">
-			{#each items as item}
+			{#each items as item (item.href)}
 				<Button
 					href={item.href}
 					variant="ghost"
