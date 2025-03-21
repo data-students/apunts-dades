@@ -8,6 +8,7 @@
 
 	import { invalidate } from '$app/navigation';
 	import { pb, getUserAvatarUrl } from '$lib/pocketbase';
+	import posthog from 'posthog-js';
 
 	let { data } = $props();
 
@@ -32,6 +33,7 @@
 		loading = true;
 		try {
 			await pb.collection('users').update(data.user.id, user);
+			posthog.capture('update_user_configuration');
 			invalidate('app:root');
 			toast.success('Configuració actualitzada correctament');
 		} catch (error) {
