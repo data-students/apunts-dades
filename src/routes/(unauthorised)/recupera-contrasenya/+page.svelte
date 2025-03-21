@@ -7,6 +7,7 @@
 	import { toast } from 'svelte-sonner';
 
 	import { pb } from '$lib/pocketbase';
+	import posthog from 'posthog-js';
 
 	let email = $state('');
 
@@ -16,6 +17,7 @@
 		loading = true;
 		try {
 			await pb.collection('users').requestPasswordReset(email);
+			posthog.capture('recover_password_user');
 			toast.success('Correu de recuperació enviat correctament');
 		} catch (error) {
 			toast.error('Error al recuperar la contrasenya. Verifica el correu electrònic');

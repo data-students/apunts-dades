@@ -10,6 +10,7 @@
 	import { goto } from '$app/navigation';
 
 	import { pb } from '$lib/pocketbase';
+	import posthog from 'posthog-js';
 
 	let credentials = $state({
 		email: '',
@@ -29,6 +30,7 @@
 					toast.error("Verifica el correu electrònic abans d'iniciar sessió");
 					pb.authStore.clear();
 				} else {
+					posthog.capture('login_user');
 					toast.success('Sessió iniciada correctament');
 					goto('/');
 				}

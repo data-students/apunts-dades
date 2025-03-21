@@ -9,6 +9,7 @@
 	import { goto } from '$app/navigation';
 
 	import { pb } from '$lib/pocketbase';
+	import posthog from 'posthog-js';
 
 	let firstName = $state('');
 	let lastName = $state('');
@@ -37,6 +38,7 @@
 			user.name = firstName + ' ' + lastName;
 			await pb.collection('users').create(user);
 			await pb.collection('users').requestVerification(user.email);
+			posthog.capture('register_user');
 			toast.success('Compte creat correctament. Verifica el correu electrònic');
 			goto('/inicia-sessio');
 		} catch (error) {
