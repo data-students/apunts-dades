@@ -5,9 +5,14 @@
 
 	import AppSidebar from '$lib/components/AppSidebar.svelte';
 
+	import { beforeNavigate, afterNavigate } from '$app/navigation';
 	import { page } from '$app/state';
+	import posthog from 'posthog-js';
 
 	let { children, data } = $props();
+
+	beforeNavigate(() => posthog.capture('$pageleave'));
+	afterNavigate(() => posthog.capture('$pageview'));
 </script>
 
 <svelte:head>

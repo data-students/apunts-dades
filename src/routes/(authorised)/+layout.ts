@@ -18,10 +18,7 @@ export async function load({ depends }) {
 	const user = pb.authStore.model as User;
 	user.initials = user.name[0].toUpperCase();
 
-	posthog.identify(
-		user.id,
-		{ email: user.email, name: user.name }
-	);
+	posthog.identify(user.id, { email: user.email, name: user.name });
 
 	const quarters = ['Q1', 'Q2', 'Q3', 'Q4', 'Q5', 'Q6', 'Q7'];
 	const noteTypes = ['Teoria', 'Problemes', 'Lab', 'Examen'];
