@@ -11,6 +11,7 @@
 	import { pb, getFileUrl } from '$lib/pocketbase';
 	import { formatDate } from '$lib/utils';
 	import type { Note } from '$lib/types';
+	import posthog from 'posthog-js';
 
 	let { data } = $props();
 
@@ -26,6 +27,13 @@
 	async function deleteNote() {
 		try {
 			await pb.collection('notes').delete(noteToDelete.id);
+			posthog.capture('delete_note', {
+				title: noteToDelete.title,
+				subject: noteToDelete.subject,
+				topic: noteToDelete.topic,
+				type: noteToDelete.type,
+				course: noteToDelete.course
+			});
 			invalidate('app:user');
 			toast.success('Apunts eliminats correctament');
 		} catch (error) {

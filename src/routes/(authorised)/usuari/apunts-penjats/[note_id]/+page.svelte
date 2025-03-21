@@ -8,6 +8,7 @@
 	import { toast } from 'svelte-sonner';
 
 	import { pb } from '$lib/pocketbase';
+	import posthog from 'posthog-js';
 
 	let { data } = $props();
 
@@ -30,6 +31,13 @@
 			}
 
 			await pb.collection('notes').update(data.note.id, note);
+			posthog.capture('edit_note', {
+				title: note.title,
+				subject: note.subject,
+				topic: note.topic,
+				type: note.type,
+				course: note.course
+			});
 			toast.success('Apunts actualitzats correctament');
 		} catch (error) {
 			toast.error('Error al actualitzar els apunts');

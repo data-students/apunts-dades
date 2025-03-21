@@ -11,6 +11,7 @@
 
 	import { pb } from '$lib/pocketbase';
 	import type { Note } from '$lib/types';
+	import posthog from 'posthog-js';
 
 	let { data } = $props();
 
@@ -34,6 +35,13 @@
 		try {
 			note.file = files?.[0] || null;
 			await pb.collection('notes').create(note);
+			posthog.capture('upload_note', {
+				title: note.title,
+				subject: note.subject,
+				topic: note.topic,
+				type: note.type,
+				course: note.course
+			});
 		} catch (error) {
 			toast.error('Error al penjar apunts');
 		} finally {
