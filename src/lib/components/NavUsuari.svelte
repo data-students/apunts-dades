@@ -15,11 +15,13 @@
 
 	import { goto } from '$app/navigation';
 	import { pb, getUserAvatarUrl } from '$lib/pocketbase.ts';
+	import posthog from 'posthog-js';
 
 	let { user } = $props();
 
 	async function logout() {
 		pb.authStore.clear();
+		posthog.reset();
 		goto('/inicia-sessio');
 		toast.success('Sessió tancada correctament');
 	}
