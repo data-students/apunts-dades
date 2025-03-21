@@ -53,6 +53,7 @@
 					});
 					toast.success('Compte creat correctament');
 				} else {
+					posthog.capture('login_user_google');
 					toast.success('Sessió iniciada correctament');
 				}
 				goto('/');

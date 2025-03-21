@@ -57,6 +57,7 @@
 						name: response.meta.name
 						// "avatar": response.meta.avatarUrl
 					});
+					posthog.capture('register_user_google');
 					toast.success('Compte creat correctament');
 				} else {
 					toast.success('Sessió iniciada correctament');
