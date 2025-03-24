@@ -136,16 +136,16 @@
 					{/if}
 				</Button>
 			</form>
-						<div class="mt-4 text-sm text-center">
-				Al registrar-te, acceptes els 
-				<a href="/termes-condicions" class="underline">Termes i condicions</a>
-			</div>
 			<Separator class="my-5" />
 			<Button variant="outline" class="w-full space-x-1.5" onclick={registerWithGoogle}>
 				<img src="/icons/google.svg" alt="Google Logo" />
 				<span>Registra't amb Google</span>
 			</Button>
-			<div class="mt-4 text-sm text-center">
+			<div class="mt-4 text-xs text-center">
+				Al registrar-te, acceptes els
+				<a href="/termes-i-condicions" class="underline">Termes i Condicions</a>
+			</div>
+			<div class="mt-6 text-sm text-center">
 				Ja tens compte?
 				<a href="/inicia-sessio" class="underline">Inicia sessió</a>
 			</div>
