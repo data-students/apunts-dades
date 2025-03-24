@@ -38,7 +38,7 @@
     <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2">
         <li>No compartir contingut que infringeixi la legislació vigent.</li>
         <li>Utilitzar la plataforma de manera responsable i respectuosa.</li>
-        <li>No intentar accedir a dades d'altres usuaris ni realitzar accions que puguin comprometre la seguretat de la plataforma.</li>
+        <li>No realitzar accions que puguin comprometre la seguretat de la plataforma.</li>
     </ul>
 
     <h2 class="text-2xl font-bold text-blue-600 mb-4">6. Modificacions i Vigència</h2>
