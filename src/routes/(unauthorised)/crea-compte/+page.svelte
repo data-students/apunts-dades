@@ -136,6 +136,10 @@
 					{/if}
 				</Button>
 			</form>
+						<div class="mt-4 text-sm text-center">
+				Al registrar-te, acceptes els 
+				<a href="/termes-condicions" class="underline">Termes i condicions</a>
+			</div>
 			<Separator class="my-5" />
 			<Button variant="outline" class="w-full space-x-1.5" onclick={registerWithGoogle}>
 				<img src="/icons/google.svg" alt="Google Logo" />
