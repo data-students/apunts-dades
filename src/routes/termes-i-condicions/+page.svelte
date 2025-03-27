@@ -1,10 +1,10 @@
 <div class="container mx-auto px-4 py-16 max-w-3xl">
 	<div class="text-center mb-12">
-		<h1 class="text-3xl font-bold mb-8">Termes i Condicions</h1>
+		<h1 class="text-3xl font-semibold mb-8">Termes i Condicions</h1>
 
 		<div class="space-y-8 text-left">
 			<section>
-				<h2 class="text-xl font-bold mb-3">1. Introducció</h2>
+				<h2 class="text-xl font-semibold mb-3">1. Introducció</h2>
 				<p>
 					Apunts Dades és una plataforma gestionada per l'Associació d'Estudiants de Dades i
 					destinada exclusivament a estudiants de la Universitat Politècnica de Catalunya (UPC).
@@ -17,7 +17,7 @@
 			</section>
 
 			<section>
-				<h2 class="text-xl font-bold mb-3">2. Registre i Accés</h2>
+				<h2 class="text-xl font-semibold mb-3">2. Registre i Accés</h2>
 				<p>
 					Per accedir a la plataforma, l'usuari ha de registrar-se amb una adreça de correu
 					@estudiantat.upc.edu.
@@ -25,7 +25,7 @@
 			</section>
 
 			<section>
-				<h2 class="text-xl font-bold mb-3">3. Recollida i Emmagatzematge de Dades</h2>
+				<h2 class="text-xl font-semibold mb-3">3. Recollida i Emmagatzematge de Dades</h2>
 				<p>Apunts Dades recopila i emmagatzema les següents dades:</p>
 				<ul class="list-disc pl-6 mt-2 space-y-1">
 					<li>Adreça de correu electrònic.</li>
@@ -41,7 +41,7 @@
 			</section>
 
 			<section>
-				<h2 class="text-xl font-bold mb-3">4. Contingut Penjat pels Usuaris</h2>
+				<h2 class="text-xl font-semibold mb-3">4. Contingut Penjat pels Usuaris</h2>
 				<ul class="list-disc pl-6 space-y-1">
 					<li>
 						Els usuaris poden pujar continguts a la plataforma sota la seva pròpia responsabilitat.
@@ -59,7 +59,7 @@
 			</section>
 
 			<section>
-				<h2 class="text-xl font-bold mb-3">5. Responsabilitats i Obligacions de l'Usuari</h2>
+				<h2 class="text-xl font-semibold mb-3">5. Responsabilitats i Obligacions de l'Usuari</h2>
 				<p>L'usuari es compromet a:</p>
 				<ul class="list-disc pl-6 mt-2 space-y-1">
 					<li>No compartir contingut que infringeixi la legislació vigent.</li>
@@ -69,7 +69,7 @@
 			</section>
 
 			<section>
-				<h2 class="text-xl font-bold mb-3">6. Modificacions i Vigència</h2>
+				<h2 class="text-xl font-semibold mb-3">6. Modificacions i Vigència</h2>
 				<p>
 					L'Associació d'Estudiants de Dades es reserva el dret de modificar aquests termes i
 					condicions en qualsevol moment. Qualsevol canvi serà notificat als usuaris registrats.
@@ -77,7 +77,7 @@
 			</section>
 
 			<section>
-				<h2 class="text-xl font-bold mb-3">7. Contacte</h2>
+				<h2 class="text-xl font-semibold mb-3">7. Contacte</h2>
 				<p>
 					Per qualsevol dubte o consulta sobre aquests termes i condicions, podeu contactar amb
 					l'Associació d'Estudiants de Dades a través del correu electrònic <a
