@@ -14,5 +14,4 @@ tailwind.config.js
 vite.config.js
 tsconfig.json
 svelte.config.js
-eslint.config.js
 static/
