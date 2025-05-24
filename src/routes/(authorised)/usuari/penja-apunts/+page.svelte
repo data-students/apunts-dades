@@ -5,8 +5,8 @@
 	import { Switch } from '$lib/components/ui/switch/index.js';
 	import * as Select from '$lib/components/ui/select/index.js';
 	import * as Alert from '$lib/components/ui/alert/index.js';
-	import Info from 'lucide-svelte/icons/info';
-	import LoaderCircle from 'lucide-svelte/icons/loader-circle';
+	import Info from '@lucide/svelte/icons/info';
+	import LoaderCircle from '@lucide/svelte/icons/loader-circle';
 	import { toast } from 'svelte-sonner';
 
 	import { pb } from '$lib/pocketbase';

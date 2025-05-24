@@ -4,8 +4,8 @@
 	import { Button } from '$lib/components/ui/button';
 	import { Badge } from '$lib/components/ui/badge/index.js';
 	import * as Table from '$lib/components/ui/table/index.js';
-	import Search from 'lucide-svelte/icons/search';
-	import Upload from 'lucide-svelte/icons/upload';
+	import Search from '@lucide/svelte/icons/search';
+	import Upload from '@lucide/svelte/icons/upload';
 
 	import { getFileUrl } from '$lib/pocketbase';
 

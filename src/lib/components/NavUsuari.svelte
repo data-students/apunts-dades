@@ -1,9 +1,9 @@
 <script lang="ts">
-	import ChevronsUpDown from 'lucide-svelte/icons/chevrons-up-down';
-	import LogOut from 'lucide-svelte/icons/log-out';
-	import Settings from 'lucide-svelte/icons/settings';
-	import Upload from 'lucide-svelte/icons/upload';
-	import File from 'lucide-svelte/icons/file';
+	import ChevronsUpDown from '@lucide/svelte/icons/chevrons-up-down';
+	import LogOut from '@lucide/svelte/icons/log-out';
+	import Settings from '@lucide/svelte/icons/settings';
+	import Upload from '@lucide/svelte/icons/upload';
+	import File from '@lucide/svelte/icons/file';
 
 	import * as Avatar from '$lib/components/ui/avatar/index.js';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu/index.js';

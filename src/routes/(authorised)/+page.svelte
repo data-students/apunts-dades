@@ -3,8 +3,8 @@
 	import { Input } from '$lib/components/ui/input/index.js';
 	import { Button } from '$lib/components/ui/button';
 	import Separator from '$lib/components/ui/separator/separator.svelte';
-	import Search from 'lucide-svelte/icons/search';
-	import CirclePlus from 'lucide-svelte/icons/circle-plus';
+	import Search from '@lucide/svelte/icons/search';
+	import CirclePlus from '@lucide/svelte/icons/circle-plus';
 
 	import SubjectCard from '$lib/components/SubjectCard.svelte';
 

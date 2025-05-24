@@ -3,9 +3,9 @@
 	import NavUser from '$lib/components/NavUsuari.svelte';
 	import * as Sidebar from '$lib/components/ui/sidebar/index.js';
 
-	import Send from 'lucide-svelte/icons/send';
-	import Upload from 'lucide-svelte/icons/upload';
-	import File from 'lucide-svelte/icons/file';
+	import Send from '@lucide/svelte/icons/send';
+	import Upload from '@lucide/svelte/icons/upload';
+	import File from '@lucide/svelte/icons/file';
 
 	let { ref = $bindable(null), data, ...restProps } = $props();
 

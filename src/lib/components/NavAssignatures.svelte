@@ -1,8 +1,8 @@
 <script lang="ts">
 	import * as Collapsible from '$lib/components/ui/collapsible/index.js';
 	import * as Sidebar from '$lib/components/ui/sidebar/index.js';
-	import ChevronRight from 'lucide-svelte/icons/chevron-right';
-	import Folder from 'lucide-svelte/icons/folder';
+	import ChevronRight from '@lucide/svelte/icons/chevron-right';
+	import Folder from '@lucide/svelte/icons/folder';
 
 	let { items } = $props();
 </script>

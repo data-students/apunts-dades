@@ -2,9 +2,9 @@
 	import * as Table from '$lib/components/ui/table/index.js';
 	import { Button } from '$lib/components/ui/button';
 	import * as AlertDialog from '$lib/components/ui/alert-dialog/index.js';
-	import Upload from 'lucide-svelte/icons/upload';
-	import Edit from 'lucide-svelte/icons/pencil';
-	import Trash from 'lucide-svelte/icons/trash';
+	import Upload from '@lucide/svelte/icons/upload';
+	import Edit from '@lucide/svelte/icons/pencil';
+	import Trash from '@lucide/svelte/icons/trash';
 	import { toast } from 'svelte-sonner';
 
 	import { invalidate } from '$app/navigation';
